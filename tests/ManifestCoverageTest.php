@@ -318,19 +318,19 @@ final class ManifestCoverageTest extends TestCase {
 	}
 
 	/**
-	 * A custom template the theme wrote has a file; a parent one resolves there.
+	 * Every custom template the theme offers is registered, and the child owns its file.
 	 *
-	 * A child theme's `customTemplates` array replaces the parent's, so the parent's
-	 * six entries have to be re-registered. They deliberately have no child file:
-	 * `get_block_template()` falls back to the parent directory, which is where those
-	 * templates live and where they must keep being served from.
+	 * A child theme's `customTemplates` array replaces the parent's, so the six Nextora
+	 * entries have to be re-registered or the parent's templates stop being assignable.
+	 * The suite deliberately does not assert that the parent's *files* exist: the parent
+	 * is a separate repository, and a test that needs a sibling checkout fails in CI for
+	 * a reason that has nothing to do with this theme. The parent owns its templates;
+	 * this theme owns the registration and its own files.
 	 */
 	public function test_custom_templates_resolve(): void {
 		$manifest = json_decode( (string) file_get_contents( NEXTSAAS_DIR . '/theme.json' ), true );
 
 		$this->assertIsArray( $manifest );
-
-		$parent_dir = dirname( NEXTSAAS_DIR ) . '/nextora/templates';
 
 		$child_owned = array(
 			'front-page',
@@ -345,16 +345,34 @@ final class ManifestCoverageTest extends TestCase {
 			'404',
 		);
 
-		$names = array_map( static fn( array $template ): string => (string) $template['name'], $manifest['customTemplates'] );
+		$parent_owned = array(
+			'about-us',
+			'contact-us',
+			'frequently-asked-questions',
+			'page-full-width',
+			'theme-privacy-policy',
+			'theme-terms-conditions',
+		);
+
+		$names = array_map(
+			static fn( array $template ): string => (string) $template['name'],
+			$manifest['customTemplates']
+		);
 
 		foreach ( $child_owned as $name ) {
 			$this->assertContains( $name, $names, $name . ' is missing from customTemplates' );
-			$this->assertFileExists( NEXTSAAS_DIR . '/templates/' . $name . '.html' );
+			$this->assertFileExists(
+				NEXTSAAS_DIR . '/templates/' . $name . '.html',
+				$name . ' is registered without a template file'
+			);
 		}
 
-		foreach ( array( 'about-us', 'contact-us', 'frequently-asked-questions', 'page-full-width', 'theme-privacy-policy', 'theme-terms-conditions' ) as $name ) {
+		foreach ( $parent_owned as $name ) {
 			$this->assertContains( $name, $names, $name . ' no longer re-registers the parent template' );
-			$this->assertFileExists( $parent_dir . '/' . $name . '.html' );
+			$this->assertFileDoesNotExist(
+				NEXTSAAS_DIR . '/templates/' . $name . '.html',
+				$name . ' is a parent template that this theme must not shadow'
+			);
 		}
 	}
 
