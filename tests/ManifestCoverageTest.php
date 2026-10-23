@@ -356,14 +356,14 @@ final class ManifestCoverageTest extends TestCase {
 
 		$names = array_map(
 			static fn( array $template ): string => (string) $template['name'],
-			$manifest['customTemplates']
+			$manifest['customTemplates'],
 		);
 
 		foreach ( $child_owned as $name ) {
 			$this->assertContains( $name, $names, $name . ' is missing from customTemplates' );
 			$this->assertFileExists(
 				NEXTSAAS_DIR . '/templates/' . $name . '.html',
-				$name . ' is registered without a template file'
+				$name . ' is registered without a template file',
 			);
 		}
 
@@ -371,7 +371,7 @@ final class ManifestCoverageTest extends TestCase {
 			$this->assertContains( $name, $names, $name . ' no longer re-registers the parent template' );
 			$this->assertFileDoesNotExist(
 				NEXTSAAS_DIR . '/templates/' . $name . '.html',
-				$name . ' is a parent template that this theme must not shadow'
+				$name . ' is a parent template that this theme must not shadow',
 			);
 		}
 	}
