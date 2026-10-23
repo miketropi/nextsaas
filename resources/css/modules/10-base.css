@@ -1,0 +1,2 @@
+/* WordPress already applies these two resets; keeping them global cannot leak a visual opinion. */html{-webkit-text-size-adjust:100%}body{margin:0}
+/* theme.json styles.color/styles.typography own the page canvas; this scope restores the approved local composition. */.nextsaas-scope{font-family:var(--nextsaas-font-body);font-size:var(--nextsaas-fs-body);line-height:1.65;color:var(--nextsaas-fg);background:var(--nextsaas-bg)}@media(max-width:680px){.nextsaas-scope{font-size:17px}}

@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/about-us-built-with-intention",
+	"version": "1.0.0",
+	"title": "Built with intention",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Concept statement and related links",
+	"keywords": [
+		"about",
+		"editorial",
+		"section"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "built-with-intention"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "THE NEXTSAAS CONCEPT"
+		},
+		"heading": {
+			"type": "string",
+			"default": "A thoughtful home<br>for what comes next."
+		},
+		"bodyOne": {
+			"type": "string",
+			"default": "This is an independent SaaS template concept, not a claim about an established company, its founders, or its customer results."
+		},
+		"bodyTwo": {
+			"type": "string",
+			"default": "It is designed to give a real product a strong foundation: clear storytelling, connected pages, and space for the people and proof behind your business."
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Meet the workspace"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": "product.html"
+		},
+		"secondaryLabel": {
+			"type": "string",
+			"default": "Read the field guide"
+		},
+		"secondaryUrl": {
+			"type": "string",
+			"default": "archive.html"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

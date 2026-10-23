@@ -1,0 +1,3 @@
+export interface PricingFeature extends Record<string, unknown> { text: string; }
+export interface PricingPlan extends Record<string, unknown> { meta: string; name: string; description: string; monthlyPrice: string; yearlyPrice: string; unit: string; monthlyNote: string; yearlyNote: string; features: PricingFeature[]; ctaLabel: string; ctaUrl: string; ctaVariant: 'primary' | 'secondary' | 'ghost'; featured: boolean; }
+export interface PricingPricingAttributes extends Record<string, unknown> { sectionId: string; billingLabel: string; monthlyLabel: string; yearlyLabel: string; offerNote: string; monthlyNotice: string; yearlyNotice: string; currency: string; plans: PricingPlan[]; }

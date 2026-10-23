@@ -1,0 +1,33 @@
+/* Late overrides remain in their original source order in 25-sections.css. */
+@media(prefers-reduced-motion:reduce){.nextsaas-scope .hero-star,.nextsaas-scope .reveal,.nextsaas-scope .testimonial-slide{animation:none!important;transition:none!important}}
+
+/*
+ * Grid children must be allowed to shrink.
+ *
+ * `.hero-split` is a `1fr 1fr` grid, and `1fr` is `minmax(auto, 1fr)`: a child's
+ * intrinsic minimum can therefore push the track wider than the container. The
+ * labelled reservation box inside the product capability panels has a long
+ * `.reserve-*` line and did exactly that, overflowing the page by 31px in the
+ * 1024–1023px band — a width the approved render never inspected for this surface.
+ * `min-width: 0` restores the intended behaviour without changing any size the
+ * design already produced.
+ */
+.nextsaas-scope .hero-split > * {
+	min-width: 0;
+}
+
+/*
+ * A reservation box takes its width from its track, never from its height.
+ *
+ * `.ph-img` carries the design's `aspect-ratio`, and a grid item with an aspect ratio
+ * *and* a definite height resolves the ratio the other way round: it derives the width
+ * from the stretched height. Inside `.hero-split` that made the product capability
+ * panels' screenshot 576px wide in a 498px track, pushing the page 78px past the
+ * viewport in the 1024–1023px band. Pinning the inline size and letting the ratio drive
+ * the height restores the intended behaviour.
+ */
+.nextsaas-scope .ph-img {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}

@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-blog-posts-carousel",
+	"version": "1.0.0",
+	"title": "Blog posts carousel",
+	"category": "nextsaas",
+	"icon": "excerpt-view",
+	"description": "Latest journal posts carousel.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "journal"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "THE NEXTSAAS JOURNAL"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Ideas for<br><em>what’s next.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "A closer look at focus, collaboration, and the small habits that make work feel better."
+		},
+		"readLabel": {
+			"type": "string",
+			"default": "Read the note"
+		},
+		"artLabel": {
+			"type": "string",
+			"default": "FIELD NOTES"
+		},
+		"help": {
+			"type": "string",
+			"default": "Swipe to explore, use the arrow buttons, or focus the carousel and use the Left / Right arrow keys."
+		},
+		"emptyNotice": {
+			"type": "string",
+			"default": "No journal posts are available yet."
+		},
+		"postsPerPage": {
+			"type": "number",
+			"default": 4
+		},
+		"categories": {
+			"type": "array",
+			"default": []
+		},
+		"tags": {
+			"type": "array",
+			"default": []
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

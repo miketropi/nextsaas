@@ -1,0 +1,62 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/error-404-not-found",
+	"version": "1.0.0",
+	"title": "Page not found",
+	"category": "nextsaas",
+	"icon": "admin-post",
+	"description": "Page not found section.",
+	"keywords": [
+		"error",
+		"404",
+		"not",
+		"found"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "top"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "A SMALL DETOUR / PAGE NOT FOUND"
+		},
+		"errorNumber": {
+			"type": "string",
+			"default": "404"
+		},
+		"heading": {
+			"type": "string",
+			"default": "This isn’t the <em>next</em><br>you were looking for."
+		},
+		"lead": {
+			"type": "string",
+			"default": "This page may have moved, or the link may be incomplete. Let’s get you somewhere useful."
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Back to the homepage"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": "forma-saas-landing.html"
+		},
+		"secondaryLabel": {
+			"type": "string",
+			"default": "Search NextSaas"
+		},
+		"secondaryUrl": {
+			"type": "string",
+			"default": "search.html"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

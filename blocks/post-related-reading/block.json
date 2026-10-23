@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/post-related-reading",
+	"version": "1.0.0",
+	"title": "Related reading",
+	"category": "nextsaas",
+	"icon": "admin-post",
+	"description": "Related reading section.",
+	"keywords": [
+		"post",
+		"related",
+		"reading"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "related-reading"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "KEEP THE IDEAS GOING"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Another <em>perspective.</em>"
+		},
+		"postsPerPage": {
+			"type": "integer",
+			"default": 3
+		},
+		"categories": {
+			"type": "array",
+			"default": []
+		},
+		"tags": {
+			"type": "array",
+			"default": []
+		},
+		"readLabel": {
+			"type": "string",
+			"default": "Read the story"
+		},
+		"artLabel": {
+			"type": "string",
+			"default": "NEXT NOTES"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

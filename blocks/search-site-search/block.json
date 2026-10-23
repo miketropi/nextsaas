@@ -1,0 +1,82 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/search-site-search",
+	"version": "1.0.0",
+	"title": "Site search",
+	"category": "nextsaas",
+	"icon": "admin-post",
+	"description": "Site search section.",
+	"keywords": [
+		"search",
+		"site",
+		"search"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "site-search"
+		},
+		"fieldLabel": {
+			"type": "string",
+			"default": "Search NextSaas"
+		},
+		"placeholder": {
+			"type": "string",
+			"default": "Try “workspace”, “pricing”, or “async”"
+		},
+		"submitLabel": {
+			"type": "string",
+			"default": "Search"
+		},
+		"filterLabel": {
+			"type": "string",
+			"default": "Filter search results"
+		},
+		"allLabel": {
+			"type": "string",
+			"default": "All"
+		},
+		"pagesLabel": {
+			"type": "string",
+			"default": "Pages"
+		},
+		"articlesLabel": {
+			"type": "string",
+			"default": "Articles"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "A FEW PLACES TO BEGIN"
+		},
+		"quickLinks": {
+			"type": "array",
+			"default": [
+				{
+					"label": "The workspace",
+					"url": "product.html"
+				},
+				{
+					"label": "Plans & pricing",
+					"url": "pricing.html"
+				},
+				{
+					"label": "The field guide",
+					"url": "archive.html"
+				},
+				{
+					"label": "Questions & answers",
+					"url": "faqs.html"
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

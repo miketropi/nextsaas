@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/closing-cta",
+	"version": "1.0.0",
+	"title": "Closing call to action",
+	"category": "nextsaas",
+	"icon": "megaphone",
+	"description": "Ink-on-mist closing invitation: eyebrow, display heading, lead and one call to action. Shared by Home, About us, Pricing and Product.",
+	"keywords": [ "closing", "cta", "invitation", "next step" ],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": { "type": "string", "default": "next-step" },
+		"eyebrow": { "type": "string", "default": "A NEW WAY FORWARD" },
+		"heading": {
+			"type": "string",
+			"default": "Make room for<br>your <em>next.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "Start with one project, one shared direction, and a little more room to think."
+		},
+		"ctaLabel": { "type": "string", "default": "Talk about your workspace" },
+		"ctaUrl": { "type": "string", "default": "contact-us.html" },
+		"ctaVariant": { "type": "string", "default": "primary" },
+		"ctaArrow": { "type": "boolean", "default": false },
+		"ctaIcon": { "type": "boolean", "default": true }
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

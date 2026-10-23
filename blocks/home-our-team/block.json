@@ -1,0 +1,72 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-our-team",
+	"version": "1.0.0",
+	"title": "Our team",
+	"category": "nextsaas",
+	"icon": "groups",
+	"description": "Team profile cards.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "people"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "THE PEOPLE BEHIND THE POSSIBILITY"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Good work.<br><em>Human roots.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "Introduce the people who shape the product, sweat the details, and help your customers move forward."
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Product & strategy",
+					"body": "Connecting customer needs with a thoughtful direction for the product.",
+					"meta": "NAME TO BE ADDED",
+					"mediaId": 0,
+					"mediaUrl": "",
+					"mediaAlt": "Team portrait placeholder for product and strategy",
+					"placeholderLabel": "TEAM PORTRAIT / 01"
+				},
+				{
+					"heading": "Design & engineering",
+					"body": "Bringing clarity to the interface and care to every interaction.",
+					"meta": "NAME TO BE ADDED",
+					"mediaId": 0,
+					"mediaUrl": "",
+					"mediaAlt": "Team portrait placeholder for design and engineering",
+					"placeholderLabel": "TEAM PORTRAIT / 02"
+				},
+				{
+					"heading": "Customer experience",
+					"body": "Listening closely, sharing useful guidance, and making room for feedback.",
+					"meta": "NAME TO BE ADDED",
+					"mediaId": 0,
+					"mediaUrl": "",
+					"mediaAlt": "Team portrait placeholder for customer experience",
+					"placeholderLabel": "TEAM PORTRAIT / 03"
+				}
+			]
+		},
+		"note": {
+			"type": "string",
+			"default": "Team layout preview. Add verified names, roles, and approved portraits."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

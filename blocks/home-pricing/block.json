@@ -1,0 +1,129 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-pricing",
+	"version": "1.0.0",
+	"title": "Home — Pricing",
+	"category": "nextsaas",
+	"icon": "money-alt",
+	"description": "Landing pricing: eyebrow, heading, an illustrative billing-period toggle and three plan cards carrying both periods.",
+	"keywords": [
+		"pricing",
+		"plans",
+		"billing",
+		"tiers",
+		"landing"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "pricing"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "07 / ROOM FOR YOUR NEXT CHAPTER"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Start small.<br>Think <em>big.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "A little space for your own ideas. A shared home for your team. Choose where you begin."
+		},
+		"billingLabel": {
+			"type": "string",
+			"default": "Illustrative billing period"
+		},
+		"monthlyLabel": {
+			"type": "string",
+			"default": "Monthly"
+		},
+		"yearlyLabel": {
+			"type": "string",
+			"default": "Yearly"
+		},
+		"offerNote": {
+			"type": "string",
+			"default": "EXAMPLE PRICING / NOT A COMMERCIAL OFFER"
+		},
+		"monthlyNotice": {
+			"type": "string",
+			"default": "Illustrative monthly rates. No checkout or payment collection."
+		},
+		"yearlyNotice": {
+			"type": "string",
+			"default": "Illustrative yearly rates. No checkout or payment collection."
+		},
+		"yearlyNote": {
+			"type": "string",
+			"default": "per month / billed yearly"
+		},
+		"monthlyNote": {
+			"type": "string",
+			"default": "per month / billed monthly"
+		},
+		"plans": {
+			"type": "array",
+			"default": [
+				{
+					"meta": "01 / A SPACE OF YOUR OWN.",
+					"name": "Personal",
+					"description": "For independent projects and everyday clarity.",
+					"monthlyLabel": "$0",
+					"yearlyLabel": "$0",
+					"unit": "/ person",
+					"note": "per month / no subscription",
+					"features": [
+						"Personal projects",
+						"Notes & documents",
+						"Board & list views"
+					],
+					"ctaLabel": "Explore Personal",
+					"featured": false
+				},
+				{
+					"meta": "02 / BETTER, TOGETHER.",
+					"name": "Team",
+					"description": "For people turning shared ideas into great work.",
+					"monthlyLabel": "$18",
+					"yearlyLabel": "$15",
+					"unit": "/ person",
+					"note": "per month / billed monthly",
+					"features": [
+						"Everything in Personal",
+						"Shared workspaces",
+						"Workflow automation"
+					],
+					"ctaLabel": "Explore Team",
+					"featured": true
+				},
+				{
+					"meta": "03 / A BIGGER PICTURE.",
+					"name": "Business",
+					"description": "For connected teams and intentional control.",
+					"monthlyLabel": "$32",
+					"yearlyLabel": "$27",
+					"unit": "/ person",
+					"note": "per month / billed monthly",
+					"features": [
+						"Everything in Team",
+						"Roles & guest access",
+						"Integration planning"
+					],
+					"ctaLabel": "Explore Business",
+					"featured": false
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

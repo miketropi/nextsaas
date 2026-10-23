@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/pricing-pricing-questions",
+	"version": "1.0.0",
+	"title": "Pricing questions",
+	"category": "nextsaas",
+	"icon": "editor-help",
+	"description": "Practical pricing questions in a native details accordion.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "pricing-questions"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "BEFORE YOU BEGIN"
+		},
+		"heading": {
+			"type": "string",
+			"default": "A few practical<br><em>answers.</em>"
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": "All questions & answers"
+		},
+		"ctaUrl": {
+			"type": "string",
+			"default": "faqs.html"
+		},
+		"questions": {
+			"type": "array",
+			"default": [
+				{
+					"question": "Are these prices final?",
+					"answer": "No. The rates on this template are illustrative, not a commercial offer. Monthly and yearly controls demonstrate the intended pricing experience. No payment is collected.",
+					"category": "Plans & billing"
+				},
+				{
+					"question": "How does yearly billing work?",
+					"answer": "The example yearly rate is displayed as a monthly equivalent, with the full annual amount shown in the team estimate. Published billing terms must be confirmed before launch.",
+					"category": "Plans & billing"
+				},
+				{
+					"question": "Can I discuss a larger team?",
+					"answer": "Yes. Use the contact page and choose a pricing inquiry. In this preview, the form validates locally and does not send your details.",
+					"category": "Plans & billing"
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,100 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/product-workspace-preview",
+	"version": "1.0.0",
+	"title": "Product workspace preview",
+	"category": "nextsaas",
+	"icon": "format-image",
+	"description": "Reserved product screenshot, caption row and workspace calls to action.",
+	"keywords": [
+		"product",
+		"workspace",
+		"screenshot"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "workspace-preview"
+		},
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholderLabel": {
+			"type": "string",
+			"default": "Product screenshot placeholder: Your whole world of work."
+		},
+		"placeholderTop": {
+			"type": "string",
+			"default": "NEXTSAAS / WORKSPACE"
+		},
+		"placeholderBadge": {
+			"type": "string",
+			"default": "PRODUCT IMAGE"
+		},
+		"placeholderTitle": {
+			"type": "string",
+			"default": "Your whole world of work."
+		},
+		"placeholderNote": {
+			"type": "string",
+			"default": "Screenshot reserved"
+		},
+		"placeholderFoot": {
+			"type": "string",
+			"default": "REPLACE WITH YOUR PRODUCT SCREENSHOT"
+		},
+		"placeholderAspect": {
+			"type": "string",
+			"default": ""
+		},
+		"captions": {
+			"type": "array",
+			"default": [
+				{
+					"text": "01 / THE CONNECTED WORKSPACE"
+				},
+				{
+					"text": "PRODUCT IMAGE PLACEHOLDER"
+				}
+			]
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Talk about your workspace"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": "contact-us.html"
+		},
+		"primaryVariant": {
+			"type": "string",
+			"default": "primary"
+		},
+		"secondaryLabel": {
+			"type": "string",
+			"default": "Explore the plans"
+		},
+		"secondaryUrl": {
+			"type": "string",
+			"default": "pricing.html"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

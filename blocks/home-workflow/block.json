@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-workflow",
+	"version": "1.0.0",
+	"title": "Home workflow",
+	"category": "nextsaas",
+	"icon": "layout",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "workflow"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "03 / A LITTLE ROOM TO THINK"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Good work.<br>Not just<br><em>more work.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "A workspace should feel like a place to make progress. Not another place to keep up."
+		},
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": "/assets/images/nextsaas-workspace.jpg"
+		},
+		"mediaAlt": {
+			"type": "string",
+			"default": "Daylit office with glass meeting rooms and an open corridor"
+		},
+		"photoLabel": {
+			"type": "string",
+			"default": "SPACE TO THINK. ROOM TO GROW."
+		},
+		"photoCredit": {
+			"type": "string",
+			"default": "PHOTO / UNSPLASH"
+		},
+		"steps": {
+			"type": "array",
+			"default": [
+				{
+					"meta": "01",
+					"heading": "Bring it together.",
+					"body": "Start with one project. Bring in the people, the brief, and the reason behind it."
+				},
+				{
+					"meta": "02",
+					"heading": "Find your rhythm.",
+					"body": "Decide what matters, agree on owners, and choose a view that makes sense."
+				},
+				{
+					"meta": "03",
+					"heading": "Make your next move.",
+					"body": "Share progress with context. Adjust the plan without losing the thread."
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

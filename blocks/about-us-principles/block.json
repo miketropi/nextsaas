@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/about-us-principles",
+	"version": "1.0.0",
+	"title": "Principles",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Three editable design principles.",
+	"keywords": [
+		"about",
+		"principles",
+		"values"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "principles"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "WHAT GUIDES THE DESIGN"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Small principles.<br><em>Lasting direction.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "A clear point of view, built into the everyday experience."
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"meta": "01 / CLARITY",
+					"heading": "Start with what matters.",
+					"body": "A shared direction should be easy to see. Put priorities, owners, and next steps close to the work."
+				},
+				{
+					"meta": "02 / CONTEXT",
+					"heading": "Keep the thinking, too.",
+					"body": "A decision is more useful when its reasoning comes with it. Make knowledge part of the workflow."
+				},
+				{
+					"meta": "03 / INTENTION",
+					"heading": "Leave room to focus.",
+					"body": "Good systems support attention instead of competing for it. Choose useful defaults over extra noise."
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

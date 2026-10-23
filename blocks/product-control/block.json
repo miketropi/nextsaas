@@ -1,0 +1,62 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/product-control",
+	"version": "1.0.0",
+	"title": "Product control",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Access and control principles in a four-card grid.",
+	"keywords": [
+		"access",
+		"control",
+		"security"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "control"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "THOUGHTFUL BY DEFAULT"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Open doors.<br>Clear <em>boundaries.</em>"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Choose who’s in.",
+					"body": "Keep members, guests, and responsibilities clear. Make access an intentional choice."
+				},
+				{
+					"heading": "Keep the full story.",
+					"body": "Follow decisions and changes with their context, not just a stream of notifications."
+				},
+				{
+					"heading": "Bring your tools.",
+					"body": "Plan connections around the files, calendar, and workflows your team already uses."
+				},
+				{
+					"heading": "Stay in control.",
+					"body": "Build around portable records and practical exports. Your work should remain yours."
+				}
+			]
+		},
+		"note": {
+			"type": "string",
+			"default": "Product capabilities are illustrative. Confirm availability, integration support, and access rules before publishing."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

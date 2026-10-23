@@ -1,0 +1,6 @@
+.wp-block-nextsaas-page-hero {
+	min-height: 120px;
+}
+.wp-block-nextsaas-page-hero .block-editor-block-preview__container {
+	min-width: 0;
+}

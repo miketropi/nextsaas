@@ -1,0 +1,284 @@
+/**
+ * NextSaaS block-editor-only stylesheet (compiled to assets/css/editor.css).
+ *
+ * Enqueued on `enqueue_block_editor_assets` by blocks/blocks.php and shared by
+ * every nextsaas/* block's inspector and canvas preview. Front-end appearance never
+ * comes from here: the compiled child stylesheet (assets/css/app.css) is also
+ * loaded in the editor for that.
+ *
+ * Shared inspector affordances live here so the eighteen block-local
+ * blocks/<slug>/editor.css files only carry canvas-preview rules.
+ */
+
+/*
+ * Shared inspector tokens, pinned to the WordPress admin grey scale
+ * ($gray-100/200/600) and the admin theme colour, so the list sits in the
+ * editor chrome instead of carrying a palette of its own.
+ */
+.nextsaas-repeater {
+	--nextsaas-editor-border: #e0e0e0;
+	--nextsaas-editor-surface: #fff;
+	--nextsaas-editor-hover: #f0f0f0;
+	--nextsaas-editor-muted: #757575;
+	--nextsaas-editor-focus: var(--wp-admin-theme-color, #3858e9);
+	border-top: 1px solid var(--nextsaas-editor-border);
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 16px;
+	padding-top: 12px;
+}
+
+/* Only rendered for a nested list; a panel-level repeater is named by its panel. */
+.nextsaas-repeater__title {
+	font-weight: 600;
+	margin: 0;
+}
+
+/*
+ * The live region is mounted from the first render — assistive technology has to
+ * be observing it before the text changes — and collapses while it is empty, so
+ * an idle repeater shows no stray line.
+ */
+.nextsaas-repeater__status {
+	color: var(--nextsaas-editor-muted);
+	font-size: 12px;
+	margin: 0;
+}
+
+.nextsaas-repeater__empty {
+	color: var(--nextsaas-editor-muted);
+	font-style: italic;
+	margin: 0;
+}
+
+/*
+ * One list control, the way core draws its item groups: a single bordered
+ * surface with hairline separators between rows instead of a stack of boxes.
+ */
+.nextsaas-repeater__list {
+	border: 1px solid var(--nextsaas-editor-border);
+	border-radius: 2px;
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+.nextsaas-repeater__row {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	list-style: none;
+	min-height: 44px;
+	padding-inline: 8px;
+}
+
+.nextsaas-repeater__row + .nextsaas-repeater__row {
+	border-top: 1px solid var(--nextsaas-editor-border);
+}
+
+.nextsaas-repeater__row:is(:hover, :focus-within) {
+	background: var(--nextsaas-editor-hover);
+}
+
+/*
+ * The row body is the edit affordance, so it is a plain button: it takes the
+ * width the actions leave, keeps the 44px target and truncates the label rather
+ * than widening the row at a 320px inspector.
+ */
+.nextsaas-repeater__row-main {
+	align-items: center;
+	background: none;
+	border: 0;
+	border-radius: 2px;
+	color: inherit;
+	cursor: pointer;
+	display: flex;
+	/* A zero basis means the action cluster never wraps to a second line: the
+	   label truncates instead of pushing the row taller. */
+	flex: 1 1 0;
+	font: inherit;
+	gap: 8px;
+	min-height: 44px;
+	min-width: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.nextsaas-repeater__row-main:focus-visible {
+	outline: 2px solid var(--nextsaas-editor-focus);
+	outline-offset: -2px;
+}
+
+.nextsaas-repeater__row-index {
+	color: var(--nextsaas-editor-muted);
+	flex: 0 0 auto;
+	font-size: 12px;
+	font-variant-numeric: tabular-nums;
+	min-width: 1.5em;
+	text-align: right;
+}
+
+.nextsaas-repeater__row-label {
+	flex: 1 1 0;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.nextsaas-repeater__row-actions {
+	display: flex;
+	flex: 0 0 auto;
+	justify-content: flex-end;
+	margin-left: auto;
+}
+
+/* The row whose in-place editor is open keeps a marker while it is expanded. */
+.nextsaas-repeater__row.is-open {
+	box-shadow: inset 2px 0 0 var(--nextsaas-editor-focus);
+}
+
+/*
+ * The row's more-options toggle keeps a 44x44 hit target. The second selector is
+ * deliberately as specific as WordPress' own
+ * `.components-button.is-small.has-icon:not(.has-text)` rule (which otherwise
+ * shrinks an icon-only button to a 24px min-width), so the target can never
+ * collapse; this stylesheet is enqueued after the component styles, so it wins
+ * the tie.
+ */
+.nextsaas-repeater__row-actions .components-button.has-icon,
+.nextsaas-repeater__row-actions .components-button.is-small.has-icon {
+	justify-content: center;
+	min-height: 44px;
+	min-width: 44px;
+	padding: 0;
+}
+
+/*
+ * The row menu keeps the same 44px target as the toggle that opens it. Core sizes
+ * its menu rows at `min-height: 32px` with `height: auto`, so raising the minimum
+ * is enough; the class scopes the change to this repeater's own menu.
+ */
+.nextsaas-repeater__menu .components-dropdown-menu__menu-item {
+	min-height: 44px;
+}
+
+/* Add action: a full-width secondary button, the way core ends an item list. */
+.nextsaas-repeater__add {
+	justify-content: center;
+	width: 100%;
+}
+
+/* Item editor fields, shared by the item modal and the in-place nested editor. */
+.nextsaas-repeater__modal-fields {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 100%;
+	min-width: 0;
+}
+
+/*
+ * Cancel/Done live in the modal header, next to the close button, so the whole
+ * body belongs to the fields. The header is a 72px flex row: the cluster keeps
+ * its size while the title gives way, and the heading truncates instead of
+ * wrapping out of the header when an item label is long.
+ */
+.nextsaas-repeater__modal-header-actions {
+	align-items: center;
+	display: flex;
+	flex: 0 0 auto;
+	gap: 8px;
+}
+
+.nextsaas-repeater-modal .components-modal__header-heading-container {
+	min-width: 0;
+}
+
+.nextsaas-repeater-modal .components-modal__header-heading {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/*
+ * Action row of the in-place nested editor, which has no dialog header to host
+ * the buttons. It sits at the end of the expanded row and stays pinned to the
+ * bottom of the modal's scroll area while the nested fields scroll behind it.
+ */
+.nextsaas-repeater__actions {
+	background: var(--nextsaas-editor-surface);
+	border-top: 1px solid var(--nextsaas-editor-border);
+	bottom: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	justify-content: flex-end;
+	margin-top: 16px;
+	padding-bottom: 4px;
+	padding-top: 12px;
+	position: sticky;
+	z-index: 1;
+}
+
+/*
+ * In-place item editor of a nested repeater: a clear inner surface under the row
+ * that opened it, inside the same scroll area and never a second dialog.
+ */
+.nextsaas-repeater__nested {
+	background: var(--nextsaas-editor-surface);
+	border-top: 1px solid var(--nextsaas-editor-border);
+	flex: 0 0 100%;
+	margin-top: 8px;
+	max-width: 100%;
+	min-width: 0;
+	padding-bottom: 4px;
+	padding-top: 12px;
+}
+
+/**
+ * Shared block preview (resources/ts/editor/block-preview.tsx).
+ *
+ * The wrapper carries `useBlockProps()`, so it must stay clickable: only the
+ * inner surface is made inert, which keeps preview-only controls (filter bars,
+ * disclosures, canvas transports) from swallowing the click that selects the
+ * block.
+ */
+.nextsaas-block-preview__surface {
+	pointer-events: none;
+}
+
+.nextsaas-block-preview__notice {
+	color: #646970;
+	font-size: 13px;
+	margin: 0 0 8px;
+}
+
+.nextsaas-block-preview__placeholder {
+	min-height: 120px;
+}
+
+/**
+ * Shared media picker (resources/ts/editor/media-control.tsx).
+ */
+.nextsaas-media-control {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.nextsaas-media-control__preview {
+	background: #f0f0f0;
+	display: block;
+	height: auto;
+	max-height: 180px;
+	max-width: 100%;
+	object-fit: contain;
+	width: auto;
+}
+

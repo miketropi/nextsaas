@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/error-404-find-a-way",
+	"version": "1.0.0",
+	"title": "Find a way",
+	"category": "nextsaas",
+	"icon": "admin-post",
+	"description": "Find a way section.",
+	"keywords": [
+		"error",
+		"404",
+		"find",
+		"a"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "find-a-way"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Meet the workspace.",
+					"body": "Find the plan, the context, and the next step.",
+					"url": "product.html"
+				},
+				{
+					"heading": "A fresh perspective.",
+					"body": "Practical ideas from the field guide.",
+					"url": "archive.html"
+				},
+				{
+					"heading": "Talk it through.",
+					"body": "A little help finding your way.",
+					"url": "contact-us.html"
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

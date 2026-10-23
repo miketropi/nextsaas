@@ -1,0 +1,24 @@
+/*
+Theme Name: NextSaaS
+Theme URI: https://github.com/miketropi/nextsaas
+Description: NextSaaS is a cobalt editorial block child theme for Nextora. Home, About Us, Contact Us, FAQ, Pricing, the journal archive, post detail, search, the not-found page and the product page are each composed from editable NextSaaS dynamic blocks, with one reusable filesystem pattern per section, on top of Nextora's block, asset, navigation and contact-form infrastructure.
+Author: Beplus Theme
+Author URI: https://beplusthemes.com/
+Template: nextora
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 7.0
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: nextsaas
+Tags: block-patterns, block-styles, full-site-editing, wide-blocks, custom-colors, custom-menu, custom-logo, editor-style, featured-images, translation-ready, accessibility-ready
+*/
+
+/*
+ * Root stylesheet. It intentionally carries the theme header only.
+ *
+ * Compiled front-end styles live in assets/css/app.css, the block-editor
+ * inspector layer in assets/css/editor.css; both are built from resources/css by
+ * `npm run build:css` and are enqueued by inc/assets/enqueue.php.
+ */

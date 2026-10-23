@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-field-guides",
+	"version": "1.0.0",
+	"title": "Field guides",
+	"category": "nextsaas",
+	"icon": "welcome-learn-more",
+	"description": "Editorial field guide links.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "guides"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "08 / NOTES FROM THE FIELD"
+		},
+		"heading": {
+			"type": "string",
+			"default": "A fresh<br><em>perspective.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "Good questions. Practical ideas. A little inspiration for the way you work."
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Build a workspace people actually use.",
+					"body": "Start with the work, not the tool.",
+					"meta": "STARTING OUT",
+					"url": ""
+				},
+				{
+					"heading": "Make async updates worth reading.",
+					"body": "More context. Fewer status meetings.",
+					"meta": "TEAM CULTURE",
+					"url": ""
+				},
+				{
+					"heading": "Know when to let the routine run.",
+					"body": "Look for repetition before adding complexity.",
+					"meta": "WORKFLOW",
+					"url": ""
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

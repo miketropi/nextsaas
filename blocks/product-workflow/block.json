@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/product-workflow",
+	"version": "1.0.0",
+	"title": "Product workflow",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Three-step example workflow with an editorial note.",
+	"keywords": [
+		"workflow",
+		"steps",
+		"automation"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "workflow"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "LESS ON REPEAT"
+		},
+		"heading": {
+			"type": "string",
+			"default": "A little less<br><em>busywork.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "Clear triggers. Thoughtful handoffs. A simple path from ready to done."
+		},
+		"steps": {
+			"type": "array",
+			"default": [
+				{
+					"meta": "01",
+					"heading": "Ready for review.",
+					"body": "A task moves into the review stage."
+				},
+				{
+					"meta": "02",
+					"heading": "The right person.",
+					"body": "Assign the reviewer for that project."
+				},
+				{
+					"meta": "03",
+					"heading": "Everyone in the loop.",
+					"body": "Send an update with the context attached."
+				}
+			]
+		},
+		"note": {
+			"type": "string",
+			"default": "Example workflow concept. No live automation is running."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

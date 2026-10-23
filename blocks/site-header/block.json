@@ -1,0 +1,203 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/site-header",
+	"version": "1.0.0",
+	"title": "Site header",
+	"category": "nextsaas",
+	"icon": "menu",
+	"description": "Sticky NextSaaS header: brand, the primary navigation menu, its call to action and the compact drawer.",
+	"keywords": [
+		"header",
+		"navigation",
+		"menu",
+		"brand",
+		"mega menu"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sticky": {
+			"type": "boolean",
+			"default": true
+		},
+		"skipLinkLabel": {
+			"type": "string",
+			"default": "Skip to content"
+		},
+		"skipLinkTarget": {
+			"type": "string",
+			"default": "#content"
+		},
+		"brandMode": {
+			"type": "string",
+			"default": "text"
+		},
+		"brandLabel": {
+			"type": "string",
+			"default": "NextSaas"
+		},
+		"brandUrl": {
+			"type": "string",
+			"default": "@home"
+		},
+		"brandAriaLabel": {
+			"type": "string",
+			"default": "NextSaas home"
+		},
+		"brandMediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"brandMediaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"brandMediaAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"navAriaLabel": {
+			"type": "string",
+			"default": "Main navigation"
+		},
+		"menuToggleLabel": {
+			"type": "string",
+			"default": "Menu"
+		},
+		"navItems": {
+			"type": "array",
+			"default": [
+				{
+					"label": "Product",
+					"url": "",
+					"children": [
+						{
+							"label": "The workspace",
+							"url": "product.html",
+							"description": "A place for the whole picture."
+						},
+						{
+							"label": "Capabilities",
+							"url": "@home#capabilities",
+							"description": "Plans, context, and collaboration."
+						},
+						{
+							"label": "Automations",
+							"url": "@home#automation",
+							"description": "A little less repetition."
+						},
+						{
+							"label": "Access & control",
+							"url": "@home#system",
+							"description": "Intentional by default."
+						}
+					]
+				},
+				{
+					"label": "For teams",
+					"url": "",
+					"children": [
+						{
+							"label": "Product",
+							"url": "@home#teams",
+							"description": "Keep the roadmap in context."
+						},
+						{
+							"label": "Design",
+							"url": "@home#teams",
+							"description": "From brief to final handoff."
+						},
+						{
+							"label": "Marketing",
+							"url": "@home#teams",
+							"description": "Give every launch a home."
+						},
+						{
+							"label": "A way of working",
+							"url": "@home#workflow",
+							"description": "Build your own rhythm."
+						}
+					]
+				},
+				{
+					"label": "Company",
+					"url": "",
+					"children": [
+						{
+							"label": "About us",
+							"url": "about-us.html",
+							"description": "The thinking behind NextSaas."
+						},
+						{
+							"label": "Contact us",
+							"url": "contact-us.html",
+							"description": "Let’s find your next step."
+						}
+					]
+				},
+				{
+					"label": "Pricing",
+					"url": "pricing.html",
+					"children": []
+				},
+				{
+					"label": "Resources",
+					"url": "",
+					"children": [
+						{
+							"label": "The field guide",
+							"url": "archive.html",
+							"description": "Practical ideas for better work."
+						},
+						{
+							"label": "Your questions",
+							"url": "faqs.html",
+							"description": "A few things worth knowing."
+						},
+						{
+							"label": "Latest article",
+							"url": "blog-post.html",
+							"description": "Start with the work, not the tool."
+						},
+						{
+							"label": "Search NextSaas",
+							"url": "search.html",
+							"description": "Find a page, guide, or answer."
+						},
+						{
+							"label": "404 page",
+							"url": "404.html",
+							"description": "Preview the not-found experience."
+						}
+					]
+				}
+			]
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": "Explore NextSaas"
+		},
+		"ctaUrl": {
+			"type": "string",
+			"default": "contact-us.html"
+		},
+		"ctaVariant": {
+			"type": "string",
+			"default": "secondary"
+		},
+		"ctaArrow": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"anchor": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

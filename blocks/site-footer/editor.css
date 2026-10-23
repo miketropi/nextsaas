@@ -1,0 +1,8 @@
+/* The server preview needs enough canvas room for its full navigation surface. */
+.editor-styles-wrapper [data-nextsaas-section="site-footer"] {
+	min-height: 720px;
+}
+
+.editor-styles-wrapper [data-nextsaas-section="site-footer"] .footer-main {
+	min-width: 0;
+}

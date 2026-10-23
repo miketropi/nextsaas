@@ -1,0 +1,12 @@
+/**
+ * Editor canvas styles for nextsaas/site-header.
+ *
+ * Only editor-specific affordances: the front-end look comes from
+ * assets/css/nextsaas.css, which the editor canvas also loads.
+ */
+
+.wp-block-nextsaas-site-header .nextsaas-block-preview__surface {
+	/* The header is sticky on the front end; inside the canvas a sticky element
+	   would fight the editor's own scrolling. */
+	position: relative;
+}

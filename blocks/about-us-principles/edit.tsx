@@ -1,0 +1,10 @@
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import BlockPreview from '../../resources/ts/editor/block-preview';
+import Repeater, { type RepeaterItem } from '../../resources/ts/editor/repeater';
+import RichTextOverlay, { type RichTextTarget } from '../../resources/ts/editor/rich-text-overlay';
+import type { EditorEditProps } from '../../resources/ts/editor/types';
+import type { AboutUsPrinciplesAttributes, PrincipleItem } from './types';
+const base: RichTextTarget[] = [{ path: 'eyebrow', label: __('Eyebrow', 'nextsaas') }, { path: 'heading', label: __('Heading', 'nextsaas'), multiline: true }, { path: 'lead', label: __('Lead', 'nextsaas'), multiline: true }];
+export default function Edit({ attributes, setAttributes, isSelected }: EditorEditProps<AboutUsPrinciplesAttributes>): JSX.Element { const targets=[...base,...attributes.items.flatMap((_item,index): RichTextTarget[] => [{ path: `items.${index}.meta`, label: __('Principle meta', 'nextsaas') },{ path: `items.${index}.heading`, label: __('Principle heading', 'nextsaas') },{ path: `items.${index}.body`, label: __('Principle body', 'nextsaas'), multiline: true }])]; return <><InspectorControls><PanelBody title={__('Principles', 'nextsaas')}><Repeater label={__('Principles', 'nextsaas')} items={attributes.items as RepeaterItem[]} fields={[{key:'meta',label:__('Meta', 'nextsaas')},{key:'heading',label:__('Heading', 'nextsaas')},{key:'body',label:__('Body', 'nextsaas'),control:'textarea'}]} onChange={(items) => setAttributes({items: items as PrincipleItem[]})} createItem={() => ({meta:'',heading:'',body:''})} getItemLabel={(item,index) => String(item.heading || `${__('Principle', 'nextsaas')} ${index+1}`)} /></PanelBody></InspectorControls><BlockPreview block="nextsaas/about-us-principles" attributes={attributes}/><RichTextOverlay targets={targets} attributes={attributes} setAttributes={(next) => setAttributes(next as Partial<AboutUsPrinciplesAttributes>)} isSelected={isSelected}/></>; }

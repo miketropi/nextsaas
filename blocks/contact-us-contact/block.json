@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/contact-us-contact",
+	"version": "1.0.0",
+	"title": "Contact layout",
+	"category": "nextsaas",
+	"icon": "email",
+	"description": "Contact section shell: the three contact routes beside the site's own contact form block.",
+	"keywords": [
+		"contact",
+		"form",
+		"routes",
+		"aside"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "contact"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "LET’S FIND YOUR NEXT STEP"
+		},
+		"heading": {
+			"type": "string",
+			"default": "A conversation.<br>Not a sales script."
+		},
+		"routes": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Explore the workspace.",
+					"body": "Thinking about projects, collaboration, or a more connected team? Give us the context.",
+					"linkLabel": "",
+					"linkUrl": ""
+				},
+				{
+					"heading": "Looking for an answer?",
+					"body": "Start with the common questions about this concept and how it works.",
+					"linkLabel": "Visit questions & answers",
+					"linkUrl": "faqs.html"
+				},
+				{
+					"heading": "Just browsing?",
+					"body": "Get to know the thinking behind NextSaas.",
+					"linkLabel": "Read our point of view",
+					"linkUrl": "about-us.html"
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-point-of-view",
+	"version": "1.0.0",
+	"title": "Home point of view",
+	"category": "nextsaas",
+	"icon": "layout",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": ""
+		},
+		"sideNote": {
+			"type": "string",
+			"default": "A SMALL SHIFT.<br>A DIFFERENT KIND OF DAY."
+		},
+		"heading": {
+			"type": "string",
+			"default": "Your best work isn’t busywork. <span>It’s the idea that sticks. The problem you solve. The thing you make, together.</span> Let’s make more room for that."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

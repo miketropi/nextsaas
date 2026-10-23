@@ -1,0 +1,47 @@
+<?php
+/**
+ * Title: NextSaaS — The field guide
+ * Slug: nextsaas/page-archive
+ * Categories: nextsaas-pages
+ * Description: The field guide surface with its live post loop. Hidden from the inserter; use the template.
+ * Keywords: archive
+ * Inserter: no
+ * Viewport Width: 1440
+ */
+
+?>
+<!-- wp:nextsaas/page-hero {"eyebrow":"NEXTSAAS / THE FIELD GUIDE","heading":"A fresh<br><em>perspective.</em>","lead":"Practical ideas for clearer plans, better context, and a more intentional way to work.","breadcrumbCurrentLabel":"The field guide"} /-->
+<!-- wp:nextsaas/archive-journal /-->
+
+<!-- wp:query {"queryId":1,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"className":"nextsaas-archive-loop","layout":{"type":"default"}} -->
+<div class="wp-block-query nextsaas-archive-loop">
+<!-- wp:group {"className":"post-grid","layout":{"type":"default"}} -->
+<div class="wp-block-group post-grid">
+<!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:group {"className":"post-card","layout":{"type":"default"}} -->
+<div class="wp-block-group post-card">
+<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/10","className":"post-card-media"} /-->
+<!-- wp:post-terms {"term":"category","className":"meta"} /-->
+<!-- wp:post-date {"className":"meta","format":"M j, Y"} /-->
+<!-- wp:post-title {"level":3,"isLink":true} /-->
+<!-- wp:post-excerpt {"moreText":"","excerptLength":28,"className":"post-card-excerpt"} /-->
+<!-- wp:read-more {"content":"Read the story"} /-->
+</div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+<!-- wp:query-pagination-previous /-->
+<!-- wp:query-pagination-numbers /-->
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">No stories have been published here yet. Try another topic, or search the site.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results -->
+</div>
+<!-- /wp:query -->

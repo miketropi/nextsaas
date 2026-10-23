@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/product-perspectives",
+	"version": "1.0.0",
+	"title": "Product perspectives",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Team perspectives with shared editorial copy.",
+	"keywords": [
+		"product",
+		"team",
+		"perspectives"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "perspectives"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "DIFFERENT MINDS. SHARED MOMENTUM."
+		},
+		"heading": {
+			"type": "string",
+			"default": "Your team.<br>Your <em>way.</em>"
+		},
+		"perspectives": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Product. Design. Marketing.",
+					"bodyOne": "Keep the roadmap connected to customer insight. Bring the creative brief into the handoff. Give the next launch one shared home.",
+					"bodyTwo": "One space doesn’t have to mean one way of working. Build around the people doing the work."
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

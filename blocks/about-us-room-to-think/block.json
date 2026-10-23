@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/about-us-room-to-think",
+	"version": "1.0.0",
+	"title": "Room to think",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Workspace photograph with caption and credit.",
+	"keywords": [
+		"about",
+		"photograph",
+		"workspace"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "room-to-think"
+		},
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": "/assets/images/nextsaas-workspace.jpg"
+		},
+		"mediaAlt": {
+			"type": "string",
+			"default": "Daylit office corridor with glass meeting rooms"
+		},
+		"caption": {
+			"type": "string",
+			"default": "SPACE TO THINK. ROOM TO GROW."
+		},
+		"credit": {
+			"type": "string",
+			"default": "PHOTOGRAPHY / UNSPLASH"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

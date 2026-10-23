@@ -1,0 +1,94 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-capabilities",
+	"version": "1.0.0",
+	"title": "Home capabilities",
+	"category": "nextsaas",
+	"icon": "layout",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "capabilities"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "02 / A PLACE FOR THE WHOLE PICTURE"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Less scattered.<br>More <em>connected.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "A shared home for the plan, the details, and the conversations that move things forward."
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Know what matters next.",
+					"body": "Turn a shared direction into clear priorities, owners, and next steps. Keep the roadmap close to the day-to-day.",
+					"meta": "01 / PROJECTS & PRIORITIES"
+				},
+				{
+					"heading": "Keep the thinking, too.",
+					"body": "Give briefs, research, and decisions a home beside the work. So the next person doesn’t have to start from zero.",
+					"meta": "02 / DOCS & DECISIONS"
+				},
+				{
+					"heading": "Conversations, in context.",
+					"body": "Keep feedback attached to the work it belongs to.",
+					"meta": ""
+				},
+				{
+					"heading": "Your perspective matters.",
+					"body": "Find clarity in a list, a board, or a shared timeline.",
+					"meta": ""
+				},
+				{
+					"heading": "Clarity over check-ins.",
+					"body": "Make ownership visible, without another status meeting.",
+					"meta": ""
+				}
+			]
+		},
+		"media": {
+			"type": "array",
+			"default": [
+				{
+					"mediaId": 0,
+					"mediaUrl": "",
+					"mediaAlt": "",
+					"placeholderLabel": "Image placeholder: The big picture. Every little detail.",
+					"placeholderTop": "NS—02",
+					"placeholderBadge": "PRODUCT IMAGE",
+					"placeholderTitle": "The big picture. Every little detail.",
+					"placeholderNote": "Screenshot reserved",
+					"placeholderFoot": "REPLACE WITH YOUR PRODUCT",
+					"placeholderAspect": "16 / 10"
+				},
+				{
+					"mediaId": 0,
+					"mediaUrl": "",
+					"mediaAlt": "",
+					"placeholderLabel": "Image placeholder: Context comes with you.",
+					"placeholderTop": "NS—03",
+					"placeholderBadge": "PRODUCT IMAGE",
+					"placeholderTitle": "Context comes with you.",
+					"placeholderNote": "Screenshot reserved",
+					"placeholderFoot": "REPLACE WITH YOUR PRODUCT",
+					"placeholderAspect": "16 / 10"
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

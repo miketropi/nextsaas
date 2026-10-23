@@ -1,0 +1,114 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-team-solutions",
+	"version": "1.0.0",
+	"title": "Home team solutions",
+	"category": "nextsaas",
+	"icon": "layout",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "teams"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "04 / DIFFERENT MINDS. SHARED MOMENTUM."
+		},
+		"heading": {
+			"type": "string",
+			"default": "Your team.<br>Your <em>way.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "One shared space doesn’t have to mean one way of working. Find the perspective that fits."
+		},
+		"tablistLabel": {
+			"type": "string",
+			"default": "Team perspectives"
+		},
+		"panels": {
+			"type": "array",
+			"default": [
+				{
+					"key": "product",
+					"tab": "01 / Product",
+					"meta": "FOR PRODUCT TEAMS",
+					"heading": "From a good question to the next release.",
+					"body": "Keep customer insights, product decisions, and delivery in the same conversation. Give your roadmap a clear connection to the work."
+				},
+				{
+					"key": "design",
+					"tab": "02 / Design",
+					"meta": "FOR DESIGN TEAMS",
+					"heading": "Good thinking. Thoughtful execution.",
+					"body": "Bring the brief, explorations, and feedback together. Keep the thinking behind each decision close, from the first sketch to the final handoff."
+				},
+				{
+					"key": "marketing",
+					"tab": "03 / Marketing",
+					"meta": "FOR MARKETING TEAMS",
+					"heading": "One shared plan. Every moving part.",
+					"body": "Give your next campaign a clear home. Connect the brief, content, and launch calendar so everyone knows what happens next."
+				}
+			]
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": "Find your workflow"
+		},
+		"ctaUrl": {
+			"type": "string",
+			"default": "#workflow"
+		},
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholderLabel": {
+			"type": "string",
+			"default": "Image placeholder: The product team workspace."
+		},
+		"placeholderTop": {
+			"type": "string",
+			"default": "NS—04"
+		},
+		"placeholderBadge": {
+			"type": "string",
+			"default": "PRODUCT IMAGE"
+		},
+		"placeholderTitle": {
+			"type": "string",
+			"default": "The product team workspace."
+		},
+		"placeholderNote": {
+			"type": "string",
+			"default": "Screenshot reserved"
+		},
+		"placeholderFoot": {
+			"type": "string",
+			"default": "REPLACE WITH YOUR PRODUCT"
+		},
+		"placeholderAspect": {
+			"type": "string",
+			"default": "16 / 10"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

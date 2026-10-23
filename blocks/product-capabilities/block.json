@@ -1,0 +1,111 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/product-capabilities",
+	"version": "1.0.0",
+	"title": "Product capabilities",
+	"category": "nextsaas",
+	"icon": "index-card",
+	"description": "Accessible capability tabs with feature lists and reserved screenshots.",
+	"keywords": [
+		"capabilities",
+		"tabs",
+		"workspace"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "capabilities"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "A PLACE FOR THE WHOLE PICTURE"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Less scattered.<br>More <em>connected.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "Start with the perspective you need. Keep the context wherever you go."
+		},
+		"tabListLabel": {
+			"type": "string",
+			"default": "Workspace capabilities"
+		},
+		"panels": {
+			"type": "array",
+			"default": [
+				{
+					"tabLabel": "01 / Projects",
+					"heading": "Know what matters next.",
+					"body": "Turn direction into clear priorities, owners, and next steps. Keep the roadmap close to the day-to-day.",
+					"features": [
+						"See priorities at a glance",
+						"Choose a list, board, or timeline",
+						"Keep ownership visible"
+					],
+					"mediaId": 0,
+					"mediaUrl": "",
+					"mediaAlt": "",
+					"placeholderLabel": "Product screenshot placeholder: The big picture. Every little detail.",
+					"placeholderTop": "NEXTSAAS / WORKSPACE",
+					"placeholderBadge": "PRODUCT IMAGE",
+					"placeholderTitle": "The big picture. Every little detail.",
+					"placeholderNote": "Screenshot reserved",
+					"placeholderFoot": "REPLACE WITH YOUR PRODUCT SCREENSHOT",
+					"placeholderAspect": ""
+				},
+				{
+					"tabLabel": "02 / Documents",
+					"heading": "Keep the thinking, too.",
+					"body": "Give briefs, research, and decisions a home beside the work. So the next person doesn’t have to start from zero.",
+					"features": [
+						"Bring the brief beside the work",
+						"Link research to decisions",
+						"Keep useful context easy to find"
+					],
+					"mediaId": 0,
+					"mediaUrl": "",
+					"mediaAlt": "",
+					"placeholderLabel": "Product screenshot placeholder: Context comes with you.",
+					"placeholderTop": "NEXTSAAS / WORKSPACE",
+					"placeholderBadge": "PRODUCT IMAGE",
+					"placeholderTitle": "Context comes with you.",
+					"placeholderNote": "Screenshot reserved",
+					"placeholderFoot": "REPLACE WITH YOUR PRODUCT SCREENSHOT",
+					"placeholderAspect": ""
+				},
+				{
+					"tabLabel": "03 / Collaboration",
+					"heading": "Conversations, in context.",
+					"body": "Keep feedback attached to the work it belongs to. Make the next handoff feel like a continuation, not a restart.",
+					"features": [
+						"Discuss the work where it happens",
+						"Share a decision with its reasoning",
+						"Move forward with a clear next step"
+					],
+					"mediaId": 0,
+					"mediaUrl": "",
+					"mediaAlt": "",
+					"placeholderLabel": "Product screenshot placeholder: One conversation. A shared direction.",
+					"placeholderTop": "NEXTSAAS / WORKSPACE",
+					"placeholderBadge": "PRODUCT IMAGE",
+					"placeholderTitle": "One conversation. A shared direction.",
+					"placeholderNote": "Screenshot reserved",
+					"placeholderFoot": "REPLACE WITH YOUR PRODUCT SCREENSHOT",
+					"placeholderAspect": ""
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

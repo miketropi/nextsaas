@@ -1,0 +1,164 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/faq-answers",
+	"version": "1.0.0",
+	"title": "FAQ answers",
+	"category": "nextsaas",
+	"icon": "editor-help",
+	"description": "Question sidebar with category filters, a question search, a live count and a native details accordion.",
+	"keywords": [
+		"faq",
+		"questions",
+		"accordion",
+		"filter",
+		"search"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "answers"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "FIND YOUR TOPIC"
+		},
+		"filterLabel": {
+			"type": "string",
+			"default": "Question categories"
+		},
+		"categories": {
+			"type": "array",
+			"default": [
+				{
+					"label": "All questions",
+					"value": "All questions"
+				},
+				{
+					"label": "Getting started",
+					"value": "Getting started"
+				},
+				{
+					"label": "Plans & billing",
+					"value": "Plans & billing"
+				},
+				{
+					"label": "Workspace",
+					"value": "Workspace"
+				},
+				{
+					"label": "Privacy & access",
+					"value": "Privacy & access"
+				}
+			]
+		},
+		"noteLabel": {
+			"type": "string",
+			"default": "Still thinking it through?"
+		},
+		"noteLinkLabel": {
+			"type": "string",
+			"default": "Talk to us"
+		},
+		"noteLinkUrl": {
+			"type": "string",
+			"default": "contact-us.html"
+		},
+		"searchFieldLabel": {
+			"type": "string",
+			"default": "Search questions"
+		},
+		"searchPlaceholder": {
+			"type": "string",
+			"default": "Search a question"
+		},
+		"searchSubmitLabel": {
+			"type": "string",
+			"default": "Search questions"
+		},
+		"countOne": {
+			"type": "string",
+			"default": "%s question"
+		},
+		"countMany": {
+			"type": "string",
+			"default": "%s questions"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"category": "Getting started",
+					"question": "What is NextSaas?",
+					"answer": "NextSaas is a connected-workspace website concept for projects, documents, and team conversations. This prototype demonstrates the marketing experience; it is not a live workspace service."
+				},
+				{
+					"category": "Getting started",
+					"question": "Where should my team begin?",
+					"answer": "Choose one real project. Gather its brief, owners, and next steps in a single place before expanding to other workflows. The product page shows the intended structure."
+				},
+				{
+					"category": "Getting started",
+					"question": "Can I try the workspace here?",
+					"answer": "You can explore the product presentation and interactive page controls. Product screenshots are intentionally reserved for your real assets; there is no connected application or account system."
+				},
+				{
+					"category": "Plans & billing",
+					"question": "Are these prices final?",
+					"answer": "No. The rates on this template are illustrative, not a commercial offer. Monthly and yearly controls demonstrate the intended pricing experience. No payment is collected."
+				},
+				{
+					"category": "Plans & billing",
+					"question": "How does yearly billing work?",
+					"answer": "The example yearly rate is displayed as a monthly equivalent, with the full annual amount shown in the team estimate. Published billing terms must be confirmed before launch."
+				},
+				{
+					"category": "Plans & billing",
+					"question": "Can I discuss a larger team?",
+					"answer": "Yes. Use the contact page and choose a pricing inquiry. In this preview, the form validates locally and does not send your details."
+				},
+				{
+					"category": "Workspace",
+					"question": "Can different teams use different views?",
+					"answer": "The concept includes project, document, and collaboration perspectives so teams can organize around the work. Explore the product tabs to see how the story changes."
+				},
+				{
+					"category": "Workspace",
+					"question": "Can I bring my existing tools?",
+					"answer": "Connections are part of the product concept, not verified integrations. Confirm supported tools and import formats with your product team before publishing."
+				},
+				{
+					"category": "Privacy & access",
+					"question": "Who can see my projects?",
+					"answer": "The concept separates members, guests, and responsibilities. Actual permission rules depend on the implemented product and should be documented before launch."
+				},
+				{
+					"category": "Privacy & access",
+					"question": "Do these forms store personal information?",
+					"answer": "No. This prototype validates inputs in your browser only. Contact details and newsletter emails are not sent or saved."
+				}
+			]
+		},
+		"emptyHeading": {
+			"type": "string",
+			"default": "No questions found."
+		},
+		"emptyBody": {
+			"type": "string",
+			"default": "Try a shorter phrase or another topic."
+		},
+		"resetLabel": {
+			"type": "string",
+			"default": "Show all questions"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

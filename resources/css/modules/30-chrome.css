@@ -1,0 +1,165 @@
+/**
+ * NextSaaS chrome: the header overlay, and the theme's own compact-navigation
+ * breakpoint.
+ *
+ * The approved render switches navigation mode at 920px and at 680px, because its
+ * two variants were authored separately. NextSaaS owns ONE compact breakpoint,
+ * 1024px: `beplus-visual-mega-nav`, when it is active, treats `>=1024px` as desktop
+ * and everything below it as a host-owned compact region, and the header block
+ * prints that plugin's host opt-in. One breakpoint for both means the plugin's
+ * tablet off-canvas surface can never open on top of the theme's own drawer.
+ *
+ * Because this module is imported after 25-sections.css, its rules win over the
+ * render's own 920px/680px chrome bands without those bands having to be deleted —
+ * the rest of their content (type sizes, gutters, section padding) still applies
+ * exactly as approved.
+ *
+ * Progressive enhancement, in both directions:
+ *
+ * - `html.nextsaas-js` is set by one inline statement in the head
+ *   (`nextsaas_print_js_marker()`). With it, the compact menu is a drawer the
+ *   toggle owns. Without it, the menu stays a complete in-flow list under the
+ *   header — readable, focusable and never trapped behind a control that cannot
+ *   do anything.
+ * - At desktop widths the submenus need no script at all: they are shown by
+ *   `:hover` and `:focus-within` on the item that owns them, which also gives
+ *   keyboard users the panel while the trigger keeps focus.
+ */
+
+/* The header has to paint above the overlay it owns, or the toggle would be
+   covered by its own scrim and the drawer could never be closed. */
+.nextsaas-scope.topnav {
+	z-index: 30;
+}
+
+.nextsaas-scope .nextsaas-nav-overlay {
+	z-index: 25;
+}
+
+@media (max-width: 1023px) {
+	/* The panel starts at the header's own bottom edge, whatever its height is at
+	   this width, instead of the render's hard-coded 72px/88px offsets. */
+	.nextsaas-scope.topnav nav {
+		display: flex;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 8px;
+		padding: 16px 24px 24px;
+		background: var(--nextsaas-bg);
+		border-bottom: 1px solid var(--nextsaas-fg);
+		max-height: 80dvh;
+		overflow: auto;
+	}
+
+	.nextsaas-scope.topnav nav > .nav-item {
+		width: 100%;
+	}
+
+	.nextsaas-scope.topnav .nav-trigger,
+	.nextsaas-scope.topnav nav > .nav-item > a {
+		display: flex;
+		width: 100%;
+		min-height: 48px;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 14px;
+	}
+
+	.nextsaas-scope.topnav .submenu {
+		position: static;
+		width: 100%;
+		margin-bottom: 12px;
+		padding: 8px;
+		grid-template-columns: 1fr;
+		border-color: var(--nextsaas-fg);
+	}
+
+	.nextsaas-scope.topnav .submenu::before {
+		display: none;
+	}
+
+	/* Script present: the drawer is closed until the toggle opens it. */
+	html.nextsaas-js .nextsaas-scope.topnav nav {
+		display: none;
+	}
+
+	html.nextsaas-js .nextsaas-scope.topnav nav.is-open,
+	html.nextsaas-js .nextsaas-scope.topnav nav.open {
+		display: flex;
+	}
+
+	html.nextsaas-js .nextsaas-scope.topnav .menu-toggle {
+		display: flex;
+		min-height: 44px;
+		padding: 8px 12px;
+	}
+
+	/* Script absent: a drawer toggle that cannot toggle anything is worse than no
+	   toggle, so it is not offered and the menu is already open. */
+	html:not(.nextsaas-js) .nextsaas-scope.topnav .menu-toggle {
+		display: none;
+	}
+}
+
+@media (min-width: 1024px) {
+	.nextsaas-scope.topnav .menu-toggle {
+		display: none;
+	}
+
+	.nextsaas-scope.topnav nav {
+		position: static;
+		inset: auto;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 0;
+		background: transparent;
+		border-bottom: 0;
+		max-height: none;
+		overflow: visible;
+	}
+
+	.nextsaas-scope.topnav nav > .nav-item {
+		width: auto;
+	}
+
+	.nextsaas-scope.topnav .nav-trigger,
+	.nextsaas-scope.topnav nav > .nav-item > a {
+		display: inline-flex;
+		width: auto;
+		min-height: 0;
+	}
+
+	.nextsaas-scope.topnav .submenu {
+		position: absolute;
+		top: calc(100% + 20px);
+		left: -24px;
+		width: min(600px, calc(100vw - 64px));
+		margin-bottom: 0;
+		padding: 24px;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	/*
+	 * `[hidden] { display: none !important }` is part of the approved reset and the
+	 * script keeps panels `hidden` while they are closed, so revealing one has to
+	 * win on both counts: same importance, higher specificity.
+	 */
+	.nextsaas-scope.topnav .nav-item:hover > .submenu,
+	.nextsaas-scope.topnav .nav-item:focus-within > .submenu {
+		display: grid !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.nextsaas-scope .nextsaas-nav-overlay,
+	.nextsaas-scope.topnav nav,
+	.nextsaas-scope.topnav .submenu,
+	.nextsaas-scope.topnav .chevron {
+		transition: none;
+	}
+}

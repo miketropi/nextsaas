@@ -1,0 +1,20 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/",
+	"preferredVersions": { "php": "8.3", "wp": "latest" },
+	"features": { "networking": false },
+	"steps": [
+		{
+			"step": "setSiteOptions",
+			"options": { "blogname": "NextSaaS smoke", "permalink_structure": "/%postname%/" }
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require_once '/wordpress/wp-load.php'; switch_theme( 'nextsaas' ); if ( ! wp_get_nav_menu_object( 'Primary' ) ) { $menu_id = wp_create_nav_menu( 'Primary' ); foreach ( array( 'Product', 'Pricing', 'About Us', 'Blog', 'Contact Us' ) as $label ) { wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => $label, 'menu-item-url' => home_url( '/' . sanitize_title( $label ) . '/' ), 'menu-item-status' => 'publish' ) ); } $locations = get_theme_mod( 'nav_menu_locations', array() ); $locations['primary'] = $menu_id; set_theme_mod( 'nav_menu_locations', $locations ); }"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require_once '/wordpress/wp-load.php'; $candidates = array( '/wordpress/wp-content/themes/nextsaas', get_theme_root() . '/nextsaas' ); foreach ( $candidates as $candidate ) { if ( is_dir( $candidate ) && is_readable( $candidate . '/theme.json' ) ) { if ( ! defined( 'NEXTSAAS_DIR' ) ) { define( 'NEXTSAAS_DIR', $candidate ); } break; } } if ( ! defined( 'NEXTSAAS_DIR' ) ) { throw new Exception( 'the nextsaas theme mount is missing' ); } require NEXTSAAS_DIR . '/tests/smoke/assertions.php';"
+		}
+	]
+}

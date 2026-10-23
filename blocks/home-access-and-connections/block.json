@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-access-and-connections",
+	"version": "1.0.0",
+	"title": "Access and connections",
+	"category": "nextsaas",
+	"icon": "admin-links",
+	"description": "Thoughtful access and connection features.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "system"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "06 / THOUGHTFUL BY DEFAULT"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Open doors.<br>Clear <em>boundaries.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "Bring your work together without giving up ownership of the details."
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Bring your tools.",
+					"body": "Make room for your files, calendar, and existing workflows. Plan connections around your team.",
+					"meta": "01"
+				},
+				{
+					"heading": "Choose who’s in.",
+					"body": "Keep members, guests, and responsibilities clear. Make access an intentional choice.",
+					"meta": "02"
+				},
+				{
+					"heading": "Keep the full story.",
+					"body": "Follow decisions and changes with their context, not just a stream of notifications.",
+					"meta": "03"
+				},
+				{
+					"heading": "Stay in control.",
+					"body": "Build around portable records and practical exports. Your work should remain yours.",
+					"meta": "04"
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

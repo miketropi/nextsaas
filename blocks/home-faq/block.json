@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-faq",
+	"version": "1.0.0",
+	"title": "Home FAQ",
+	"category": "nextsaas",
+	"icon": "editor-help",
+	"description": "Frequently asked questions.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "faq"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "09 / THE DETAILS"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Glad<br>you <em>asked.</em>"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "What exactly is NextSaas?",
+					"body": "NextSaas is a multipurpose SaaS website template, presented here as a connected-workspace concept. Adapt the positioning, product capabilities, and visuals to your own service."
+				},
+				{
+					"heading": "Can I use my own product screenshots?",
+					"body": "Yes. The labeled product image areas are intentionally reserved for your screenshots. Replace each complete placeholder with an image using its natural aspect ratio."
+				},
+				{
+					"heading": "Is this a working product?",
+					"body": "This is an interactive frontend prototype. Navigation, tabs, pricing controls, guides, and forms work locally. No workspace, subscription, or account is created."
+				},
+				{
+					"heading": "Are the prices and capabilities final?",
+					"body": "No. Prices and product capabilities are illustrative template content, not verified claims or a commercial offer. Replace them with your actual offering before launch."
+				},
+				{
+					"heading": "What happens when I enter my email?",
+					"body": "The form checks your email locally and shows a confirmation. Your details are not sent, stored, or subscribed to a mailing list. Connect your provider before publishing."
+				},
+				{
+					"heading": "Does it work on smaller screens?",
+					"body": "Yes. The layout reflows for phones and tablets, controls support keyboard navigation, and animations respect reduced-motion preferences."
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

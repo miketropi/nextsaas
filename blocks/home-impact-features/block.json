@@ -1,0 +1,62 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-impact-features",
+	"version": "1.0.0",
+	"title": "Home impact features",
+	"category": "nextsaas",
+	"icon": "layout",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "impact"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "THE EVERYDAY IMPACT"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Small shifts.<br><em>Meaningful change.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "Less time managing the work. More attention for the work that matters."
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"icon": "focus",
+					"meta": "01 / FOCUS",
+					"heading": "A clearer start to every day.",
+					"body": "Surface the next priority, the owner, and the decision to make. Start with direction, not a search."
+				},
+				{
+					"icon": "messages-square",
+					"meta": "02 / CONTEXT",
+					"heading": "Fewer loops. Better handoffs.",
+					"body": "Keep the brief, feedback, and final decision together. Move forward without retelling the whole story."
+				},
+				{
+					"icon": "move-up-right",
+					"meta": "03 / MOMENTUM",
+					"heading": "Progress you can actually see.",
+					"body": "Follow work from intent to outcome. Spot the blocker while there’s still room to change the plan."
+				}
+			]
+		},
+		"note": {
+			"type": "string",
+			"default": "Designed outcomes of the workspace concept — not measured customer results."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

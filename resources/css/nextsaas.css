@@ -1,0 +1,6 @@
+/** NextSaaS child theme stylesheet. Import order is deliberately unlayered after Tailwind theme output. */
+@layer theme,base,components,utilities;
+@source "../../blocks/**/*.php";@source "../../blocks/**/*.tsx";@source "../../patterns/**/*.php";@source "../../templates/**/*.html";@source "../../parts/**/*.html";@source "../../inc/**/*.php";@source "../../functions.php";
+@import "tailwindcss/theme.css" layer(theme);
+@theme{--color-nextsaas-bg:var(--nextsaas-bg);--color-nextsaas-surface:var(--nextsaas-surface);--color-nextsaas-fg:var(--nextsaas-fg);--color-nextsaas-muted:var(--nextsaas-muted);--color-nextsaas-border:var(--nextsaas-border);--color-nextsaas-accent:var(--nextsaas-accent);--font-nextsaas-display:var(--nextsaas-font-display);--font-nextsaas-body:var(--nextsaas-font-body);--font-nextsaas-mono:var(--nextsaas-font-mono)}
+@import "./modules/00-tokens.css";@import "./modules/10-base.css";@import "./modules/20-components.css";@import "./modules/25-sections.css";@import "./modules/30-chrome.css";@import "./modules/40-plugin.css";@import "./modules/90-overrides.css";

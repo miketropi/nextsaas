@@ -1,0 +1,133 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/pricing-pricing",
+	"version": "1.0.0",
+	"title": "Pricing plans",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Three illustrative plans with monthly and yearly pricing.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "pricing"
+		},
+		"billingLabel": {
+			"type": "string",
+			"default": "Illustrative billing period"
+		},
+		"monthlyLabel": {
+			"type": "string",
+			"default": "Monthly"
+		},
+		"yearlyLabel": {
+			"type": "string",
+			"default": "Yearly"
+		},
+		"offerNote": {
+			"type": "string",
+			"default": "EXAMPLE PRICING / NOT A COMMERCIAL OFFER"
+		},
+		"monthlyNotice": {
+			"type": "string",
+			"default": "Illustrative monthly rates. No checkout or payment collection."
+		},
+		"yearlyNotice": {
+			"type": "string",
+			"default": "Illustrative yearly rates shown as monthly equivalents. No checkout or payment collection."
+		},
+		"currency": {
+			"type": "string",
+			"default": "$"
+		},
+		"plans": {
+			"type": "array",
+			"default": [
+				{
+					"meta": "01 / A SPACE OF YOUR OWN.",
+					"name": "Personal",
+					"description": "For independent projects and everyday clarity.",
+					"monthlyPrice": "0",
+					"yearlyPrice": "0",
+					"unit": " / person",
+					"monthlyNote": "per month / no subscription",
+					"yearlyNote": "per month / no subscription",
+					"features": [
+						{
+							"text": "Personal projects"
+						},
+						{
+							"text": "Notes & documents"
+						},
+						{
+							"text": "Board & list views"
+						}
+					],
+					"ctaLabel": "Explore Personal",
+					"ctaUrl": "contact-us.html?plan=Personal",
+					"ctaVariant": "secondary",
+					"featured": false
+				},
+				{
+					"meta": "02 / BETTER, TOGETHER.",
+					"name": "Team",
+					"description": "For people turning shared ideas into great work.",
+					"monthlyPrice": "18",
+					"yearlyPrice": "15",
+					"unit": " / person",
+					"monthlyNote": "per month / billed monthly",
+					"yearlyNote": "per month / billed yearly",
+					"features": [
+						{
+							"text": "Everything in Personal"
+						},
+						{
+							"text": "Shared workspaces"
+						},
+						{
+							"text": "Workflow automation"
+						}
+					],
+					"ctaLabel": "Explore Team",
+					"ctaUrl": "contact-us.html?plan=Team",
+					"ctaVariant": "secondary",
+					"featured": true
+				},
+				{
+					"meta": "03 / A BIGGER PICTURE.",
+					"name": "Business",
+					"description": "For connected teams and intentional control.",
+					"monthlyPrice": "32",
+					"yearlyPrice": "27",
+					"unit": " / person",
+					"monthlyNote": "per month / billed monthly",
+					"yearlyNote": "per month / billed yearly",
+					"features": [
+						{
+							"text": "Everything in Team"
+						},
+						{
+							"text": "Roles & guest access"
+						},
+						{
+							"text": "Integration planning"
+						}
+					],
+					"ctaLabel": "Explore Business",
+					"ctaUrl": "contact-us.html?plan=Business",
+					"ctaVariant": "secondary",
+					"featured": false
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

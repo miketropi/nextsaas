@@ -1,0 +1,131 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-hero",
+	"version": "1.0.0",
+	"title": "Home hero",
+	"category": "nextsaas",
+	"icon": "layout",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "top"
+		},
+		"kicker": {
+			"type": "string",
+			"default": "A CONNECTED WORKSPACE FOR WHAT COMES NEXT"
+		},
+		"kickerSecondary": {
+			"type": "string",
+			"default": "LESS NOISE. MORE POSSIBILITY."
+		},
+		"heading": {
+			"type": "string",
+			"default": "Make space<br>for the <em>next.</em>"
+		},
+		"orbitCopy": {
+			"type": "string",
+			"default": "GOOD IDEAS NEED<br>ROOM TO BECOME<br>GREAT WORK."
+		},
+		"lead": {
+			"type": "string",
+			"default": "Projects. People. Possibilities. Bring them together in one thoughtful workspace — and give your best work room to happen."
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Find your next"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"workspaceLabel": {
+			"type": "string",
+			"default": "Meet the workspace"
+		},
+		"workspaceUrl": {
+			"type": "string",
+			"default": "#platform"
+		},
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholderLabel": {
+			"type": "string",
+			"default": "Image placeholder: Your whole world of work."
+		},
+		"placeholderTop": {
+			"type": "string",
+			"default": "NS—01"
+		},
+		"placeholderBadge": {
+			"type": "string",
+			"default": "PRODUCT IMAGE"
+		},
+		"placeholderTitle": {
+			"type": "string",
+			"default": "Your whole world of work."
+		},
+		"placeholderNote": {
+			"type": "string",
+			"default": "Screenshot reserved"
+		},
+		"placeholderFoot": {
+			"type": "string",
+			"default": "REPLACE WITH YOUR PRODUCT"
+		},
+		"placeholderAspect": {
+			"type": "string",
+			"default": "3.25 / 1"
+		},
+		"caption": {
+			"type": "string",
+			"default": "01 — THE NEXTSAAS WORKSPACE"
+		},
+		"captionNote": {
+			"type": "string",
+			"default": "PRODUCT IMAGE PLACEHOLDER / REPLACE WITH YOUR SCREENSHOT"
+		},
+		"useCasesLabel": {
+			"type": "string",
+			"default": "MADE FOR PEOPLE WHO MAKE THINGS."
+		},
+		"useCases": {
+			"type": "array",
+			"default": [
+				{
+					"label": "Product & engineering",
+					"url": "#teams",
+					"pick": "product"
+				},
+				{
+					"label": "Design & creative",
+					"url": "#teams",
+					"pick": "design"
+				},
+				{
+					"label": "Marketing & operations",
+					"url": "#teams",
+					"pick": "marketing"
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

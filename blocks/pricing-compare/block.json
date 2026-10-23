@@ -1,0 +1,166 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/pricing-compare",
+	"version": "1.0.0",
+	"title": "Plan comparison",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Feature comparison and interactive seat estimator.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "compare"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "THE DETAILS, SIDE BY SIDE"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Find your <em>fit.</em>"
+		},
+		"regionLabel": {
+			"type": "string",
+			"default": "Scrollable plan comparison"
+		},
+		"caption": {
+			"type": "string",
+			"default": "Illustrative NextSaas plan features"
+		},
+		"featureHeading": {
+			"type": "string",
+			"default": "What’s included"
+		},
+		"personalHeading": {
+			"type": "string",
+			"default": "Personal"
+		},
+		"teamHeading": {
+			"type": "string",
+			"default": "Team"
+		},
+		"businessHeading": {
+			"type": "string",
+			"default": "Business"
+		},
+		"rows": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "Projects & documents",
+					"personal": "Included",
+					"team": "Included",
+					"business": "Included"
+				},
+				{
+					"heading": "Board & list views",
+					"personal": "Included",
+					"team": "Included",
+					"business": "Included"
+				},
+				{
+					"heading": "Shared workspaces",
+					"personal": "—",
+					"team": "Included",
+					"business": "Included"
+				},
+				{
+					"heading": "Workflow automation",
+					"personal": "—",
+					"team": "Included",
+					"business": "Included"
+				},
+				{
+					"heading": "Roles & guest access",
+					"personal": "—",
+					"team": "—",
+					"business": "Included"
+				},
+				{
+					"heading": "Integration planning",
+					"personal": "—",
+					"team": "—",
+					"business": "Included"
+				}
+			]
+		},
+		"estimatorEyebrow": {
+			"type": "string",
+			"default": "YOUR TEAM, YOUR PERSPECTIVE"
+		},
+		"estimatorHeading": {
+			"type": "string",
+			"default": "See the bigger picture."
+		},
+		"estimatorBody": {
+			"type": "string",
+			"default": "Estimate the illustrative subscription for your team. No taxes, fees, or real charges are calculated."
+		},
+		"planLabel": {
+			"type": "string",
+			"default": "Plan"
+		},
+		"peopleLabel": {
+			"type": "string",
+			"default": "People"
+		},
+		"teamPlanLabel": {
+			"type": "string",
+			"default": "Team"
+		},
+		"businessPlanLabel": {
+			"type": "string",
+			"default": "Business"
+		},
+		"initialSeats": {
+			"type": "number",
+			"default": 10
+		},
+		"teamMonthlyRate": {
+			"type": "number",
+			"default": 18
+		},
+		"teamYearlyRate": {
+			"type": "number",
+			"default": 15
+		},
+		"businessMonthlyRate": {
+			"type": "number",
+			"default": 32
+		},
+		"businessYearlyRate": {
+			"type": "number",
+			"default": 27
+		},
+		"currency": {
+			"type": "string",
+			"default": "$"
+		},
+		"monthlySuffix": {
+			"type": "string",
+			"default": " / mo"
+		},
+		"yearlySuffix": {
+			"type": "string",
+			"default": " / yr"
+		},
+		"monthlyNoteTemplate": {
+			"type": "string",
+			"default": "{seats} people × {currency}{rate} per month. Billed monthly."
+		},
+		"yearlyNoteTemplate": {
+			"type": "string",
+			"default": "{seats} people × {currency}{rate} per month. {currency}{total} billed yearly."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

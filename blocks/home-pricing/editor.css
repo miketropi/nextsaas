@@ -1,0 +1,10 @@
+/**
+ * Editor canvas styles for nextsaas/home-pricing.
+ *
+ * Only editor-specific affordances: the front-end look comes from
+ * assets/css/nextsaas.css, which the editor canvas also loads.
+ */
+
+.wp-block-nextsaas-home-pricing {
+	min-height: 240px;
+}

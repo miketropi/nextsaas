@@ -1,0 +1,53 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/post-article-content",
+	"version": "1.0.0",
+	"title": "Article content",
+	"category": "nextsaas",
+	"icon": "admin-post",
+	"description": "Article content section.",
+	"keywords": [
+		"post",
+		"article",
+		"content"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "article-content"
+		},
+		"tocLabel": {
+			"type": "string",
+			"default": "IN THIS ARTICLE"
+		},
+		"tocAriaLabel": {
+			"type": "string",
+			"default": "In this article"
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Explore the workspace"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": "product.html"
+		},
+		"secondaryLabel": {
+			"type": "string",
+			"default": "Back to all stories"
+		},
+		"secondaryUrl": {
+			"type": "string",
+			"default": "archive.html"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

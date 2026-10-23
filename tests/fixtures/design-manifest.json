@@ -1,0 +1,3531 @@
+{
+	"version": 1,
+	"generatedFrom": "OpenDesign project ccd8c2f0-5d3d-45d5-8dea-6c868f5558eb — current HTML sources only",
+	"nonAuthoritative": [
+		"forma-saas-landing-v2.html",
+		"forma-saas-landing-before-*.html"
+	],
+	"blocks": "nextsaas",
+	"sectionAttr": "data-nextsaas-section",
+	"breakpoints": {
+		"mobile": "<=767px",
+		"tablet": "768px-1023px",
+		"desktop": ">=1024px"
+	},
+	"shared": {
+		"tokens": {
+			"palette": {
+				"bg": "oklch(98.5% 0.006 260)",
+				"surface": "oklch(100% 0 0)",
+				"fg": "oklch(23% 0.045 265)",
+				"muted": "oklch(44% 0.025 265)",
+				"border": "oklch(78% 0.02 265)",
+				"accent": "oklch(46% 0.24 265)"
+			},
+			"fonts": {
+				"display": "'Bodoni Moda', 'Didot', Georgia, serif",
+				"body": "'DM Sans', 'Segoe UI', sans-serif",
+				"mono": "ui-monospace, 'IBM Plex Mono', 'JetBrains Mono', Menlo, monospace"
+			},
+			"fontSizes": {
+				"h1": "clamp(78px,13vw,188px)",
+				"h2": "clamp(46px,6.2vw,88px)",
+				"h3": "32px",
+				"lead": "20px",
+				"body": "18px",
+				"meta": "14px"
+			},
+			"spacing": {
+				"xs": "8px",
+				"sm": "16px",
+				"md": "24px",
+				"lg": "32px",
+				"xl": "64px",
+				"2xl": "128px",
+				"gutter": "56px"
+			},
+			"layout": {
+				"content": "1512px",
+				"wide": "1512px",
+				"container": "1512px",
+				"gutter": "56px"
+			},
+			"radius": {
+				"default": "0px",
+				"large": "0px"
+			}
+		},
+		"header": {
+			"variants": {
+				"landing": {
+					"brand": {
+						"label": "NextSaas",
+						"href": "#top",
+						"ariaLabel": "NextSaas home",
+						"icon": "asterisk",
+						"ariaCurrent": "page"
+					},
+					"navigation": {
+						"ariaLabel": "Main navigation",
+						"items": [
+							{
+								"label": "Product",
+								"href": null,
+								"children": [
+									{
+										"label": "The workspace",
+										"href": "product.html",
+										"description": "A place for the whole picture."
+									},
+									{
+										"label": "Capabilities",
+										"href": "#capabilities",
+										"description": "Plans, context, and collaboration."
+									},
+									{
+										"label": "Automations",
+										"href": "#automation",
+										"description": "A little less repetition."
+									},
+									{
+										"label": "Access & control",
+										"href": "#system",
+										"description": "Intentional by default."
+									}
+								]
+							},
+							{
+								"label": "For teams",
+								"href": null,
+								"children": [
+									{
+										"label": "Product",
+										"href": "#teams",
+										"description": "Keep the roadmap in context."
+									},
+									{
+										"label": "Design",
+										"href": "#teams",
+										"description": "From brief to final handoff."
+									},
+									{
+										"label": "Marketing",
+										"href": "#teams",
+										"description": "Give every launch a home."
+									},
+									{
+										"label": "A way of working",
+										"href": "#workflow",
+										"description": "Build your own rhythm."
+									}
+								]
+							},
+							{
+								"label": "Company",
+								"href": null,
+								"children": [
+									{
+										"label": "About us",
+										"href": "about-us.html",
+										"description": "The thinking behind NextSaas."
+									},
+									{
+										"label": "Contact us",
+										"href": "contact-us.html",
+										"description": "Let’s find your next step."
+									}
+								]
+							},
+							{
+								"label": "Pricing",
+								"href": "pricing.html",
+								"children": []
+							},
+							{
+								"label": "Resources",
+								"href": null,
+								"children": [
+									{
+										"label": "The field guide",
+										"href": "archive.html",
+										"description": "Practical ideas for better work."
+									},
+									{
+										"label": "Your questions",
+										"href": "faqs.html",
+										"description": "A few things worth knowing."
+									},
+									{
+										"label": "Latest article",
+										"href": "blog-post.html",
+										"description": "Start with the work, not the tool."
+									},
+									{
+										"label": "Search NextSaas",
+										"href": "search.html",
+										"description": "Find a page, guide, or answer."
+									},
+									{
+										"label": "404 page",
+										"href": "404.html",
+										"description": "Preview the not-found experience."
+									}
+								]
+							}
+						]
+					},
+					"cta": {
+						"label": "Explore NextSaas",
+						"element": "button",
+						"href": "",
+						"icon": "arrow-up-right",
+						"action": "signup"
+					},
+					"controls": [
+						{
+							"label": "Menu",
+							"element": "button",
+							"icon": "menu",
+							"ariaControls": "main-nav",
+							"ariaExpanded": false
+						}
+					]
+				},
+				"inner": {
+					"brand": {
+						"label": "NextSaas",
+						"href": "forma-saas-landing.html#top",
+						"ariaLabel": "NextSaas home",
+						"icon": "asterisk",
+						"ariaCurrent": null
+					},
+					"navigation": {
+						"ariaLabel": "Main navigation",
+						"items": [
+							{
+								"label": "Product",
+								"href": null,
+								"children": [
+									{
+										"label": "The workspace",
+										"href": "product.html",
+										"description": "A place for the whole picture."
+									},
+									{
+										"label": "Capabilities",
+										"href": "forma-saas-landing.html#capabilities",
+										"description": "Plans, context, and collaboration."
+									},
+									{
+										"label": "Automations",
+										"href": "forma-saas-landing.html#automation",
+										"description": "A little less repetition."
+									},
+									{
+										"label": "Access & control",
+										"href": "forma-saas-landing.html#system",
+										"description": "Intentional by default."
+									}
+								]
+							},
+							{
+								"label": "For teams",
+								"href": null,
+								"children": [
+									{
+										"label": "Product",
+										"href": "forma-saas-landing.html#teams",
+										"description": "Keep the roadmap in context."
+									},
+									{
+										"label": "Design",
+										"href": "forma-saas-landing.html#teams",
+										"description": "From brief to final handoff."
+									},
+									{
+										"label": "Marketing",
+										"href": "forma-saas-landing.html#teams",
+										"description": "Give every launch a home."
+									},
+									{
+										"label": "A way of working",
+										"href": "forma-saas-landing.html#workflow",
+										"description": "Build your own rhythm."
+									}
+								]
+							},
+							{
+								"label": "Company",
+								"href": null,
+								"children": [
+									{
+										"label": "About us",
+										"href": "about-us.html",
+										"description": "The thinking behind NextSaas."
+									},
+									{
+										"label": "Contact us",
+										"href": "contact-us.html",
+										"description": "Let’s find your next step."
+									}
+								]
+							},
+							{
+								"label": "Pricing",
+								"href": "pricing.html",
+								"children": []
+							},
+							{
+								"label": "Resources",
+								"href": null,
+								"children": [
+									{
+										"label": "The field guide",
+										"href": "archive.html",
+										"description": "Practical ideas for better work."
+									},
+									{
+										"label": "Your questions",
+										"href": "faqs.html",
+										"description": "A few things worth knowing."
+									},
+									{
+										"label": "Latest article",
+										"href": "blog-post.html",
+										"description": "Start with the work, not the tool."
+									},
+									{
+										"label": "Search NextSaas",
+										"href": "search.html",
+										"description": "Find a page, guide, or answer."
+									},
+									{
+										"label": "404 page",
+										"href": "404.html",
+										"description": "Preview the not-found experience."
+									}
+								]
+							}
+						]
+					},
+					"cta": {
+						"label": "Explore NextSaas",
+						"element": "a",
+						"href": "contact-us.html",
+						"icon": "arrow-up-right",
+						"action": null
+					},
+					"controls": [
+						{
+							"label": "Menu",
+							"element": "button",
+							"icon": "menu",
+							"ariaControls": "main-nav",
+							"ariaExpanded": false
+						}
+					]
+				}
+			},
+			"differences": [
+				"Landing brand href is #top and has aria-current=page; inner brand href is forma-saas-landing.html#top and has no aria-current.",
+				"Landing in-page Product and For teams submenu hrefs are fragment-only; inner prefixes them with forma-saas-landing.html.",
+				"Landing CTA is a data-signup button with no href; inner CTA is an anchor to contact-us.html."
+			]
+		},
+		"footer": {
+			"variants": {
+				"landing": {
+					"newsletter": {
+						"heading": "A little perspective. Not another distraction.",
+						"label": "NEXT NOTES / OCCASIONAL IDEAS FOR BETTER WORK",
+						"inputPlaceholder": "Your email address",
+						"buttonLabel": "Subscribe to Next notes",
+						"buttonIcon": "arrow-up-right",
+						"note": "Preview only. No emails sent or subscriptions created.",
+						"statusText": ""
+					},
+					"about": {
+						"brand": {
+							"label": "NextSaas",
+							"href": "#top",
+							"icon": "asterisk"
+						},
+						"lines": [
+							"A home for ambitious ideas. And the people behind them.",
+							"Independent in spirit. Connected by design."
+						]
+					},
+					"columns": [
+						{
+							"heading": "THE WORKSPACE",
+							"links": [
+								{
+									"label": "Overview",
+									"href": "product.html",
+									"element": "a"
+								},
+								{
+									"label": "Capabilities",
+									"href": "#capabilities",
+									"element": "a"
+								},
+								{
+									"label": "Automations",
+									"href": "#automation",
+									"element": "a"
+								},
+								{
+									"label": "Access & control",
+									"href": "#system",
+									"element": "a"
+								},
+								{
+									"label": "Plans & pricing",
+									"href": "pricing.html",
+									"element": "a"
+								}
+							]
+						},
+						{
+							"heading": "FOR YOUR TEAM",
+							"links": [
+								{
+									"label": "Product teams",
+									"href": "#teams",
+									"element": "a"
+								},
+								{
+									"label": "Design teams",
+									"href": "#teams",
+									"element": "a"
+								},
+								{
+									"label": "Marketing teams",
+									"href": "#teams",
+									"element": "a"
+								},
+								{
+									"label": "Getting started",
+									"href": "#workflow",
+									"element": "a"
+								}
+							]
+						},
+						{
+							"heading": "A LITTLE MORE",
+							"links": [
+								{
+									"label": "The field guide",
+									"href": "archive.html",
+									"element": "a"
+								},
+								{
+									"label": "Questions & answers",
+									"href": "faqs.html",
+									"element": "a"
+								},
+								{
+									"label": "About NextSaas",
+									"href": "about-us.html",
+									"element": "a"
+								},
+								{
+									"label": "Contact us",
+									"href": "contact-us.html",
+									"element": "a"
+								},
+								{
+									"label": "Search the site",
+									"href": "search.html",
+									"element": "a"
+								},
+								{
+									"label": "Say hello",
+									"href": "",
+									"element": "button"
+								},
+								{
+									"label": "Back to the top",
+									"href": "#top",
+									"element": "a"
+								}
+							]
+						}
+					],
+					"social": {
+						"heading": "Connect with us",
+						"note": "Preview only · Social profiles coming soon.",
+						"ariaLabel": "Social connections",
+						"buttons": [
+							{
+								"label": "LinkedIn",
+								"icon": "linkedin"
+							},
+							{
+								"label": "Instagram",
+								"icon": "instagram"
+							},
+							{
+								"label": "YouTube",
+								"icon": "youtube"
+							},
+							{
+								"label": "GitHub",
+								"icon": "github"
+							}
+						]
+					},
+					"wordmark": "NextSaas",
+					"bottom": {
+						"copyright": "© 2026 NextSaas. An independent template concept.",
+						"items": [
+							{
+								"label": "Privacy notice",
+								"element": "button",
+								"href": ""
+							},
+							{
+								"label": "Template terms",
+								"element": "button",
+								"href": ""
+							},
+							{
+								"label": "EN / ENGLISH",
+								"element": "text",
+								"href": ""
+							}
+						]
+					}
+				},
+				"inner": {
+					"newsletter": {
+						"heading": "A little perspective. Not another distraction.",
+						"label": "NEXT NOTES / OCCASIONAL IDEAS FOR BETTER WORK",
+						"inputPlaceholder": "Your email address",
+						"buttonLabel": "Subscribe to Next notes",
+						"buttonIcon": "arrow-up-right",
+						"note": "Preview only. No emails sent or subscriptions created.",
+						"statusText": ""
+					},
+					"about": {
+						"brand": {
+							"label": "NextSaas",
+							"href": "forma-saas-landing.html",
+							"icon": "asterisk"
+						},
+						"lines": [
+							"A home for ambitious ideas. And the people behind them.",
+							"Independent in spirit. Connected by design."
+						]
+					},
+					"columns": [
+						{
+							"heading": "THE WORKSPACE",
+							"links": [
+								{
+									"label": "Overview",
+									"href": "product.html",
+									"element": "a"
+								},
+								{
+									"label": "Capabilities",
+									"href": "product.html#capabilities",
+									"element": "a"
+								},
+								{
+									"label": "Automations",
+									"href": "product.html#workflow",
+									"element": "a"
+								},
+								{
+									"label": "Access & control",
+									"href": "product.html#control",
+									"element": "a"
+								},
+								{
+									"label": "Plans & pricing",
+									"href": "pricing.html",
+									"element": "a"
+								}
+							]
+						},
+						{
+							"heading": "FOR YOUR TEAM",
+							"links": [
+								{
+									"label": "Product teams",
+									"href": "product.html#perspectives",
+									"element": "a"
+								},
+								{
+									"label": "Design teams",
+									"href": "product.html#perspectives",
+									"element": "a"
+								},
+								{
+									"label": "Marketing teams",
+									"href": "product.html#perspectives",
+									"element": "a"
+								},
+								{
+									"label": "Getting started",
+									"href": "product.html#workflow",
+									"element": "a"
+								}
+							]
+						},
+						{
+							"heading": "A LITTLE MORE",
+							"links": [
+								{
+									"label": "The field guide",
+									"href": "archive.html",
+									"element": "a"
+								},
+								{
+									"label": "Questions & answers",
+									"href": "faqs.html",
+									"element": "a"
+								},
+								{
+									"label": "About NextSaas",
+									"href": "about-us.html",
+									"element": "a"
+								},
+								{
+									"label": "Contact us",
+									"href": "contact-us.html",
+									"element": "a"
+								},
+								{
+									"label": "Search the site",
+									"href": "search.html",
+									"element": "a"
+								},
+								{
+									"label": "Back to the top",
+									"href": "#top",
+									"element": "a"
+								}
+							]
+						}
+					],
+					"social": {
+						"heading": "Connect with us",
+						"note": "Preview only · Social profiles coming soon.",
+						"ariaLabel": "Social connections",
+						"buttons": [
+							{
+								"label": "LinkedIn",
+								"icon": "linkedin"
+							},
+							{
+								"label": "Instagram",
+								"icon": "instagram"
+							},
+							{
+								"label": "YouTube",
+								"icon": "youtube"
+							},
+							{
+								"label": "GitHub",
+								"icon": "github"
+							}
+						]
+					},
+					"wordmark": "NextSaas",
+					"bottom": {
+						"copyright": "© 2026 NextSaas. An independent template concept.",
+						"items": [
+							{
+								"label": "Privacy notice",
+								"element": "button",
+								"href": ""
+							},
+							{
+								"label": "Template terms",
+								"element": "button",
+								"href": ""
+							},
+							{
+								"label": "EN / ENGLISH",
+								"element": "text",
+								"href": ""
+							}
+						]
+					}
+				}
+			},
+			"differences": [
+				"Landing footer brand href is #top; inner footer brand href is forma-saas-landing.html.",
+				"Landing workspace and team links use local fragments; inner links target product.html fragments (Capabilities → #capabilities, Automations and Getting started → #workflow, Access & control → #control, team links → #perspectives).",
+				"Landing A LITTLE MORE includes the Say hello button; inner omits it."
+			]
+		}
+	},
+	"pages": [
+		{
+			"page": "home",
+			"template": "front-page",
+			"templateTitle": "Home",
+			"source": "forma-saas-landing.html",
+			"bodyClass": "",
+			"scopeClass": "nextsaas-home",
+			"sections": [
+				{
+					"slug": "home-hero",
+					"sourceAnchor": "hero",
+					"sourceId": "top",
+					"sourceClass": "section hero",
+					"purpose": "Hero",
+					"eyebrow": "A CONNECTED WORKSPACE FOR WHAT COMES NEXT",
+					"heading": {
+						"tag": "h1",
+						"text": "Make space for the next.",
+						"html": "Make space<br>for the <em>next.</em>"
+					},
+					"lead": "Projects. People. Possibilities. Bring them together in one thoughtful workspace — and give your best work room to happen.",
+					"ctas": [
+						{
+							"label": "Find your next",
+							"href": "",
+							"element": "button",
+							"variant": "primary",
+							"arrow": true
+						},
+						{
+							"label": "Meet the workspace",
+							"href": "#platform",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Product & engineering",
+							"href": "#teams",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Design & creative",
+							"href": "#teams",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Marketing & operations",
+							"href": "#teams",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Image placeholder: Your whole world of work.",
+							"aspect": "3.25 / 1",
+							"odId": "hero-product-image"
+						}
+					],
+					"items": [
+						{
+							"kind": "rich",
+							"heading": "GOOD IDEAS NEED ROOM TO BECOME GREAT WORK.",
+							"body": "LESS NOISE. MORE POSSIBILITY.",
+							"meta": "01 — THE NEXTSAAS WORKSPACE",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: hero main narrows its orbit column and action spacing.",
+						"<=920px: hero bottom becomes one column and actions align left.",
+						"<=680px: hero stacks the heading and orbit, buttons become full width, and use-case links stack.",
+						"prefers-reduced-motion: decorative animation and transitions are disabled."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"dialog",
+						"form"
+					]
+				},
+				{
+					"slug": "home-point-of-view",
+					"sourceAnchor": "point-of-view",
+					"sourceId": "",
+					"sourceClass": "section intro",
+					"purpose": "Point of view",
+					"eyebrow": "A SMALL SHIFT. A DIFFERENT KIND OF DAY.",
+					"heading": {
+						"tag": "h2",
+						"text": "Your best work isn’t busywork. It’s the idea that sticks. The problem you solve. The thing you make, together. Let’s make more room for that.",
+						"html": "Your best work isn’t busywork. <span>It’s the idea that sticks. The problem you solve. The thing you make, together.</span> Let’s make more room for that."
+					},
+					"lead": null,
+					"ctas": [],
+					"media": [],
+					"items": [],
+					"responsive": [
+						"<=920px: the two-column composition becomes one column.",
+						"prefers-reduced-motion: scroll-linked word opacity resolves immediately to fully visible."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "home-capabilities",
+					"sourceAnchor": "capabilities",
+					"sourceId": "capabilities",
+					"sourceClass": "section",
+					"purpose": "Capabilities",
+					"eyebrow": "02 / A PLACE FOR THE WHOLE PICTURE",
+					"heading": {
+						"tag": "h2",
+						"text": "Less scattered. More connected.",
+						"html": "Less scattered.<br>More <em>connected.</em>"
+					},
+					"lead": "A shared home for the plan, the details, and the conversations that move things forward.",
+					"ctas": [],
+					"media": [
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Image placeholder: The big picture. Every little detail.",
+							"aspect": "16 / 10",
+							"odId": "projects-image"
+						},
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Image placeholder: Context comes with you.",
+							"aspect": "16 / 10",
+							"odId": "documents-image"
+						}
+					],
+					"items": [
+						{
+							"kind": "feature",
+							"heading": "Know what matters next.",
+							"body": "Turn a shared direction into clear priorities, owners, and next steps. Keep the roadmap close to the day-to-day.",
+							"meta": "01 / PROJECTS & PRIORITIES",
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Keep the thinking, too.",
+							"body": "Give briefs, research, and decisions a home beside the work. So the next person doesn’t have to start from zero.",
+							"meta": "02 / DOCS & DECISIONS",
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Conversations, in context.",
+							"body": "Keep feedback attached to the work it belongs to.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Your perspective matters.",
+							"body": "Find clarity in a list, a board, or a shared timeline.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Clarity over check-ins.",
+							"body": "Make ownership visible, without another status meeting.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: capability cards become one column and lower features reflow.",
+						"<=680px: section spacing and type scale reduce."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "home-workflow",
+					"sourceAnchor": "workflow",
+					"sourceId": "workflow",
+					"sourceClass": "section work-section",
+					"purpose": "Workflow",
+					"eyebrow": "03 / A LITTLE ROOM TO THINK",
+					"heading": {
+						"tag": "h2",
+						"text": "Good work. Not just more work.",
+						"html": "Good work.<br>Not just<br><em>more work.</em>"
+					},
+					"lead": "A workspace should feel like a place to make progress. Not another place to keep up.",
+					"ctas": [],
+					"media": [
+						{
+							"kind": "image",
+							"src": "assets/nextsaas-workspace.jpg",
+							"alt": "Daylit office with glass meeting rooms and an open corridor",
+							"label": null,
+							"aspect": null,
+							"odId": ""
+						}
+					],
+					"items": [
+						{
+							"kind": "step",
+							"heading": "Bring it together.",
+							"body": "Start with one project. Bring in the people, the brief, and the reason behind it.",
+							"meta": "01",
+							"href": null
+						},
+						{
+							"kind": "step",
+							"heading": "Find your rhythm.",
+							"body": "Decide what matters, agree on owners, and choose a view that makes sense.",
+							"meta": "02",
+							"href": null
+						},
+						{
+							"kind": "step",
+							"heading": "Make your next move.",
+							"body": "Share progress with context. Adjust the plan without losing the thread.",
+							"meta": "03",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: split layout gap reduces.",
+						"<=920px: image and copy stack; workflow steps reflow.",
+						"<=680px: steps stack vertically."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "home-team-solutions",
+					"sourceAnchor": "team-solutions",
+					"sourceId": "teams",
+					"sourceClass": "section",
+					"purpose": "Team solutions",
+					"eyebrow": "04 / DIFFERENT MINDS. SHARED MOMENTUM.",
+					"heading": {
+						"tag": "h2",
+						"text": "Your team. Your way.",
+						"html": "Your team.<br>Your <em>way.</em>"
+					},
+					"lead": "One shared space doesn’t have to mean one way of working. Find the perspective that fits.",
+					"ctas": [
+						{
+							"label": "Find your workflow",
+							"href": "#workflow",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Image placeholder: The product team workspace.",
+							"aspect": "16 / 10",
+							"odId": "team-image"
+						}
+					],
+					"items": [
+						{
+							"kind": "panel",
+							"heading": "From a good question to the next release.",
+							"body": "Keep customer insights, product decisions, and delivery in the same conversation. Give your roadmap a clear connection to the work.",
+							"meta": "FOR PRODUCT TEAMS",
+							"href": null
+						},
+						{
+							"kind": "panel",
+							"heading": "Good thinking. Thoughtful execution.",
+							"body": "Bring the brief, explorations, and feedback together. Keep the thinking behind each decision close, from the first sketch to the final handoff.",
+							"meta": "FOR DESIGN TEAMS",
+							"href": null
+						},
+						{
+							"kind": "panel",
+							"heading": "One shared plan. Every moving part.",
+							"body": "Give your next campaign a clear home. Connect the brief, content, and launch calendar so everyone knows what happens next.",
+							"meta": "FOR MARKETING TEAMS",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: panel gap reduces.",
+						"<=920px: tab panel becomes one column.",
+						"<=680px: tabs become a vertically scrollable/compact control row."
+					],
+					"sectionInteractions": [
+						"tabs"
+					],
+					"pageInteractions": []
+				},
+				{
+					"slug": "home-automation",
+					"sourceAnchor": "automation",
+					"sourceId": "automation",
+					"sourceClass": "section automation",
+					"purpose": "Automation",
+					"eyebrow": "05 / LESS ON REPEAT",
+					"heading": {
+						"tag": "h2",
+						"text": "Keep the flow. Lose the busywork.",
+						"html": "Keep the flow.<br>Lose the <em>busywork.</em>"
+					},
+					"lead": "Make everyday handoffs feel effortless. Connect a clear trigger to the right action, with context all the way through.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "step",
+							"heading": "Ready for review.",
+							"body": "A task moves into the review stage.",
+							"meta": "WHEN / THE TRIGGER",
+							"href": null
+						},
+						{
+							"kind": "step",
+							"heading": "The right person.",
+							"body": "Assign the reviewer for that project.",
+							"meta": "THEN / THE HANDOFF",
+							"href": null
+						},
+						{
+							"kind": "step",
+							"heading": "Everyone in the loop.",
+							"body": "Send an update to the task owner.",
+							"meta": "AND / THE FOLLOW-THROUGH",
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": "Example workflow concept. No live automation is running.",
+							"body": "Example automation: when a task is ready, assign a reviewer, then notify the owner",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: heading grid and automation flow collapse to one column.",
+						"<=680px: flow arrows rotate/reposition for the vertical sequence."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "home-impact-features",
+					"sourceAnchor": "impact-features",
+					"sourceId": "impact",
+					"sourceClass": "section impact",
+					"purpose": "Impact features",
+					"eyebrow": "THE EVERYDAY IMPACT",
+					"heading": {
+						"tag": "h2",
+						"text": "Small shifts. Meaningful change.",
+						"html": "Small shifts.<br><em>Meaningful change.</em>"
+					},
+					"lead": "Less time managing the work. More attention for the work that matters.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "feature",
+							"heading": "A clearer start to every day.",
+							"body": "Surface the next priority, the owner, and the decision to make. Start with direction, not a search.",
+							"meta": "01 / FOCUS",
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Fewer loops. Better handoffs.",
+							"body": "Keep the brief, feedback, and final decision together. Move forward without retelling the whole story.",
+							"meta": "02 / CONTEXT",
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Progress you can actually see.",
+							"body": "Follow work from intent to outcome. Spot the blocker while there’s still room to change the plan.",
+							"meta": "03 / MOMENTUM",
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": "Designed outcomes of the workspace concept — not measured customer results.",
+							"body": "",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: three feature columns stack with horizontal separators.",
+						"<=680px: section spacing and typography reduce."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "home-testimonial",
+					"sourceAnchor": "testimonial",
+					"sourceId": "testimonial",
+					"sourceClass": "section testimonial",
+					"purpose": "Testimonials",
+					"eyebrow": "A CUSTOMER’S PERSPECTIVE",
+					"heading": {
+						"tag": "h3",
+						"text": "“The difference isn’t doing more. It’s knowing what matters — and having the space to do it well.”",
+						"html": "“The difference isn’t doing more. It’s knowing what matters — and having the space to do it well.”"
+					},
+					"lead": null,
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "quote",
+							"heading": "“The difference isn’t doing more. It’s knowing what matters — and having the space to do it well.”",
+							"body": "Customer name, role & company — awaiting approval",
+							"meta": "Illustrative story 01 / Focus",
+							"href": null
+						},
+						{
+							"kind": "quote",
+							"heading": "“When the brief, feedback, and decisions live together, the next step feels a lot clearer.”",
+							"body": "Customer name, role & company — awaiting approval",
+							"meta": "Illustrative story 02 / Context",
+							"href": null
+						},
+						{
+							"kind": "quote",
+							"heading": "“A shared plan gives us room to move independently, without losing sight of each other.”",
+							"body": "Customer name, role & company — awaiting approval",
+							"meta": "Illustrative story 03 / Collaboration",
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": "Illustrative testimonial copy.",
+							"body": "Replace with an approved customer story before publishing.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: testimonial columns use a smaller gap.",
+						"<=920px: testimonial columns stack.",
+						"<=680px: controls remain touch-sized and quote type scales down."
+					],
+					"sectionInteractions": [
+						"carousel"
+					],
+					"pageInteractions": []
+				},
+				{
+					"slug": "home-access-and-connections",
+					"sourceAnchor": "access-and-connections",
+					"sourceId": "system",
+					"sourceClass": "section system",
+					"purpose": "Access and connections",
+					"eyebrow": "06 / THOUGHTFUL BY DEFAULT",
+					"heading": {
+						"tag": "h2",
+						"text": "Open doors. Clear boundaries.",
+						"html": "Open doors.<br>Clear <em>boundaries.</em>"
+					},
+					"lead": "Bring your work together without giving up ownership of the details.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "feature",
+							"heading": "Bring your tools.",
+							"body": "Make room for your files, calendar, and existing workflows. Plan connections around your team.",
+							"meta": "01",
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Choose who’s in.",
+							"body": "Keep members, guests, and responsibilities clear. Make access an intentional choice.",
+							"meta": "02",
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Keep the full story.",
+							"body": "Follow decisions and changes with their context, not just a stream of notifications.",
+							"meta": "03",
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Stay in control.",
+							"body": "Build around portable records and practical exports. Your work should remain yours.",
+							"meta": "04",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: column gap reduces.",
+						"<=920px: introduction and system list stack.",
+						"<=680px: list rows use compact spacing."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "home-pricing",
+					"sourceAnchor": "pricing",
+					"sourceId": "pricing",
+					"sourceClass": "section pricing",
+					"purpose": "Pricing",
+					"eyebrow": "07 / ROOM FOR YOUR NEXT CHAPTER",
+					"heading": {
+						"tag": "h2",
+						"text": "Start small. Think big.",
+						"html": "Start small.<br>Think <em>big.</em>"
+					},
+					"lead": "A little space for your own ideas. A shared home for your team. Choose where you begin.",
+					"ctas": [
+						{
+							"label": "Explore Personal",
+							"href": "",
+							"element": "button",
+							"variant": "secondary",
+							"arrow": true
+						},
+						{
+							"label": "Explore Team",
+							"href": "",
+							"element": "button",
+							"variant": "secondary",
+							"arrow": true
+						},
+						{
+							"label": "Explore Business",
+							"href": "",
+							"element": "button",
+							"variant": "secondary",
+							"arrow": true
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "plan",
+							"heading": "Personal",
+							"body": "For independent projects and everyday clarity.",
+							"meta": "$0 / person — per month / no subscription",
+							"href": null,
+							"features": [
+								"Personal projects",
+								"Notes & documents",
+								"Board & list views"
+							]
+						},
+						{
+							"kind": "plan",
+							"heading": "Team",
+							"body": "For people turning shared ideas into great work.",
+							"meta": "$18 / person — per month / billed monthly",
+							"href": null,
+							"features": [
+								"Everything in Personal",
+								"Shared workspaces",
+								"Workflow automation"
+							]
+						},
+						{
+							"kind": "plan",
+							"heading": "Business",
+							"body": "For connected teams and intentional control.",
+							"meta": "$32 / person — per month / billed monthly",
+							"href": null,
+							"features": [
+								"Everything in Team",
+								"Roles & guest access",
+								"Integration planning"
+							]
+						},
+						{
+							"kind": "rich",
+							"heading": "EXAMPLE PRICING / NOT A COMMERCIAL OFFER",
+							"body": "Illustrative monthly rates. No checkout or payment collection.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: plan padding reduces.",
+						"<=920px: pricing cards stack.",
+						"<=680px: billing controls and plan CTAs expand for small screens."
+					],
+					"sectionInteractions": [
+						"toggle"
+					],
+					"pageInteractions": [
+						"dialog",
+						"form"
+					]
+				},
+				{
+					"slug": "home-field-guides",
+					"sourceAnchor": "field-guides",
+					"sourceId": "guides",
+					"sourceClass": "section guides",
+					"purpose": "Field guides",
+					"eyebrow": "08 / NOTES FROM THE FIELD",
+					"heading": {
+						"tag": "h2",
+						"text": "A fresh perspective.",
+						"html": "A fresh<br><em>perspective.</em>"
+					},
+					"lead": "Good questions. Practical ideas. A little inspiration for the way you work.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "log-row",
+							"heading": "Build a workspace people actually use.",
+							"body": "Start with the work, not the tool.",
+							"meta": "STARTING OUT",
+							"href": null
+						},
+						{
+							"kind": "log-row",
+							"heading": "Make async updates worth reading.",
+							"body": "More context. Fewer status meetings.",
+							"meta": "TEAM CULTURE",
+							"href": null
+						},
+						{
+							"kind": "log-row",
+							"heading": "Know when to let the routine run.",
+							"body": "Look for repetition before adding complexity.",
+							"meta": "WORKFLOW",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: guide heading and rows reflow.",
+						"<=680px: each log row becomes a compact stacked layout."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"dialog"
+					]
+				},
+				{
+					"slug": "home-our-team",
+					"sourceAnchor": "our-team",
+					"sourceId": "people",
+					"sourceClass": "section people",
+					"purpose": "Our team",
+					"eyebrow": "THE PEOPLE BEHIND THE POSSIBILITY",
+					"heading": {
+						"tag": "h2",
+						"text": "Good work. Human roots.",
+						"html": "Good work.<br><em>Human roots.</em>"
+					},
+					"lead": "Introduce the people who shape the product, sweat the details, and help your customers move forward.",
+					"ctas": [],
+					"media": [
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Team portrait placeholder for product and strategy",
+							"aspect": null,
+							"odId": ""
+						},
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Team portrait placeholder for design and engineering",
+							"aspect": null,
+							"odId": ""
+						},
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Team portrait placeholder for customer experience",
+							"aspect": null,
+							"odId": ""
+						}
+					],
+					"items": [
+						{
+							"kind": "person",
+							"heading": "Product & strategy",
+							"body": "Connecting customer needs with a thoughtful direction for the product.",
+							"meta": "NAME TO BE ADDED",
+							"href": null
+						},
+						{
+							"kind": "person",
+							"heading": "Design & engineering",
+							"body": "Bringing clarity to the interface and care to every interaction.",
+							"meta": "NAME TO BE ADDED",
+							"href": null
+						},
+						{
+							"kind": "person",
+							"heading": "Customer experience",
+							"body": "Listening closely, sharing useful guidance, and making room for feedback.",
+							"meta": "NAME TO BE ADDED",
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": "Team layout preview. Add verified names, roles, and approved portraits.",
+							"body": "",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: people cards stack and portrait placeholders become wide.",
+						"<=680px: cards use reduced spacing."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "home-blog-posts-carousel",
+					"sourceAnchor": "blog-posts-carousel",
+					"sourceId": "journal",
+					"sourceClass": "section blog-carousel",
+					"purpose": "Blog posts carousel",
+					"eyebrow": "THE NEXTSAAS JOURNAL",
+					"heading": {
+						"tag": "h2",
+						"text": "Ideas for what’s next.",
+						"html": "Ideas for<br><em>what’s next.</em>"
+					},
+					"lead": "A closer look at focus, collaboration, and the small habits that make work feel better.",
+					"ctas": [
+						{
+							"label": "Read the note",
+							"href": "",
+							"element": "button",
+							"variant": "ghost",
+							"arrow": false
+						},
+						{
+							"label": "Read the note",
+							"href": "",
+							"element": "button",
+							"variant": "ghost",
+							"arrow": false
+						},
+						{
+							"label": "Read the note",
+							"href": "",
+							"element": "button",
+							"variant": "ghost",
+							"arrow": false
+						},
+						{
+							"label": "Read the note",
+							"href": "",
+							"element": "button",
+							"variant": "ghost",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "post",
+							"heading": "Make room for the work that matters.",
+							"body": "A practical way to protect attention without disappearing from your team.",
+							"meta": "FOCUS · 3 MIN READ",
+							"href": null
+						},
+						{
+							"kind": "post",
+							"heading": "The quiet art of a better handoff.",
+							"body": "Give the next person the context they need, not another thread to untangle.",
+							"meta": "COLLABORATION · 3 MIN READ",
+							"href": null
+						},
+						{
+							"kind": "post",
+							"heading": "Write down the why, not just the what.",
+							"body": "Make decisions easier to understand when the people or the plan change.",
+							"meta": "DECISIONS · 2 MIN READ",
+							"href": null
+						},
+						{
+							"kind": "post",
+							"heading": "End the week with a little perspective.",
+							"body": "A short reflection to carry the useful lessons into your next chapter.",
+							"meta": "TEAM HABITS · 2 MIN READ",
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": "Swipe to explore, use the arrow buttons, or focus the carousel and use the Left / Right arrow keys.",
+							"body": "",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: two post cards are visible per carousel viewport.",
+						"<=680px: one post card is visible per carousel viewport and touch scrolling remains enabled.",
+						"prefers-reduced-motion: carousel scrolling uses immediate rather than smooth movement."
+					],
+					"sectionInteractions": [
+						"carousel"
+					],
+					"pageInteractions": [
+						"dialog"
+					]
+				},
+				{
+					"slug": "home-faq",
+					"sourceAnchor": "faq",
+					"sourceId": "faq",
+					"sourceClass": "section faq",
+					"purpose": "FAQ",
+					"eyebrow": "09 / THE DETAILS",
+					"heading": {
+						"tag": "h2",
+						"text": "Glad you asked.",
+						"html": "Glad<br>you <em>asked.</em>"
+					},
+					"lead": null,
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "faq",
+							"heading": "What exactly is NextSaas?",
+							"body": "NextSaas is a multipurpose SaaS website template, presented here as a connected-workspace concept. Adapt the positioning, product capabilities, and visuals to your own service.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "faq",
+							"heading": "Can I use my own product screenshots?",
+							"body": "Yes. The labeled product image areas are intentionally reserved for your screenshots. Replace each complete placeholder with an image using its natural aspect ratio.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "faq",
+							"heading": "Is this a working product?",
+							"body": "This is an interactive frontend prototype. Navigation, tabs, pricing controls, guides, and forms work locally. No workspace, subscription, or account is created.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "faq",
+							"heading": "Are the prices and capabilities final?",
+							"body": "No. Prices and product capabilities are illustrative template content, not verified claims or a commercial offer. Replace them with your actual offering before launch.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "faq",
+							"heading": "What happens when I enter my email?",
+							"body": "The form checks your email locally and shows a confirmation. Your details are not sent, stored, or subscribed to a mailing list. Connect your provider before publishing.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "faq",
+							"heading": "Does it work on smaller screens?",
+							"body": "Yes. The layout reflows for phones and tablets, controls support keyboard navigation, and animations respect reduced-motion preferences.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: FAQ column gap reduces.",
+						"<=920px: question heading and accordion stack.",
+						"<=680px: summary rows use compact spacing."
+					],
+					"sectionInteractions": [
+						"accordion"
+					],
+					"pageInteractions": []
+				},
+				{
+					"slug": "closing-cta",
+					"sourceAnchor": "closing",
+					"sourceId": "",
+					"sourceClass": "section closing",
+					"purpose": "Closing CTA",
+					"eyebrow": "10 / HERE’S TO WHAT COMES NEXT",
+					"heading": {
+						"tag": "h2",
+						"text": "Less noise. More possibility.",
+						"html": "Less noise.<br>More <em>possibility.</em>"
+					},
+					"lead": "Bring the people, the plans, and the good ideas. We’ll make room for the rest.",
+					"ctas": [
+						{
+							"label": "Make your next move",
+							"href": "",
+							"element": "button",
+							"variant": "primary",
+							"arrow": true
+						}
+					],
+					"media": [],
+					"items": [],
+					"responsive": [
+						"<=680px: CTA becomes full width and type scale reduces.",
+						"prefers-reduced-motion: decorative animation and transitions are disabled."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"dialog",
+						"form"
+					]
+				}
+			]
+		},
+		{
+			"page": "about-us",
+			"template": "page-about-us",
+			"templateTitle": "About us",
+			"source": "about-us.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-about-us",
+			"sections": [
+				{
+					"slug": "page-hero",
+					"sourceAnchor": "page-hero",
+					"sourceId": "top",
+					"sourceClass": "inner-hero",
+					"purpose": "About page hero",
+					"eyebrow": "NEXTSAAS / ABOUT US",
+					"heading": {
+						"tag": "h1",
+						"text": "Work deserves a little space.",
+						"html": "Work deserves<br>a little <em>space.</em>"
+					},
+					"lead": "We believe the best tools make room for good thinking, shared context, and a more intentional kind of progress.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Home",
+							"body": null,
+							"meta": "About us",
+							"href": "forma-saas-landing.html"
+						}
+					],
+					"responsive": [
+						"<=1100px: hero split gap reduces from 64px to 40px.",
+						"<=920px: hero split becomes one column and aligns to the start; title width and breadcrumb spacing reduce.",
+						"<=680px: title size, hero padding, split gap, and breadcrumb size/spacing reduce."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "about-us-our-perspective",
+					"sourceAnchor": "our-perspective",
+					"sourceId": "our-perspective",
+					"sourceClass": "section ruled",
+					"purpose": "Point of view",
+					"eyebrow": "OUR POINT OF VIEW",
+					"heading": {
+						"tag": "h2",
+						"text": "More connected. Less consumed.",
+						"html": "More connected.<br>Less consumed."
+					},
+					"lead": "Work doesn’t need another place to become busy. It needs a place to become clear.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "NextSaas explores a simple idea: bring the plan, the reasoning, and the people closer together. Not to measure every moment, but to make the next move easier to understand.",
+							"meta": null
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "That means less hunting for context. Fewer disconnected handoffs. And more room for the part of work that asks something of us.",
+							"meta": null
+						}
+					],
+					"responsive": [
+						"<=920px: the one-third/two-thirds grid becomes one column.",
+						"<=680px: section vertical padding reduces to 48px."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "about-us-room-to-think",
+					"sourceAnchor": "room-to-think",
+					"sourceId": "room-to-think",
+					"sourceClass": "section",
+					"purpose": "Workspace photograph",
+					"eyebrow": null,
+					"heading": null,
+					"lead": null,
+					"ctas": [],
+					"media": [
+						{
+							"kind": "image",
+							"src": "assets/nextsaas-workspace.jpg",
+							"alt": "Daylit office corridor with glass meeting rooms"
+						}
+					],
+					"items": [
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "SPACE TO THINK. ROOM TO GROW.",
+							"meta": "PHOTOGRAPHY / UNSPLASH"
+						}
+					],
+					"responsive": [
+						"<=680px: section vertical padding reduces to 48px."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "about-us-principles",
+					"sourceAnchor": "principles",
+					"sourceId": "principles",
+					"sourceClass": "section",
+					"purpose": "Design principles",
+					"eyebrow": "WHAT GUIDES THE DESIGN",
+					"heading": {
+						"tag": "h2",
+						"text": "Small principles. Lasting direction.",
+						"html": "Small principles.<br><em>Lasting direction.</em>"
+					},
+					"lead": "A clear point of view, built into the everyday experience.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "card",
+							"heading": "Start with what matters.",
+							"body": "A shared direction should be easy to see. Put priorities, owners, and next steps close to the work.",
+							"meta": "01 / CLARITY"
+						},
+						{
+							"kind": "card",
+							"heading": "Keep the thinking, too.",
+							"body": "A decision is more useful when its reasoning comes with it. Make knowledge part of the workflow.",
+							"meta": "02 / CONTEXT"
+						},
+						{
+							"kind": "card",
+							"heading": "Leave room to focus.",
+							"body": "Good systems support attention instead of competing for it. Choose useful defaults over extra noise.",
+							"meta": "03 / INTENTION"
+						}
+					],
+					"responsive": [
+						"<=920px: heading row stacks and the three-column card grid becomes one column.",
+						"<=680px: section vertical padding reduces to 48px."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "about-us-built-with-intention",
+					"sourceAnchor": "built-with-intention",
+					"sourceId": "built-with-intention",
+					"sourceClass": "section ruled",
+					"purpose": "Concept statement",
+					"eyebrow": "THE NEXTSAAS CONCEPT",
+					"heading": {
+						"tag": "h2",
+						"text": "A thoughtful home for what comes next.",
+						"html": "A thoughtful home<br>for what comes next."
+					},
+					"lead": null,
+					"ctas": [
+						{
+							"label": "Meet the workspace",
+							"href": "product.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Read the field guide",
+							"href": "archive.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "This is an independent SaaS template concept, not a claim about an established company, its founders, or its customer results.",
+							"meta": null
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "It is designed to give a real product a strong foundation: clear storytelling, connected pages, and space for the people and proof behind your business.",
+							"meta": null
+						}
+					],
+					"responsive": [
+						"<=920px: the split layout becomes one column.",
+						"<=680px: section vertical padding reduces to 48px."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "closing-cta",
+					"sourceAnchor": "next-step",
+					"sourceId": "next-step",
+					"sourceClass": "section closing",
+					"purpose": "Closing call to action",
+					"eyebrow": "A NEW WAY FORWARD",
+					"heading": {
+						"tag": "h2",
+						"text": "Make room for your next.",
+						"html": "Make room for<br>your <em>next.</em>"
+					},
+					"lead": "Start with one project, one shared direction, and a little more room to think.",
+					"ctas": [
+						{
+							"label": "Talk about your workspace",
+							"href": "contact-us.html",
+							"element": "a",
+							"variant": "primary",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [],
+					"responsive": [
+						"<=680px: section vertical padding reduces to 48px."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				}
+			]
+		},
+		{
+			"page": "contact-us",
+			"template": "page-contact-us",
+			"templateTitle": "Contact us",
+			"source": "contact-us.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-contact-us",
+			"sections": [
+				{
+					"slug": "page-hero",
+					"sourceAnchor": "page-hero",
+					"sourceId": "top",
+					"sourceClass": "inner-hero",
+					"purpose": "Contact page hero",
+					"eyebrow": "NEXTSAAS / CONTACT US",
+					"heading": {
+						"tag": "h1",
+						"text": "Good things start with hello.",
+						"html": "Good things start<br>with <em>hello.</em>"
+					},
+					"lead": "Tell us what your team is working toward. Let’s find a more thoughtful way forward.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Home",
+							"body": null,
+							"meta": "Contact us",
+							"href": "forma-saas-landing.html"
+						}
+					],
+					"responsive": [
+						"<=1100px: hero split gap reduces from 64px to 40px.",
+						"<=920px: hero split becomes one column and aligns to the start; title width and breadcrumb spacing reduce.",
+						"<=680px: title size, hero padding, split gap, and breadcrumb size/spacing reduce."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "contact-us-contact",
+					"sourceAnchor": "contact",
+					"sourceId": "contact",
+					"sourceClass": "section ruled",
+					"purpose": "Contact routes and form",
+					"eyebrow": "LET’S FIND YOUR NEXT STEP",
+					"heading": {
+						"tag": "h2",
+						"text": "A conversation. Not a sales script.",
+						"html": "A conversation.<br>Not a sales script."
+					},
+					"lead": null,
+					"ctas": [
+						{
+							"label": "Visit questions & answers",
+							"href": "faqs.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Read our point of view",
+							"href": "about-us.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Preview your message",
+							"href": "",
+							"element": "button",
+							"variant": "primary",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Explore the workspace.",
+							"body": "Thinking about projects, collaboration, or a more connected team? Give us the context.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "link",
+							"heading": "Looking for an answer?",
+							"body": "Start with the common questions about this concept and how it works.",
+							"meta": null,
+							"href": "faqs.html"
+						},
+						{
+							"kind": "link",
+							"heading": "Just browsing?",
+							"body": "Get to know the thinking behind NextSaas.",
+							"meta": null,
+							"href": "about-us.html"
+						},
+						{
+							"kind": "field",
+							"heading": "First name",
+							"body": null,
+							"meta": "required; maxlength 80"
+						},
+						{
+							"kind": "field",
+							"heading": "Last name",
+							"body": null,
+							"meta": "required; maxlength 80"
+						},
+						{
+							"kind": "field",
+							"heading": "Work email",
+							"body": null,
+							"meta": "email; required"
+						},
+						{
+							"kind": "field",
+							"heading": "Company (optional)",
+							"body": null,
+							"meta": null
+						},
+						{
+							"kind": "field",
+							"heading": "What brings you here?",
+							"body": "Choose a topic; Product walkthrough; Plans & pricing; Workspace question; Something else",
+							"meta": "required"
+						},
+						{
+							"kind": "field",
+							"heading": "What’s on your mind?",
+							"body": "A little context helps. Tell us about your team and what you’d like to change.",
+							"meta": "required; minlength 10; maxlength 3000"
+						},
+						{
+							"kind": "field",
+							"heading": "I understand this is a local preview and my message will not be sent.",
+							"body": null,
+							"meta": "required"
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "Preview only. No personal information is saved or transmitted.",
+							"meta": null
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "Your message is ready for preview. Nothing was sent or saved.",
+							"meta": "status"
+						},
+						{
+							"kind": "panel",
+							"heading": "A good place to begin.",
+							"body": "Your message passed validation. This is a local preview, so your details have not been sent or saved.",
+							"meta": "submission dialog"
+						}
+					],
+					"responsive": [
+						"<=1100px: contact layout gap reduces to 48px.",
+						"<=920px: contact layout becomes one column and the aside is constrained to 60 characters.",
+						"<=680px: form two-column field groups become one column and section padding reduces to 48px."
+					],
+					"sectionInteractions": [
+						"form"
+					],
+					"pageInteractions": [
+						"dialog"
+					]
+				}
+			]
+		},
+		{
+			"page": "faq",
+			"template": "page-faq",
+			"templateTitle": "FAQ",
+			"source": "faqs.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-faq",
+			"sections": [
+				{
+					"slug": "page-hero",
+					"sourceAnchor": "page-hero",
+					"sourceId": "top",
+					"sourceClass": "inner-hero",
+					"purpose": "FAQ page hero",
+					"eyebrow": "NEXTSAAS / QUESTIONS & ANSWERS",
+					"heading": {
+						"tag": "h1",
+						"text": "A little clarity. A lot more possibility.",
+						"html": "A little clarity.<br>A lot more <em>possibility.</em>"
+					},
+					"lead": "From your first project to the bigger picture — start with a few things worth knowing.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Home",
+							"body": null,
+							"meta": "Questions & answers",
+							"href": "forma-saas-landing.html"
+						}
+					],
+					"responsive": [
+						"<=1100px: hero split gap reduces from 64px to 40px.",
+						"<=920px: hero split becomes one column and aligns to the start; title width and breadcrumb spacing reduce.",
+						"<=680px: title size, hero padding, split gap, and breadcrumb size/spacing reduce."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "faq-answers",
+					"sourceAnchor": "answers",
+					"sourceId": "answers",
+					"sourceClass": "section ruled",
+					"purpose": "Filtered questions and answers",
+					"eyebrow": "FIND YOUR TOPIC",
+					"heading": null,
+					"lead": null,
+					"ctas": [
+						{
+							"label": "Talk to us",
+							"href": "contact-us.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Search questions",
+							"href": "",
+							"element": "button",
+							"variant": "secondary",
+							"arrow": false
+						},
+						{
+							"label": "Show all questions",
+							"href": "",
+							"element": "button",
+							"variant": "secondary",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "filter",
+							"heading": "All questions",
+							"body": null,
+							"meta": "selected"
+						},
+						{
+							"kind": "filter",
+							"heading": "Getting started",
+							"body": null,
+							"meta": null
+						},
+						{
+							"kind": "filter",
+							"heading": "Plans & billing",
+							"body": null,
+							"meta": null
+						},
+						{
+							"kind": "filter",
+							"heading": "Workspace",
+							"body": null,
+							"meta": null
+						},
+						{
+							"kind": "filter",
+							"heading": "Privacy & access",
+							"body": null,
+							"meta": null
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "Still thinking it through?",
+							"meta": null
+						},
+						{
+							"kind": "field",
+							"heading": "Search questions",
+							"body": "Search a question",
+							"meta": null
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "10 questions",
+							"meta": "status"
+						},
+						{
+							"kind": "faq",
+							"heading": "What is NextSaas?",
+							"body": "NextSaas is a connected-workspace website concept for projects, documents, and team conversations. This prototype demonstrates the marketing experience; it is not a live workspace service.",
+							"meta": "Getting started"
+						},
+						{
+							"kind": "faq",
+							"heading": "Where should my team begin?",
+							"body": "Choose one real project. Gather its brief, owners, and next steps in a single place before expanding to other workflows. The product page shows the intended structure.",
+							"meta": "Getting started"
+						},
+						{
+							"kind": "faq",
+							"heading": "Can I try the workspace here?",
+							"body": "You can explore the product presentation and interactive page controls. Product screenshots are intentionally reserved for your real assets; there is no connected application or account system.",
+							"meta": "Getting started"
+						},
+						{
+							"kind": "faq",
+							"heading": "Are these prices final?",
+							"body": "No. The rates on this template are illustrative, not a commercial offer. Monthly and yearly controls demonstrate the intended pricing experience. No payment is collected.",
+							"meta": "Plans & billing"
+						},
+						{
+							"kind": "faq",
+							"heading": "How does yearly billing work?",
+							"body": "The example yearly rate is displayed as a monthly equivalent, with the full annual amount shown in the team estimate. Published billing terms must be confirmed before launch.",
+							"meta": "Plans & billing"
+						},
+						{
+							"kind": "faq",
+							"heading": "Can I discuss a larger team?",
+							"body": "Yes. Use the contact page and choose a pricing inquiry. In this preview, the form validates locally and does not send your details.",
+							"meta": "Plans & billing"
+						},
+						{
+							"kind": "faq",
+							"heading": "Can different teams use different views?",
+							"body": "The concept includes project, document, and collaboration perspectives so teams can organize around the work. Explore the product tabs to see how the story changes.",
+							"meta": "Workspace"
+						},
+						{
+							"kind": "faq",
+							"heading": "Can I bring my existing tools?",
+							"body": "Connections are part of the product concept, not verified integrations. Confirm supported tools and import formats with your product team before publishing.",
+							"meta": "Workspace"
+						},
+						{
+							"kind": "faq",
+							"heading": "Who can see my projects?",
+							"body": "The concept separates members, guests, and responsibilities. Actual permission rules depend on the implemented product and should be documented before launch.",
+							"meta": "Privacy & access"
+						},
+						{
+							"kind": "faq",
+							"heading": "Do these forms store personal information?",
+							"body": "No. This prototype validates inputs in your browser only. Contact details and newsletter emails are not sent or saved.",
+							"meta": "Privacy & access"
+						},
+						{
+							"kind": "panel",
+							"heading": "No questions found.",
+							"body": "Try a shorter phrase or another topic.",
+							"meta": "empty state"
+						}
+					],
+					"responsive": [
+						"<=1100px: FAQ layout gap reduces to 40px and sidebar width to 230px.",
+						"<=920px: FAQ layout becomes one column; the sidebar becomes a bordered horizontal wrapping row and filter options wrap.",
+						"<=680px: FAQ summary spacing and type size reduce, and section padding reduces to 48px."
+					],
+					"sectionInteractions": [
+						"accordion",
+						"filters",
+						"form",
+						"search",
+						"toggle"
+					],
+					"pageInteractions": []
+				}
+			]
+		},
+		{
+			"page": "pricing",
+			"template": "page-pricing",
+			"templateTitle": "Pricing",
+			"source": "pricing.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-pricing",
+			"sections": [
+				{
+					"slug": "page-hero",
+					"sourceAnchor": "page-hero",
+					"sourceId": "top",
+					"sourceClass": "inner-hero",
+					"purpose": "Pricing hero",
+					"eyebrow": "NEXTSAAS / PLANS & PRICING",
+					"heading": {
+						"tag": "h1",
+						"text": "Start small. Think big.",
+						"html": "Start small.<br>Think <em>big.</em>"
+					},
+					"lead": "A space for your own ideas. A shared home for your team. Choose where you begin.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Home",
+							"body": null,
+							"meta": "Plans & pricing",
+							"href": "forma-saas-landing.html"
+						}
+					],
+					"responsive": [
+						"<=1100px: hero split gap reduces to 40px",
+						"<=920px: hero split becomes one column and aligns to start; breadcrumbs bottom margin reduces to 40px",
+						"<=680px: hero padding, title size, split gap, and breadcrumb spacing reduce"
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "pricing-pricing",
+					"sourceAnchor": "pricing",
+					"sourceId": "pricing",
+					"sourceClass": "section pricing",
+					"purpose": "Pricing plans",
+					"eyebrow": null,
+					"heading": null,
+					"lead": null,
+					"ctas": [
+						{
+							"label": "Explore Personal",
+							"href": "contact-us.html?plan=Personal",
+							"element": "a",
+							"variant": "secondary",
+							"arrow": false
+						},
+						{
+							"label": "Explore Team",
+							"href": "contact-us.html?plan=Team",
+							"element": "a",
+							"variant": "secondary",
+							"arrow": false
+						},
+						{
+							"label": "Explore Business",
+							"href": "contact-us.html?plan=Business",
+							"element": "a",
+							"variant": "secondary",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "plan",
+							"heading": "Personal",
+							"body": "For independent projects and everyday clarity.",
+							"meta": "01 / A SPACE OF YOUR OWN. · $0 / person · per month / no subscription · Personal projects · Notes & documents · Board & list views",
+							"href": "contact-us.html?plan=Personal"
+						},
+						{
+							"kind": "plan",
+							"heading": "Team",
+							"body": "For people turning shared ideas into great work.",
+							"meta": "02 / BETTER, TOGETHER. · $18 / person · per month / billed monthly · Everything in Personal · Shared workspaces · Workflow automation",
+							"href": "contact-us.html?plan=Team"
+						},
+						{
+							"kind": "plan",
+							"heading": "Business",
+							"body": "For connected teams and intentional control.",
+							"meta": "03 / A BIGGER PICTURE. · $32 / person · per month / billed monthly · Everything in Team · Roles & guest access · Integration planning",
+							"href": "contact-us.html?plan=Business"
+						},
+						{
+							"kind": "rich",
+							"heading": "Monthly / Yearly",
+							"body": "Illustrative monthly rates. No checkout or payment collection.",
+							"meta": "EXAMPLE PRICING / NOT A COMMERCIAL OFFER",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: plan padding reduces",
+						"<=920px: price grid becomes one column and section padding reduces to 64px",
+						"<=680px: section padding reduces to 48px and billing controls wrap"
+					],
+					"sectionInteractions": [
+						"toggle"
+					],
+					"pageInteractions": []
+				},
+				{
+					"slug": "pricing-compare",
+					"sourceAnchor": "compare",
+					"sourceId": "compare",
+					"sourceClass": "section ruled",
+					"purpose": "Plan comparison and estimator",
+					"eyebrow": "THE DETAILS, SIDE BY SIDE",
+					"heading": {
+						"tag": "h2",
+						"text": "Find your fit.",
+						"html": "Find your <em>fit.</em>"
+					},
+					"lead": null,
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "table-row",
+							"heading": "What’s included",
+							"body": "Personal · Team · Business",
+							"meta": "Illustrative NextSaas plan features",
+							"href": null
+						},
+						{
+							"kind": "table-row",
+							"heading": "Projects & documents",
+							"body": "Included · Included · Included",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "table-row",
+							"heading": "Board & list views",
+							"body": "Included · Included · Included",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "table-row",
+							"heading": "Shared workspaces",
+							"body": "— · Included · Included",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "table-row",
+							"heading": "Workflow automation",
+							"body": "— · Included · Included",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "table-row",
+							"heading": "Roles & guest access",
+							"body": "— · — · Included",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "table-row",
+							"heading": "Integration planning",
+							"body": "— · — · Included",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "panel",
+							"heading": "See the bigger picture.",
+							"body": "Estimate the illustrative subscription for your team. No taxes, fees, or real charges are calculated.",
+							"meta": "YOUR TEAM, YOUR PERSPECTIVE",
+							"href": null
+						},
+						{
+							"kind": "field",
+							"heading": "Plan",
+							"body": "Team · Business",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "field",
+							"heading": "People",
+							"body": "10",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "metric",
+							"heading": "$180 / mo",
+							"body": "10 people × $18 per month. Billed monthly.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: estimator becomes one column with reduced gap and padding",
+						"<=680px: estimate controls become one column; estimator padding and total size reduce; comparison remains horizontally scrollable"
+					],
+					"sectionInteractions": [
+						"estimator"
+					],
+					"pageInteractions": []
+				},
+				{
+					"slug": "pricing-pricing-questions",
+					"sourceAnchor": "pricing-questions",
+					"sourceId": "pricing-questions",
+					"sourceClass": "section ",
+					"purpose": "Pricing questions",
+					"eyebrow": "BEFORE YOU BEGIN",
+					"heading": {
+						"tag": "h2",
+						"text": "A few practical answers.",
+						"html": "A few practical<br><em>answers.</em>"
+					},
+					"lead": null,
+					"ctas": [
+						{
+							"label": "All questions & answers",
+							"href": "faqs.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "faq",
+							"heading": "Are these prices final?",
+							"body": "No. The rates on this template are illustrative, not a commercial offer. Monthly and yearly controls demonstrate the intended pricing experience. No payment is collected.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "faq",
+							"heading": "How does yearly billing work?",
+							"body": "The example yearly rate is displayed as a monthly equivalent, with the full annual amount shown in the team estimate. Published billing terms must be confirmed before launch.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "faq",
+							"heading": "Can I discuss a larger team?",
+							"body": "Yes. Use the contact page and choose a pricing inquiry. In this preview, the form validates locally and does not send your details.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: two-column grid collapses to one column",
+						"<=680px: section padding reduces to 48px and accordion text and spacing reduce"
+					],
+					"sectionInteractions": [
+						"accordion"
+					],
+					"pageInteractions": []
+				},
+				{
+					"slug": "closing-cta",
+					"sourceAnchor": "next-step",
+					"sourceId": "next-step",
+					"sourceClass": "section closing",
+					"purpose": "Closing call to action",
+					"eyebrow": "A NEW WAY FORWARD",
+					"heading": {
+						"tag": "h2",
+						"text": "A little room. A bigger possibility.",
+						"html": "A little room.<br>A bigger <em>possibility.</em>"
+					},
+					"lead": "Not sure which direction fits? Start with a conversation about your team.",
+					"ctas": [
+						{
+							"label": "Talk about your workspace",
+							"href": "contact-us.html",
+							"element": "a",
+							"variant": "primary",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [],
+					"responsive": [
+						"<=920px: section padding reduces to 64px",
+						"<=680px: section padding reduces to 48px and lead type reduces"
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				}
+			]
+		},
+		{
+			"page": "archive",
+			"template": "archive",
+			"templateTitle": "The field guide",
+			"source": "archive.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-archive",
+			"sections": [
+				{
+					"slug": "page-hero",
+					"sourceAnchor": "page-hero",
+					"sourceId": "top",
+					"sourceClass": "inner-hero",
+					"purpose": "Archive hero",
+					"eyebrow": "NEXTSAAS / THE FIELD GUIDE",
+					"heading": {
+						"tag": "h1",
+						"text": "A fresh perspective.",
+						"html": "A fresh<br><em>perspective.</em>"
+					},
+					"lead": "Practical ideas for clearer plans, better context, and a more intentional way to work.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Home",
+							"body": null,
+							"meta": "The field guide",
+							"href": "forma-saas-landing.html"
+						}
+					],
+					"responsive": [
+						"<=920px: hero split becomes one column and aligns to the start; breadcrumbs use a smaller bottom margin.",
+						"<=680px: hero padding and title size decrease; breadcrumbs become smaller with a reduced bottom margin."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "archive-journal",
+					"sourceAnchor": "journal",
+					"sourceId": "journal",
+					"sourceClass": "section ruled",
+					"purpose": "Journal archive",
+					"eyebrow": "THE EDITOR’S PICK / 6 MIN READ",
+					"heading": {
+						"tag": "h2",
+						"text": "Build a workspace people actually use.",
+						"html": "Build a workspace people actually use."
+					},
+					"lead": "Start with the work, not the tool. A practical guide to a shared space that earns its place.",
+					"ctas": [
+						{
+							"label": "Read the story",
+							"href": "blog-post.html?post=workspace",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "card",
+							"heading": "Make room.",
+							"body": "Build a workspace people actually use. Start with the work, not the tool. A practical guide to a shared space that earns its place.",
+							"meta": "NEXT NOTES / 01 / STARTING OUT / 6 min read",
+							"href": "blog-post.html?post=workspace"
+						},
+						{
+							"kind": "filter",
+							"heading": "All stories",
+							"body": null,
+							"meta": "Filter articles",
+							"href": null
+						},
+						{
+							"kind": "filter",
+							"heading": "Starting out",
+							"body": null,
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "filter",
+							"heading": "Team culture",
+							"body": null,
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "filter",
+							"heading": "Workflow",
+							"body": null,
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "post",
+							"heading": "Build a workspace people actually use.",
+							"body": "Start with the work, not the tool. A practical guide to a shared space that earns its place.",
+							"meta": "NEXT NOTES / 01 / Make room. / STARTING OUT / 6 min read",
+							"href": "blog-post.html?post=workspace"
+						},
+						{
+							"kind": "post",
+							"heading": "Make async updates worth reading.",
+							"body": "A useful update gives people context, a decision, and a clear next step.",
+							"meta": "NEXT NOTES / 02 / Less noise. / TEAM CULTURE / 5 min read",
+							"href": "blog-post.html?post=async"
+						},
+						{
+							"kind": "post",
+							"heading": "Know when to let the routine run.",
+							"body": "Look for repetition before adding complexity to your team’s workflow.",
+							"meta": "NEXT NOTES / 03 / Find flow. / WORKFLOW / 4 min read",
+							"href": "blog-post.html?post=routine"
+						},
+						{
+							"kind": "post",
+							"heading": "Keep the decision. Not just the discussion.",
+							"body": "Make the reasoning easy to find long after the meeting has ended.",
+							"meta": "NEXT NOTES / 04 / Keep why. / TEAM CULTURE / 5 min read",
+							"href": "blog-post.html?post=decisions"
+						},
+						{
+							"kind": "post",
+							"heading": "A lighter way to plan the week.",
+							"body": "Agree on outcomes before filling the calendar with activity.",
+							"meta": "NEXT NOTES / 05 / Start clear. / WORKFLOW / 4 min read",
+							"href": "blog-post.html?post=planning"
+						},
+						{
+							"kind": "post",
+							"heading": "Better handoffs begin with better context.",
+							"body": "Give the next person what they need to move without another meeting.",
+							"meta": "NEXT NOTES / 06 / Pass it on. / STARTING OUT / 5 min read",
+							"href": "blog-post.html?post=handoffs"
+						},
+						{
+							"kind": "nav",
+							"heading": "Page 1 of 2",
+							"body": "Previous page / 1 / 2 / Next page",
+							"meta": "6 stories",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: featured story becomes one column and post grid becomes two columns.",
+						"<=680px: post grid becomes one column, editorial art uses a 16 / 10 aspect ratio, and pagination wraps."
+					],
+					"sectionInteractions": [
+						"filters",
+						"pagination",
+						"toggle"
+					],
+					"pageInteractions": []
+				}
+			]
+		},
+		{
+			"page": "post",
+			"template": "single",
+			"templateTitle": "Post detail",
+			"source": "blog-post.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-post",
+			"sections": [
+				{
+					"slug": "post-article-hero",
+					"sourceAnchor": "article-hero",
+					"sourceId": "top",
+					"sourceClass": "inner-hero",
+					"purpose": "Article hero",
+					"eyebrow": "STARTING OUT / NEXT NOTES",
+					"heading": {
+						"tag": "h1",
+						"text": "Build a workspace people actually use.",
+						"html": "Build a workspace people actually use."
+					},
+					"lead": "Start with the work, not the tool. A practical guide to a shared space that earns its place.",
+					"ctas": [
+						{
+							"label": "Copy article link",
+							"href": "",
+							"element": "button",
+							"variant": "secondary",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Home",
+							"body": null,
+							"meta": null,
+							"href": "forma-saas-landing.html"
+						},
+						{
+							"kind": "link",
+							"heading": "The field guide",
+							"body": null,
+							"meta": "Perspective",
+							"href": "archive.html"
+						},
+						{
+							"kind": "rich",
+							"heading": "NextSaas editorial",
+							"body": "Original template guide / 6 min read",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": "Article link copied.",
+							"body": "Copy this address: [current article URL]",
+							"meta": "Copy status messages",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=680px: article title size decreases and byline spacing tightens."
+					],
+					"sectionInteractions": [
+						"copy"
+					],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "post-article-content",
+					"sourceAnchor": "article-content",
+					"sourceId": "article-content",
+					"sourceClass": "section ruled",
+					"purpose": "Article content and table of contents",
+					"eyebrow": null,
+					"heading": {
+						"tag": "h2",
+						"text": "Start with the work.",
+						"html": "Start with the work."
+					},
+					"lead": null,
+					"ctas": [
+						{
+							"label": "Explore the workspace",
+							"href": "product.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Back to all stories",
+							"href": "archive.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [
+						{
+							"kind": "image",
+							"src": "assets/nextsaas-workspace.jpg",
+							"alt": "Daylit office with glass meeting rooms and an open corridor"
+						}
+					],
+					"items": [
+						{
+							"kind": "nav",
+							"heading": "IN THIS ARTICLE",
+							"body": "Start with the work / Keep context close / Find a useful rhythm / Your next step",
+							"meta": "In this article",
+							"href": "#start"
+						},
+						{
+							"kind": "rich",
+							"heading": "Start with the work.",
+							"body": "A workspace only becomes useful when it reflects the way people actually work. Before choosing a view, adding a field, or inviting the whole company, choose one project that already matters. Write down the outcome in plain language. Make it clear who owns the next move. Gather the brief, the open questions, and the decisions people will need along the way.",
+							"meta": null,
+							"href": "#start"
+						},
+						{
+							"kind": "rich",
+							"heading": "Keep context close.",
+							"body": "A list of tasks tells you what is happening. It rarely tells you why. That missing context is where the extra meetings, repeated explanations, and uncertain handoffs begin. Start with the work, not the tool. Keep the reasoning beside the action. Link the decision to the research that informed it. Attach feedback to the thing being discussed. Give the next person a path into the story.",
+							"meta": null,
+							"href": "#context"
+						},
+						{
+							"kind": "rich",
+							"heading": "Find a useful rhythm.",
+							"body": "Consistency matters more than complexity. Agree on a small set of habits your team can keep, even during a busy week. Give each active item one clear owner. Write updates around changes, blockers, and decisions. Review what is no longer useful and remove it. The goal is not a perfectly maintained system. It is a shared understanding that makes the next step feel less uncertain.",
+							"meta": null,
+							"href": "#rhythm"
+						},
+						{
+							"kind": "rich",
+							"heading": "Your next step.",
+							"body": "Choose one project this week. Bring its context together, agree on the next move, and ask the people using the space what feels easier — and what still gets in the way. A useful workspace grows from those answers, not from the number of features you switch on.",
+							"meta": null,
+							"href": "#next"
+						}
+					],
+					"responsive": [
+						"<=1100px: article layout narrows its table-of-contents column and gap.",
+						"<=920px: article layout becomes one column; the sticky table of contents becomes a static, wrapping row above the article.",
+						"<=680px: article layout gap, body type, heading size, and blockquote size decrease."
+					],
+					"sectionInteractions": [
+						"toc"
+					],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "post-related-reading",
+					"sourceAnchor": "related-reading",
+					"sourceId": "related-reading",
+					"sourceClass": "section ruled",
+					"purpose": "Related reading",
+					"eyebrow": "KEEP THE IDEAS GOING",
+					"heading": {
+						"tag": "h2",
+						"text": "Another perspective.",
+						"html": "Another <em>perspective.</em>"
+					},
+					"lead": null,
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "post",
+							"heading": "Make async updates worth reading.",
+							"body": "A useful update gives people context, a decision, and a clear next step.",
+							"meta": "NEXT NOTES / 02 / Less noise. / TEAM CULTURE / 5 min read",
+							"href": "blog-post.html?post=async"
+						},
+						{
+							"kind": "post",
+							"heading": "Know when to let the routine run.",
+							"body": "Look for repetition before adding complexity to your team’s workflow.",
+							"meta": "NEXT NOTES / 03 / Find flow. / WORKFLOW / 4 min read",
+							"href": "blog-post.html?post=routine"
+						},
+						{
+							"kind": "post",
+							"heading": "Keep the decision. Not just the discussion.",
+							"body": "Make the reasoning easy to find long after the meeting has ended.",
+							"meta": "NEXT NOTES / 04 / Keep why. / TEAM CULTURE / 5 min read",
+							"href": "blog-post.html?post=decisions"
+						}
+					],
+					"responsive": [
+						"<=920px: post grid becomes two columns.",
+						"<=680px: post grid becomes one column and editorial art uses a 16 / 10 aspect ratio."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				}
+			]
+		},
+		{
+			"page": "search",
+			"template": "search",
+			"templateTitle": "Search",
+			"source": "search.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-search",
+			"sections": [
+				{
+					"slug": "page-hero",
+					"sourceAnchor": "page-hero",
+					"sourceId": "top",
+					"sourceClass": "inner-hero",
+					"purpose": "Search hero",
+					"eyebrow": "NEXTSAAS / SEARCH",
+					"heading": {
+						"tag": "h1",
+						"text": "Find your next thought.",
+						"html": "Find your<br><em>next thought.</em>"
+					},
+					"lead": "Search the workspace concept, plans, common questions, and ideas from the field guide.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Home",
+							"body": null,
+							"meta": "Search",
+							"href": "forma-saas-landing.html"
+						}
+					],
+					"responsive": [
+						"<=920px: hero split becomes one column and aligns to the start; breadcrumbs use a smaller bottom margin.",
+						"<=680px: hero padding and title size decrease; breadcrumbs become smaller with a reduced bottom margin."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "search-site-search",
+					"sourceAnchor": "site-search",
+					"sourceId": "site-search",
+					"sourceClass": "section ruled",
+					"purpose": "Site search",
+					"eyebrow": "A FEW PLACES TO BEGIN",
+					"heading": null,
+					"lead": null,
+					"ctas": [
+						{
+							"label": "Search",
+							"href": "",
+							"element": "button",
+							"variant": "primary",
+							"arrow": false
+						},
+						{
+							"label": "The workspace",
+							"href": "product.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Plans & pricing",
+							"href": "pricing.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "The field guide",
+							"href": "archive.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						},
+						{
+							"label": "Questions & answers",
+							"href": "faqs.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "field",
+							"heading": "Search NextSaas",
+							"body": "Try “workspace”, “pricing”, or “async”",
+							"meta": "Search field label and placeholder",
+							"href": null
+						},
+						{
+							"kind": "filter",
+							"heading": "All",
+							"body": null,
+							"meta": "Filter search results",
+							"href": null
+						},
+						{
+							"kind": "filter",
+							"heading": "Pages",
+							"body": null,
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "filter",
+							"heading": "Articles",
+							"body": null,
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": "Search pages and articles",
+							"body": "[count] results for “[query]”",
+							"meta": "Search status",
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": "No matches. Still possibilities.",
+							"body": "Try a broader phrase such as “workspace”, “team”, or “pricing”.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "link",
+							"heading": "Browse questions & answers",
+							"body": null,
+							"meta": null,
+							"href": "faqs.html"
+						}
+					],
+					"responsive": [
+						"<=680px: search box wraps and its input type size decreases; result rows become a two-column layout with metadata spanning the full row."
+					],
+					"sectionInteractions": [
+						"filters",
+						"form",
+						"search",
+						"toggle"
+					],
+					"pageInteractions": []
+				}
+			]
+		},
+		{
+			"page": "error-404",
+			"template": "404",
+			"templateTitle": "Not found",
+			"source": "404.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-404",
+			"sections": [
+				{
+					"slug": "error-404-not-found",
+					"sourceAnchor": "not-found",
+					"sourceId": "top",
+					"sourceClass": "error-hero",
+					"purpose": "Not found hero",
+					"eyebrow": "A SMALL DETOUR / PAGE NOT FOUND",
+					"heading": {
+						"tag": "h1",
+						"text": "This isn’t the next you were looking for.",
+						"html": "This isn’t the <em>next</em><br>you were looking for."
+					},
+					"lead": "This page may have moved, or the link may be incomplete. Let’s get you somewhere useful.",
+					"ctas": [
+						{
+							"label": "Back to the homepage",
+							"href": "forma-saas-landing.html",
+							"element": "a",
+							"variant": "primary",
+							"arrow": false
+						},
+						{
+							"label": "Search NextSaas",
+							"href": "search.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [
+						{
+							"kind": "rich",
+							"heading": "404",
+							"body": null,
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=680px: error hero vertical padding decreases."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "error-404-find-a-way",
+					"sourceAnchor": "find-a-way",
+					"sourceId": "find-a-way",
+					"sourceClass": "section ruled",
+					"purpose": "Useful destinations",
+					"eyebrow": null,
+					"heading": null,
+					"lead": null,
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "card",
+							"heading": "Meet the workspace.",
+							"body": "Find the plan, the context, and the next step.",
+							"meta": null,
+							"href": "product.html"
+						},
+						{
+							"kind": "card",
+							"heading": "A fresh perspective.",
+							"body": "Practical ideas from the field guide.",
+							"meta": null,
+							"href": "archive.html"
+						},
+						{
+							"kind": "card",
+							"heading": "Talk it through.",
+							"body": "A little help finding your way.",
+							"meta": null,
+							"href": "contact-us.html"
+						}
+					],
+					"responsive": [
+						"<=920px: three-column destination grid becomes one column."
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				}
+			]
+		},
+		{
+			"page": "product",
+			"template": "page-product",
+			"templateTitle": "Product",
+			"source": "product.html",
+			"bodyClass": "inner-page",
+			"scopeClass": "nextsaas-product",
+			"sections": [
+				{
+					"slug": "page-hero",
+					"sourceAnchor": "page-hero",
+					"sourceId": "top",
+					"sourceClass": "inner-hero",
+					"purpose": "Product hero",
+					"eyebrow": "NEXTSAAS / THE WORKSPACE",
+					"heading": {
+						"tag": "h1",
+						"text": "The whole picture. Your next move.",
+						"html": "The whole picture.<br>Your <em>next move.</em>"
+					},
+					"lead": "Bring projects, documents, and conversations together. Give your work a little more context — and your team a little more room.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "link",
+							"heading": "Home",
+							"body": null,
+							"meta": "The workspace",
+							"href": "forma-saas-landing.html"
+						}
+					],
+					"responsive": [
+						"<=1100px: hero split gap reduces to 40px",
+						"<=920px: hero split becomes one column and aligns to start; breadcrumbs bottom margin reduces to 40px",
+						"<=680px: hero padding, title size, split gap, and breadcrumb spacing reduce"
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "product-workspace-preview",
+					"sourceAnchor": "workspace-preview",
+					"sourceId": "workspace-preview",
+					"sourceClass": "section ",
+					"purpose": "Workspace preview",
+					"eyebrow": null,
+					"heading": null,
+					"lead": null,
+					"ctas": [
+						{
+							"label": "Talk about your workspace",
+							"href": "contact-us.html",
+							"element": "a",
+							"variant": "primary",
+							"arrow": false
+						},
+						{
+							"label": "Explore the plans",
+							"href": "pricing.html",
+							"element": "a",
+							"variant": "text",
+							"arrow": false
+						}
+					],
+					"media": [
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Product screenshot placeholder: Your whole world of work.",
+							"aspect": null,
+							"odId": null
+						}
+					],
+					"items": [
+						{
+							"kind": "panel",
+							"heading": "Your whole world of work.",
+							"body": "Screenshot reserved",
+							"meta": "NEXTSAAS / WORKSPACE · PRODUCT IMAGE · REPLACE WITH YOUR PRODUCT SCREENSHOT",
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "PRODUCT IMAGE PLACEHOLDER",
+							"meta": "01 / THE CONNECTED WORKSPACE",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: section padding reduces to 64px",
+						"<=680px: section padding reduces to 48px and placeholder labels wrap"
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "product-capabilities",
+					"sourceAnchor": "capabilities",
+					"sourceId": "capabilities",
+					"sourceClass": "section ruled",
+					"purpose": "Workspace capabilities",
+					"eyebrow": "A PLACE FOR THE WHOLE PICTURE",
+					"heading": {
+						"tag": "h2",
+						"text": "Less scattered. More connected.",
+						"html": "Less scattered.<br>More <em>connected.</em>"
+					},
+					"lead": "Start with the perspective you need. Keep the context wherever you go.",
+					"ctas": [],
+					"media": [
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Product screenshot placeholder: The big picture. Every little detail.",
+							"aspect": null,
+							"odId": null
+						},
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Product screenshot placeholder: Context comes with you.",
+							"aspect": null,
+							"odId": null
+						},
+						{
+							"kind": "placeholder",
+							"src": null,
+							"alt": "",
+							"label": "Product screenshot placeholder: One conversation. A shared direction.",
+							"aspect": null,
+							"odId": null
+						}
+					],
+					"items": [
+						{
+							"kind": "panel",
+							"heading": "Know what matters next.",
+							"body": "Turn direction into clear priorities, owners, and next steps. Keep the roadmap close to the day-to-day.",
+							"meta": "01 / Projects · See priorities at a glance · Choose a list, board, or timeline · Keep ownership visible",
+							"href": null
+						},
+						{
+							"kind": "panel",
+							"heading": "Keep the thinking, too.",
+							"body": "Give briefs, research, and decisions a home beside the work. So the next person doesn’t have to start from zero.",
+							"meta": "02 / Documents · Bring the brief beside the work · Link research to decisions · Keep useful context easy to find",
+							"href": null
+						},
+						{
+							"kind": "panel",
+							"heading": "Conversations, in context.",
+							"body": "Keep feedback attached to the work it belongs to. Make the next handoff feel like a continuation, not a restart.",
+							"meta": "03 / Collaboration · Discuss the work where it happens · Share a decision with its reasoning · Move forward with a clear next step",
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: heading row stacks and each active tab panel split becomes one column",
+						"<=680px: section padding reduces to 48px and tab controls use mobile sizing"
+					],
+					"sectionInteractions": [
+						"tabs"
+					],
+					"pageInteractions": []
+				},
+				{
+					"slug": "product-workflow",
+					"sourceAnchor": "workflow",
+					"sourceId": "workflow",
+					"sourceClass": "section ruled",
+					"purpose": "Example workflow",
+					"eyebrow": "LESS ON REPEAT",
+					"heading": {
+						"tag": "h2",
+						"text": "A little less busywork.",
+						"html": "A little less<br><em>busywork.</em>"
+					},
+					"lead": "Clear triggers. Thoughtful handoffs. A simple path from ready to done.",
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "step",
+							"heading": "Ready for review.",
+							"body": "A task moves into the review stage.",
+							"meta": "01",
+							"href": null
+						},
+						{
+							"kind": "step",
+							"heading": "The right person.",
+							"body": "Assign the reviewer for that project.",
+							"meta": "02",
+							"href": null
+						},
+						{
+							"kind": "step",
+							"heading": "Everyone in the loop.",
+							"body": "Send an update with the context attached.",
+							"meta": "03",
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "Example workflow concept. No live automation is running.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: two-column section grid and workflow steps collapse to one column",
+						"<=680px: section padding reduces to 48px"
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "product-perspectives",
+					"sourceAnchor": "perspectives",
+					"sourceId": "perspectives",
+					"sourceClass": "section work-section",
+					"purpose": "Team perspectives",
+					"eyebrow": "DIFFERENT MINDS. SHARED MOMENTUM.",
+					"heading": {
+						"tag": "h2",
+						"text": "Your team. Your way.",
+						"html": "Your team.<br>Your <em>way.</em>"
+					},
+					"lead": null,
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "rich",
+							"heading": "Product. Design. Marketing.",
+							"body": "Keep the roadmap connected to customer insight. Bring the creative brief into the handoff. Give the next launch one shared home. One space doesn’t have to mean one way of working. Build around the people doing the work.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=1100px: split gap reduces to 40px",
+						"<=920px: split becomes one column",
+						"<=680px: section padding reduces to 48px"
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "product-control",
+					"sourceAnchor": "control",
+					"sourceId": "control",
+					"sourceClass": "section ",
+					"purpose": "Access and control",
+					"eyebrow": "THOUGHTFUL BY DEFAULT",
+					"heading": {
+						"tag": "h2",
+						"text": "Open doors. Clear boundaries.",
+						"html": "Open doors.<br>Clear <em>boundaries.</em>"
+					},
+					"lead": null,
+					"ctas": [],
+					"media": [],
+					"items": [
+						{
+							"kind": "feature",
+							"heading": "Choose who’s in.",
+							"body": "Keep members, guests, and responsibilities clear. Make access an intentional choice.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Keep the full story.",
+							"body": "Follow decisions and changes with their context, not just a stream of notifications.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Bring your tools.",
+							"body": "Plan connections around the files, calendar, and workflows your team already uses.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "feature",
+							"heading": "Stay in control.",
+							"body": "Build around portable records and practical exports. Your work should remain yours.",
+							"meta": null,
+							"href": null
+						},
+						{
+							"kind": "rich",
+							"heading": null,
+							"body": "Product capabilities are illustrative. Confirm availability, integration support, and access rules before publishing.",
+							"meta": null,
+							"href": null
+						}
+					],
+					"responsive": [
+						"<=920px: main grid and feature grid collapse to one column",
+						"<=680px: section padding reduces to 48px"
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				},
+				{
+					"slug": "closing-cta",
+					"sourceAnchor": "next-step",
+					"sourceId": "next-step",
+					"sourceClass": "section closing",
+					"purpose": "Closing call to action",
+					"eyebrow": "A NEW WAY FORWARD",
+					"heading": {
+						"tag": "h2",
+						"text": "Make room for your next.",
+						"html": "Make room for<br>your <em>next.</em>"
+					},
+					"lead": "Start with one project, one shared direction, and a little more room to think.",
+					"ctas": [
+						{
+							"label": "Talk about your workspace",
+							"href": "contact-us.html",
+							"element": "a",
+							"variant": "primary",
+							"arrow": false
+						}
+					],
+					"media": [],
+					"items": [],
+					"responsive": [
+						"<=920px: section padding reduces to 64px",
+						"<=680px: section padding reduces to 48px and lead type reduces"
+					],
+					"sectionInteractions": [],
+					"pageInteractions": [
+						"none"
+					]
+				}
+			]
+		}
+	]
+}

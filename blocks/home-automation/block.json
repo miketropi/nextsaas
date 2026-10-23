@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-automation",
+	"version": "1.0.0",
+	"title": "Home automation",
+	"category": "nextsaas",
+	"icon": "layout",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "automation"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "05 / LESS ON REPEAT"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Keep the flow.<br>Lose the <em>busywork.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "Make everyday handoffs feel effortless. Connect a clear trigger to the right action, with context all the way through."
+		},
+		"flowLabel": {
+			"type": "string",
+			"default": "Example automation: when a task is ready, assign a reviewer, then notify the owner"
+		},
+		"steps": {
+			"type": "array",
+			"default": [
+				{
+					"icon": "circle-check",
+					"meta": "WHEN / THE TRIGGER",
+					"heading": "Ready for review.",
+					"body": "A task moves into the review stage."
+				},
+				{
+					"icon": "workflow",
+					"meta": "THEN / THE HANDOFF",
+					"heading": "The right person.",
+					"body": "Assign the reviewer for that project."
+				},
+				{
+					"icon": "workflow",
+					"meta": "AND / THE FOLLOW-THROUGH",
+					"heading": "Everyone in the loop.",
+					"body": "Send an update to the task owner."
+				}
+			]
+		},
+		"note": {
+			"type": "string",
+			"default": "Example workflow concept. No live automation is running."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

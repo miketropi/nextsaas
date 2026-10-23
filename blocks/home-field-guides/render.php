@@ -1,0 +1,6 @@
+<?php
+/** @var array<string, mixed> $attributes */
+declare( strict_types=1 );
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+$items = nextsaas_items( $attributes, 'items' ); ?>
+<section <?php echo nextsaas_section_attrs( 'home-field-guides', $attributes, array( 'section', 'guides' ) ); ?>><div class="container"><div class="section-heading"><p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p><div class="heading-row"><h2 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h2><p class="lead" data-nextsaas-rich="lead"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'lead' ) ); ?></p></div></div><div><?php foreach ( $items as $index => $item ) : ?><article class="log-row"><span class="meta"><?php echo esc_html( (string) ( $item['meta'] ?? '' ) ); ?></span><div><h3><?php echo esc_html( (string) ( $item['heading'] ?? '' ) ); ?></h3><p><?php echo esc_html( (string) ( $item['body'] ?? '' ) ); ?></p></div><a class="round-link" href="<?php echo esc_url( nextsaas_resolve_url( (string) ( $item['url'] ?? '' ) ) ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Read: %s', 'nextsaas' ), (string) ( $item['heading'] ?? '' ) ) ); ?>"><?php echo nextsaas_icon( 'arrow-up-right' ); ?></a></article><?php endforeach; ?></div></div></section>

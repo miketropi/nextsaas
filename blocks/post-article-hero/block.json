@@ -1,0 +1,70 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/post-article-hero",
+	"version": "1.0.0",
+	"title": "Article hero",
+	"category": "nextsaas",
+	"icon": "admin-post",
+	"description": "Article hero section.",
+	"keywords": [
+		"post",
+		"article",
+		"hero"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "top"
+		},
+		"homeLabel": {
+			"type": "string",
+			"default": "Home"
+		},
+		"homeUrl": {
+			"type": "string",
+			"default": "forma-saas-landing.html"
+		},
+		"archiveLabel": {
+			"type": "string",
+			"default": "The field guide"
+		},
+		"archiveUrl": {
+			"type": "string",
+			"default": "archive.html"
+		},
+		"fallbackCategory": {
+			"type": "string",
+			"default": "STARTING OUT / NEXT NOTES"
+		},
+		"fallbackTitle": {
+			"type": "string",
+			"default": "Build a workspace people actually use."
+		},
+		"fallbackLead": {
+			"type": "string",
+			"default": "Start with the work, not the tool. A practical guide to a shared space that earns its place."
+		},
+		"authorLabel": {
+			"type": "string",
+			"default": "NextSaas editorial"
+		},
+		"datePrefix": {
+			"type": "string",
+			"default": "Original template guide"
+		},
+		"copyLabel": {
+			"type": "string",
+			"default": "Copy article link"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

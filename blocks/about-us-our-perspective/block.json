@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/about-us-our-perspective",
+	"version": "1.0.0",
+	"title": "Our perspective",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Point-of-view section with editorial copy",
+	"keywords": [
+		"about",
+		"editorial",
+		"section"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "our-perspective"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "OUR POINT OF VIEW"
+		},
+		"heading": {
+			"type": "string",
+			"default": "More connected.<br>Less consumed."
+		},
+		"lead": {
+			"type": "string",
+			"default": "Work doesn’t need another place to become busy. It needs a place to become clear."
+		},
+		"bodyOne": {
+			"type": "string",
+			"default": "NextSaas explores a simple idea: bring the plan, the reasoning, and the people closer together. Not to measure every moment, but to make the next move easier to understand."
+		},
+		"bodyTwo": {
+			"type": "string",
+			"default": "That means less hunting for context. Fewer disconnected handoffs. And more room for the part of work that asks something of us."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

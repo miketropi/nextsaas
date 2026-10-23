@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/home-testimonial",
+	"version": "1.0.0",
+	"title": "Home testimonial",
+	"category": "nextsaas",
+	"icon": "format-quote",
+	"description": "Customer perspective carousel.",
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "testimonial"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "A CUSTOMER’S PERSPECTIVE"
+		},
+		"note": {
+			"type": "string",
+			"default": "Illustrative testimonial copy.<br>Replace with an approved customer story before publishing."
+		},
+		"carouselLabel": {
+			"type": "string",
+			"default": "Illustrative customer perspectives"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"heading": "“The difference isn’t doing more. It’s knowing what matters — and having the space to do it well.”",
+					"meta": "Illustrative story 01 / Focus",
+					"body": "Customer name, role & company — awaiting approval"
+				},
+				{
+					"heading": "“When the brief, feedback, and decisions live together, the next step feels a lot clearer.”",
+					"meta": "Illustrative story 02 / Context",
+					"body": "Customer name, role & company — awaiting approval"
+				},
+				{
+					"heading": "“A shared plan gives us room to move independently, without losing sight of each other.”",
+					"meta": "Illustrative story 03 / Collaboration",
+					"body": "Customer name, role & company — awaiting approval"
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

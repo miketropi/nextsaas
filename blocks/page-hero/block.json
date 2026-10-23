@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nextsaas/page-hero",
+	"version": "1.0.0",
+	"title": "Inner page hero",
+	"category": "nextsaas",
+	"icon": "layout",
+	"description": "Shared inner-page hero with breadcrumb, editorial heading and lead.",
+	"keywords": [
+		"hero",
+		"breadcrumb",
+		"inner page"
+	],
+	"textdomain": "nextsaas",
+	"attributes": {
+		"sectionId": {
+			"type": "string",
+			"default": "top"
+		},
+		"breadcrumbHomeLabel": {
+			"type": "string",
+			"default": "Home"
+		},
+		"breadcrumbCurrentLabel": {
+			"type": "string",
+			"default": "About us"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "NEXTSAAS / ABOUT US"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Work deserves<br>a little <em>space.</em>"
+		},
+		"lead": {
+			"type": "string",
+			"default": "We believe the best tools make room for good thinking, shared context, and a more intentional kind of progress."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"render": "file:./render.php"
+}

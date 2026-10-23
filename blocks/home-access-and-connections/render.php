@@ -1,0 +1,6 @@
+<?php
+/** @var array<string, mixed> $attributes */
+declare( strict_types=1 );
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+$items = nextsaas_items( $attributes, 'items' ); ?>
+<section <?php echo nextsaas_section_attrs( 'home-access-and-connections', $attributes, array( 'section', 'system' ) ); ?>><div class="container grid-1-2"><div><p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p><h2 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h2><p class="lead" data-nextsaas-rich="lead"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'lead' ) ); ?></p></div><div class="system-list"><?php foreach ( $items as $index => $item ) : ?><article><span class="num" data-nextsaas-rich="items.<?php echo esc_attr( (string) $index ); ?>.meta"><?php echo esc_html( (string) ( $item['meta'] ?? '' ) ); ?></span><h3 data-nextsaas-rich="items.<?php echo esc_attr( (string) $index ); ?>.heading"><?php echo esc_html( (string) ( $item['heading'] ?? '' ) ); ?></h3><p data-nextsaas-rich="items.<?php echo esc_attr( (string) $index ); ?>.body"><?php echo esc_html( (string) ( $item['body'] ?? '' ) ); ?></p></article><?php endforeach; ?></div></div></section>
