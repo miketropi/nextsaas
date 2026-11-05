@@ -184,6 +184,812 @@ function nextsaas_scope_class( string $class_name, array $extra = array() ): str
 }
 
 /**
+ * Active palette buckets flattened into `slug => colour`.
+ *
+ * `wp_get_global_settings()` returns one bucket per origin (default, theme,
+ * custom) and the buckets are walked in that order, so a slug a site redefines in
+ * the Customizer wins exactly as the generated preset variables do.
+ *
+ * @return array<string, string> Palette slug => stored colour value.
+ */
+function nextsaas_palette_colors(): array {
+	static $palette = null;
+
+	if ( is_array( $palette ) ) {
+		return $palette;
+	}
+
+	$palette  = array();
+	$settings = wp_get_global_settings( array( 'color', 'palette' ) );
+
+	if ( ! is_array( $settings ) ) {
+		return $palette;
+	}
+
+	foreach ( $settings as $bucket ) {
+		if ( ! is_array( $bucket ) ) {
+			continue;
+		}
+
+		foreach ( $bucket as $entry ) {
+			if ( ! is_array( $entry ) || ! isset( $entry['slug'], $entry['color'] ) ) {
+				continue;
+			}
+
+			if ( ! is_scalar( $entry['slug'] ) || ! is_scalar( $entry['color'] ) ) {
+				continue;
+			}
+
+			$slug = strtolower( trim( (string) $entry['slug'] ) );
+
+			if ( '' !== $slug ) {
+				$palette[ $slug ] = trim( (string) $entry['color'] );
+			}
+		}
+	}
+
+	return $palette;
+}
+
+/**
+ * Active spacing presets flattened into `slug => size`.
+ *
+ * @return array<string, string> Spacing slug => stored size value.
+ */
+function nextsaas_spacing_presets(): array {
+	static $presets = null;
+
+	if ( is_array( $presets ) ) {
+		return $presets;
+	}
+
+	$presets  = array();
+	$settings = wp_get_global_settings( array( 'spacing', 'spacingSizes' ) );
+
+	if ( ! is_array( $settings ) ) {
+		return $presets;
+	}
+
+	foreach ( $settings as $bucket ) {
+		if ( ! is_array( $bucket ) ) {
+			continue;
+		}
+
+		foreach ( $bucket as $entry ) {
+			if ( ! is_array( $entry ) || ! isset( $entry['slug'], $entry['size'] ) ) {
+				continue;
+			}
+
+			if ( ! is_scalar( $entry['slug'] ) || ! is_scalar( $entry['size'] ) ) {
+				continue;
+			}
+
+			$slug = strtolower( trim( (string) $entry['slug'] ) );
+
+			if ( '' !== $slug ) {
+				$presets[ $slug ] = trim( (string) $entry['size'] );
+			}
+		}
+	}
+
+	return $presets;
+}
+
+/**
+ * Palette slug referenced by a stored preset reference.
+ *
+ * The colour control stores a picked preset as its bare slug, while content saved
+ * by an earlier version of the control holds one of the two reference spellings
+ * WordPress itself uses. All three mean the same colour, so all three are read
+ * here and resolved to a single variable form.
+ *
+ * @param string $value Stored attribute value.
+ *
+ * @return string Palette slug, or `''` when the value is not a preset reference.
+ */
+function nextsaas_color_preset_slug( string $value ): string {
+	if ( preg_match( '/^var:preset\|color\|([a-z0-9][a-z0-9-]*)$/i', $value, $matches ) ) {
+		return strtolower( $matches[1] );
+	}
+
+	if ( preg_match( '/^var\(\s*--wp--preset--color--([a-z0-9][a-z0-9-]*)\s*\)$/i', $value, $matches ) ) {
+		return strtolower( $matches[1] );
+	}
+
+	return '';
+}
+
+/**
+ * Parse an sRGB channel from a hex, `rgb()`, `hsl()` or `oklch()` argument.
+ *
+ * @param string $value Raw argument, e.g. `12.5%`, `0.4`, `200deg`.
+ * @param float  $scale Value that `100%` represents.
+ *
+ * @return float|null Parsed number, or null when the argument is not a number.
+ */
+function nextsaas_parse_color_number( string $value, float $scale ): ?float {
+	$value = trim( $value );
+
+	if ( ! preg_match( '/^([-+]?(?:\d+\.?\d*|\.\d+))(deg|%|)$/i', $value, $matches ) ) {
+		return null;
+	}
+
+	$number = (float) $matches[1];
+	$unit   = strtolower( $matches[2] );
+
+	if ( '%' === $unit ) {
+		return $number / 100 * $scale;
+	}
+
+	return $number;
+}
+
+/**
+ * Convert an OKLCh triplet to sRGB channels in the 0–255 range.
+ *
+ * @param float $lightness Lightness, 0–1.
+ * @param float $chroma    Chroma.
+ * @param float $hue       Hue in degrees.
+ *
+ * @return array{r: float, g: float, b: float} sRGB channels.
+ */
+function nextsaas_oklch_to_rgb( float $lightness, float $chroma, float $hue ): array {
+	$radians = deg2rad( $hue );
+	$a       = $chroma * cos( $radians );
+	$b       = $chroma * sin( $radians );
+
+	$long  = $lightness + 0.3963377774 * $a + 0.2158037573 * $b;
+	$medium = $lightness - 0.1055613458 * $a - 0.0638541728 * $b;
+	$short = $lightness - 0.0894841775 * $a - 1.2914855480 * $b;
+
+	$long   = $long ** 3;
+	$medium = $medium ** 3;
+	$short  = $short ** 3;
+
+	$channels = array(
+		4.0767416621 * $long - 3.3077115913 * $medium + 0.2309699292 * $short,
+		-1.2684380046 * $long + 2.6097574011 * $medium - 0.3413193965 * $short,
+		-0.0041960863 * $long - 0.7034186147 * $medium + 1.7076147010 * $short,
+	);
+
+	$encode = static function ( float $channel ): float {
+		$channel = max( 0.0, min( 1.0, $channel ) );
+
+		return ( $channel <= 0.0031308 ? 12.92 * $channel : 1.055 * ( $channel ** ( 1 / 2.4 ) ) - 0.055 ) * 255;
+	};
+
+	return array(
+		'r' => $encode( $channels[0] ),
+		'g' => $encode( $channels[1] ),
+		'b' => $encode( $channels[2] ),
+	);
+}
+
+/**
+ * Convert an HSL triplet to sRGB channels in the 0–255 range.
+ *
+ * @param float $hue        Hue in degrees.
+ * @param float $saturation Saturation, 0–1.
+ * @param float $lightness  Lightness, 0–1.
+ *
+ * @return array{r: float, g: float, b: float} sRGB channels.
+ */
+function nextsaas_hsl_to_rgb( float $hue, float $saturation, float $lightness ): array {
+	$hue        = fmod( $hue, 360.0 );
+	$hue        = $hue < 0 ? $hue + 360 : $hue;
+	$saturation = max( 0.0, min( 1.0, $saturation ) );
+	$lightness  = max( 0.0, min( 1.0, $lightness ) );
+
+	$chroma = ( 1 - abs( 2 * $lightness - 1 ) ) * $saturation;
+	$second = $chroma * ( 1 - abs( fmod( $hue / 60, 2.0 ) - 1 ) );
+	$offset = $lightness - $chroma / 2;
+
+	$sector = (int) floor( $hue / 60 ) % 6;
+
+	$sets = array(
+		array( $chroma, $second, 0.0 ),
+		array( $second, $chroma, 0.0 ),
+		array( 0.0, $chroma, $second ),
+		array( 0.0, $second, $chroma ),
+		array( $second, 0.0, $chroma ),
+		array( $chroma, 0.0, $second ),
+	);
+
+	$rgb = $sets[ $sector ];
+
+	return array(
+		'r' => ( $rgb[0] + $offset ) * 255,
+		'g' => ( $rgb[1] + $offset ) * 255,
+		'b' => ( $rgb[2] + $offset ) * 255,
+	);
+}
+
+/**
+ * Parse a bounded CSS colour into sRGB channels plus alpha.
+ *
+ * Only the forms this theme can store or an author can type are understood: hex,
+ * `rgb()`, `rgba()`, `hsl()`, `hsla()`, `oklch()` and the `transparent` keyword.
+ * Anything else — a declaration, a URL, a `var()` reference, an unknown function —
+ * returns null, which is what makes an invalid stored value render as no override
+ * instead of as an injected declaration.
+ *
+ * @param string $value Raw CSS colour value.
+ *
+ * @return array{r: float, g: float, b: float, a: float}|null Channels in 0–255 plus alpha in 0–1.
+ */
+function nextsaas_parse_color( string $value ): ?array {
+	$value = strtolower( trim( $value ) );
+
+	if ( '' === $value ) {
+		return null;
+	}
+
+	if ( 'transparent' === $value ) {
+		return array(
+			'r' => 0.0,
+			'g' => 0.0,
+			'b' => 0.0,
+			'a' => 0.0,
+		);
+	}
+
+	if ( str_starts_with( $value, '#' ) ) {
+		$hex = substr( $value, 1 );
+
+		if ( ! preg_match( '/^(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/', $hex ) ) {
+			return null;
+		}
+
+		if ( strlen( $hex ) < 6 ) {
+			$doubled = '';
+
+			foreach ( str_split( $hex ) as $character ) {
+				$doubled .= $character . $character;
+			}
+
+			$hex = $doubled;
+		}
+
+		return array(
+			'r' => (float) hexdec( substr( $hex, 0, 2 ) ),
+			'g' => (float) hexdec( substr( $hex, 2, 2 ) ),
+			'b' => (float) hexdec( substr( $hex, 4, 2 ) ),
+			'a' => 8 === strlen( $hex ) ? hexdec( substr( $hex, 6, 2 ) ) / 255 : 1.0,
+		);
+	}
+
+	// Functional notation: name, a bounded argument list, no nested parentheses.
+	if ( ! preg_match( '/^([a-z]+)\(([^()]*)\)$/', $value, $matches ) ) {
+		return null;
+	}
+
+	$name = $matches[1];
+	$list = preg_split( '/[\s,\/]+/', trim( $matches[2] ), -1, PREG_SPLIT_NO_EMPTY );
+
+	if ( ! is_array( $list ) || array() === $list ) {
+		return null;
+	}
+
+	$alpha = static function ( ?string $raw ) : ?float {
+		if ( null === $raw ) {
+			return 1.0;
+		}
+
+		return nextsaas_parse_color_number( $raw, 1.0 );
+	};
+
+	if ( 'rgb' === $name || 'rgba' === $name ) {
+		if ( count( $list ) < 3 || count( $list ) > 4 ) {
+			return null;
+		}
+
+		$channels = array();
+
+		for ( $index = 0; $index < 3; $index++ ) {
+			$channel = nextsaas_parse_color_number( $list[ $index ], 255.0 );
+
+			if ( null === $channel ) {
+				return null;
+			}
+
+			$channels[] = max( 0.0, min( 255.0, $channel ) );
+		}
+
+		$a = $alpha( $list[3] ?? null );
+
+		if ( null === $a ) {
+			return null;
+		}
+
+		return array(
+			'r' => $channels[0],
+			'g' => $channels[1],
+			'b' => $channels[2],
+			'a' => max( 0.0, min( 1.0, $a ) ),
+		);
+	}
+
+	if ( 'hsl' === $name || 'hsla' === $name ) {
+		if ( count( $list ) < 3 || count( $list ) > 4 ) {
+			return null;
+		}
+
+		$hue        = nextsaas_parse_color_number( $list[0], 360.0 );
+		$saturation = nextsaas_parse_color_number( $list[1], 1.0 );
+		$lightness  = nextsaas_parse_color_number( $list[2], 1.0 );
+		$a          = $alpha( $list[3] ?? null );
+
+		if ( null === $hue || null === $saturation || null === $lightness || null === $a ) {
+			return null;
+		}
+
+		return nextsaas_hsl_to_rgb( $hue, $saturation, $lightness ) + array(
+			'a' => max( 0.0, min( 1.0, $a ) ),
+		);
+	}
+
+	if ( 'oklch' === $name ) {
+		if ( count( $list ) < 3 || count( $list ) > 4 ) {
+			return null;
+		}
+
+		$lightness = nextsaas_parse_color_number( $list[0], 1.0 );
+		$chroma    = nextsaas_parse_color_number( $list[1], 1.0 );
+		$hue       = nextsaas_parse_color_number( $list[2], 360.0 );
+		$a         = $alpha( $list[3] ?? null );
+
+		if ( null === $lightness || null === $chroma || null === $hue || null === $a ) {
+			return null;
+		}
+
+		// `oklch(98.5% …)` and `oklch(0.985 …)` are the same lightness; a stored
+		// percentage above 1 is always a percentage, so both are scaled here.
+		if ( $lightness > 1.0 ) {
+			$lightness /= 100;
+		}
+
+		return nextsaas_oklch_to_rgb( max( 0.0, min( 1.0, $lightness ) ), max( 0.0, $chroma ), $hue ) + array(
+			'a' => max( 0.0, min( 1.0, $a ) ),
+		);
+	}
+
+	return null;
+}
+
+/**
+ * Resolve a stored colour reference to opaque sRGB channels.
+ *
+ * Preset references are followed into the active palette; a colour with an alpha
+ * channel is composited over `$under`, which is the surface it is really painted
+ * on, so a translucent author colour is measured against the page it lands on
+ * rather than against a fabricated grey.
+ *
+ * @param string                                             $value Raw CSS colour or preset reference.
+ * @param array{r: float, g: float, b: float, a: float}|null $under Surface below the colour.
+ * @param int                                                $depth Recursion guard for palette references.
+ *
+ * @return array{r: float, g: float, b: float, a: float}|null Opaque channels, or null when unresolvable.
+ */
+function nextsaas_resolve_css_color( string $value, ?array $under = null, int $depth = 0 ): ?array {
+	if ( $depth > 4 ) {
+		return null;
+	}
+
+	$value = trim( $value );
+
+	if ( '' === $value ) {
+		return null;
+	}
+
+	$slug = nextsaas_color_preset_slug( $value );
+
+	if ( '' !== $slug ) {
+		$palette = nextsaas_palette_colors();
+
+		if ( ! isset( $palette[ $slug ] ) ) {
+			return null;
+		}
+
+		return nextsaas_resolve_css_color( $palette[ $slug ], $under, $depth + 1 );
+	}
+
+	$color = nextsaas_parse_color( $value );
+
+	if ( null === $color ) {
+		return null;
+	}
+
+	if ( $color['a'] >= 1.0 ) {
+		return $color;
+	}
+
+	if ( null === $under ) {
+		return null;
+	}
+
+	return array(
+		'r' => $color['r'] * $color['a'] + $under['r'] * ( 1 - $color['a'] ),
+		'g' => $color['g'] * $color['a'] + $under['g'] * ( 1 - $color['a'] ),
+		'b' => $color['b'] * $color['a'] + $under['b'] * ( 1 - $color['a'] ),
+		'a' => 1.0,
+	);
+}
+
+/**
+ * The page canvas a section is painted on.
+ *
+ * Read from the global styles the site actually renders with, so a section
+ * background declared `transparent` is measured against the real page colour
+ * rather than an assumed one. An empty string means the canvas could not be
+ * resolved, and every measurement that needs it reports `unknown`.
+ *
+ * @return string CSS colour for the canvas, or `''`.
+ */
+function nextsaas_page_canvas(): string {
+	static $canvas = null;
+
+	if ( is_string( $canvas ) ) {
+		return $canvas;
+	}
+
+	$canvas = '';
+	$stored = wp_get_global_styles( array( 'color', 'background' ) );
+
+	if ( is_scalar( $stored ) && '' !== trim( (string) $stored ) ) {
+		$canvas = nextsaas_resolve_section_color( (string) $stored );
+	}
+
+	return $canvas;
+}
+
+/**
+ * The resolved page canvas as opaque channels.
+ *
+ * @return array{r: float, g: float, b: float, a: float}|null Canvas channels, or null when unresolvable.
+ */
+function nextsaas_page_canvas_color(): ?array {
+	$canvas = nextsaas_page_canvas();
+
+	return '' === $canvas ? null : nextsaas_resolve_css_color( $canvas );
+}
+
+/**
+ * WCAG relative luminance of sRGB channels.
+ *
+ * @param array{r: float, g: float, b: float, a: float} $color Opaque channels in 0–255.
+ *
+ * @return float Relative luminance.
+ */
+function nextsaas_color_luminance( array $color ): float {
+	$linear = static function ( float $channel ): float {
+		$channel /= 255;
+
+		return $channel <= 0.03928 ? $channel / 12.92 : ( ( $channel + 0.055 ) / 1.055 ) ** 2.4;
+	};
+
+	return 0.2126 * $linear( $color['r'] ) + 0.7152 * $linear( $color['g'] ) + 0.0722 * $linear( $color['b'] );
+}
+
+/**
+ * WCAG contrast ratio between a stored foreground and a stored background.
+ *
+ * The single measurement used by both the real renderer and the editor preview,
+ * so an inspector notice can never disagree with the page. A colour the theme
+ * cannot resolve — an unknown preset, a `color-mix()` value, a stylesheet rule
+ * this helper does not model — is reported as `unknown` instead of guessed at.
+ *
+ * @param string $foreground Stored foreground colour or preset reference.
+ * @param string $background Stored background colour or preset reference.
+ *
+ * @return float|string Ratio rounded to two decimals, or `'unknown'`.
+ */
+function nextsaas_contrast_ratio( string $foreground, string $background ): float|string {
+	$canvas = nextsaas_page_canvas_color();
+	$base   = nextsaas_resolve_css_color( $background, $canvas );
+
+	if ( null === $base ) {
+		return 'unknown';
+	}
+
+	$front = nextsaas_resolve_css_color( $foreground, $base );
+
+	if ( null === $front ) {
+		return 'unknown';
+	}
+
+	$first  = nextsaas_color_luminance( $front );
+	$second = nextsaas_color_luminance( $base );
+
+	return round( ( max( $first, $second ) + 0.05 ) / ( min( $first, $second ) + 0.05 ), 2 );
+}
+
+/**
+ * The highest-contrast active theme foreground for a background.
+ *
+ * The four palette roles are the theme's own text roles, so a derived foreground
+ * always stays inside the design's vocabulary. Candidates are compared by WCAG
+ * ratio against the resolved background and ties keep the declared order, which
+ * puts `contrast` first.
+ *
+ * @param string $background Stored background colour or preset reference.
+ *
+ * @return array{value: string, ratio: float|string} Best candidate, empty and `unknown` when none resolves.
+ */
+function nextsaas_section_best_foreground( string $background ): array {
+	$best = array(
+		'value' => '',
+		'ratio' => 'unknown',
+	);
+
+	foreach ( array( 'contrast', 'base', 'paragraph', 'surface' ) as $slug ) {
+		$value = 'var(--wp--preset--color--' . $slug . ')';
+		$ratio = nextsaas_contrast_ratio( $value, $background );
+
+		if ( ! is_float( $ratio ) ) {
+			continue;
+		}
+
+		if ( 'unknown' === $best['ratio'] || $ratio > $best['ratio'] ) {
+			$best = array(
+				'value' => $value,
+				'ratio' => $ratio,
+			);
+		}
+	}
+
+	return $best;
+}
+
+/**
+ * Derived foreground roles for a changed section background.
+ *
+ * Only called when the author changed the background and left a foreground role
+ * empty; the result is emitted under the `--nextsaas-derived-*` properties so an
+ * explicit author colour always keeps its own property and precedence. Heading,
+ * content and focus are computed separately because they have different minimum
+ * ratios: 3:1 is enough for display type and for a focus boundary, while body copy
+ * needs 4.5:1.
+ *
+ * @param string $background Stored background colour or preset reference.
+ *
+ * @return array{heading: array{value: string, ratio: float|string}, content: array{value: string, ratio: float|string}, focus: array{value: string, ratio: float|string}}
+ */
+function nextsaas_section_foregrounds( string $background ): array {
+	$text = nextsaas_section_best_foreground( $background );
+
+	// Focus boundaries only need 3:1, so the first candidate that clears it wins;
+	// when none does, the best available candidate is still reported with its own
+	// measured ratio rather than silently dropped.
+	$focus = $text;
+
+	foreach ( array( 'contrast', 'base', 'paragraph', 'surface' ) as $slug ) {
+		$value = 'var(--wp--preset--color--' . $slug . ')';
+		$ratio = nextsaas_contrast_ratio( $value, $background );
+
+		if ( is_float( $ratio ) && $ratio >= 3.0 ) {
+			$focus = array(
+				'value' => $value,
+				'ratio' => $ratio,
+			);
+			break;
+		}
+	}
+
+	return array(
+		'heading' => $text,
+		'content' => $text,
+		'focus'   => $focus,
+	);
+}
+
+/**
+ * Resolve a stored section colour into the value a custom property carries.
+ *
+ * Accepts a bare palette slug (what the colour control stores for a picked
+ * preset), either preset reference spelling, and a bounded colour literal.
+ * Anything else — a declaration, a URL, an arbitrary `var()`, an unknown slug —
+ * emits nothing, so a hostile attribute value can never inject CSS.
+ *
+ * @param string $value Stored attribute value.
+ *
+ * @return string CSS value, or `''` for "theme default".
+ */
+function nextsaas_resolve_section_color( string $value ): string {
+	$value = trim( $value );
+
+	if ( '' === $value ) {
+		return '';
+	}
+
+	$palette = nextsaas_palette_colors();
+	$slug    = nextsaas_color_preset_slug( $value );
+
+	if ( '' === $slug && preg_match( '/^[a-z][a-z0-9-]*$/', $value ) ) {
+		$slug = strtolower( $value );
+	}
+
+	if ( '' !== $slug ) {
+		return isset( $palette[ $slug ] ) ? 'var(--wp--preset--color--' . $slug . ')' : '';
+	}
+
+	return null === nextsaas_parse_color( $value ) ? '' : $value;
+}
+
+/**
+ * Resolve a stored section gap into the value a custom property carries.
+ *
+ * Only `0` or a spacing preset that the active theme really declares is accepted;
+ * the preset is always emitted as the variable reference, so changing the size
+ * behind the preset changes every section that selected it.
+ *
+ * @param string $value Stored attribute value.
+ *
+ * @return string CSS value, or `''` for "theme default".
+ */
+function nextsaas_resolve_section_gap( string $value ): string {
+	$value = trim( $value );
+
+	if ( '' === $value ) {
+		return '';
+	}
+
+	if ( '0' === $value ) {
+		return '0';
+	}
+
+	$slug = '';
+
+	if ( preg_match( '/^var:preset\|spacing\|([a-z0-9][a-z0-9-]*)$/i', $value, $matches ) ) {
+		$slug = strtolower( $matches[1] );
+	} elseif ( preg_match( '/^var\(\s*--wp--preset--spacing--([a-z0-9][a-z0-9-]*)\s*\)$/i', $value, $matches ) ) {
+		$slug = strtolower( $matches[1] );
+	} elseif ( preg_match( '/^[a-z][a-z0-9-]*$/i', $value ) ) {
+		$slug = strtolower( $value );
+	}
+
+	if ( '' === $slug || ! isset( nextsaas_spacing_presets()[ $slug ] ) ) {
+		return '';
+	}
+
+	return 'var(--wp--preset--spacing--' . $slug . ')';
+}
+
+/**
+ * Appearance declarations for one section block.
+ *
+ * Every custom block declares the same four optional attributes — `sectionBg`,
+ * `sectionHeading`, `sectionText` and `sectionGap` — and this is the single place
+ * they turn into markup: presence classes for the stylesheet, custom properties on
+ * the section root, derived role properties for a section whose background changed
+ * while a foreground was left empty, and the measured ratios the editor notices
+ * read. Empty or invalid values emit nothing at all, so an untouched block renders
+ * exactly the markup it rendered before the controls existed.
+ *
+ * @param array<string, mixed> $attributes Block attributes.
+ *
+ * @return array{class: string[], style: string, data: array<string, string>} Additional wrapper values.
+ */
+function nextsaas_section_appearance( array $attributes ): array {
+	$raw = array(
+		'background' => nextsaas_attr( $attributes, 'sectionBg' ),
+		'heading'    => nextsaas_attr( $attributes, 'sectionHeading' ),
+		'text'       => nextsaas_attr( $attributes, 'sectionText' ),
+		'gap'        => nextsaas_attr( $attributes, 'sectionGap' ),
+	);
+
+	$background = nextsaas_resolve_section_color( $raw['background'] );
+	$heading    = nextsaas_resolve_section_color( $raw['heading'] );
+	$text       = nextsaas_resolve_section_color( $raw['text'] );
+	$gap        = nextsaas_resolve_section_gap( $raw['gap'] );
+
+	$classes      = array();
+	$declarations = array();
+
+	if ( '' !== $background ) {
+		$classes[]      = 'has-nextsaas-background';
+		$declarations[] = '--nextsaas-block-bg:' . $background;
+	}
+
+	if ( '' !== $heading ) {
+		$classes[]      = 'has-nextsaas-heading';
+		$declarations[] = '--nextsaas-block-heading:' . $heading;
+	}
+
+	if ( '' !== $text ) {
+		$classes[]      = 'has-nextsaas-content';
+		$declarations[] = '--nextsaas-block-text:' . $text;
+	}
+
+	if ( '' !== $gap ) {
+		$classes[]      = 'has-nextsaas-gap';
+		$declarations[] = '--nextsaas-block-gap:' . $gap;
+	}
+
+	$heading_ratio = 'unknown';
+	$content_ratio = 'unknown';
+	$derived       = array();
+
+	if ( '' !== $background ) {
+		$derived = nextsaas_section_foregrounds( $background );
+
+		if ( '' === $heading && '' !== $derived['heading']['value'] ) {
+			$classes[]      = 'has-nextsaas-derived-heading';
+			$declarations[] = '--nextsaas-derived-heading:' . $derived['heading']['value'];
+			$heading_ratio  = $derived['heading']['ratio'];
+		}
+
+		if ( '' === $text && '' !== $derived['content']['value'] ) {
+			$classes[]      = 'has-nextsaas-derived-content';
+			$declarations[] = '--nextsaas-derived-text:' . $derived['content']['value'];
+			$content_ratio  = $derived['content']['ratio'];
+		}
+
+		if ( '' !== $derived['focus']['value'] ) {
+			$declarations[] = '--nextsaas-derived-focus:' . $derived['focus']['value'];
+		}
+
+		if ( '' !== $heading ) {
+			$heading_ratio = nextsaas_contrast_ratio( $heading, $background );
+		}
+
+		if ( '' !== $text ) {
+			$content_ratio = nextsaas_contrast_ratio( $text, $background );
+		}
+	} elseif ( '' !== $heading || '' !== $text ) {
+		// No changed background: an explicit foreground sits on the page canvas.
+		$canvas = nextsaas_page_canvas();
+
+		if ( '' !== $heading ) {
+			$heading_ratio = nextsaas_contrast_ratio( $heading, $canvas );
+		}
+
+		if ( '' !== $text ) {
+			$content_ratio = nextsaas_contrast_ratio( $text, $canvas );
+		}
+	}
+
+	/*
+	 * Cards, panels and buttons paint a surface of their own, so a content role needs
+	 * one it can be read on. The surface is derived against the foreground those
+	 * elements will really carry — the author's colour when there is one, the derived
+	 * colour otherwise — and it is emitted whether or not the background changed: a
+	 * light content colour on a light section needs exactly the same pairing as a
+	 * light one on a dark section.
+	 */
+	$content_role = '' !== $text ? $text : (string) ( $derived['content']['value'] ?? '' );
+
+	if ( '' !== $content_role ) {
+		$surface = nextsaas_section_best_foreground( $content_role );
+
+		if ( '' !== $surface['value'] ) {
+			$declarations[] = '--nextsaas-derived-content-surface:' . $surface['value'];
+		}
+	}
+
+	$data = array();
+
+	if ( array() !== $classes || '' !== $gap || array() !== array_filter( $raw ) ) {
+		$data['data-nextsaas-heading-ratio'] = is_float( $heading_ratio ) ? number_format( $heading_ratio, 2, '.', '' ) : 'unknown';
+		$data['data-nextsaas-content-ratio'] = is_float( $content_ratio ) ? number_format( $content_ratio, 2, '.', '' ) : 'unknown';
+		/*
+		 * A stable key for the exact four attribute values this response was
+		 * rendered from, so a preview reader can discard a response that arrives
+		 * after the author already changed a control. It is the canonical spelling
+		 * of the values rather than a digest: the editor has to compare it, and the
+		 * only way to compare a digest is to reimplement the same hash in
+		 * JavaScript, which is exactly the duplicated algorithm this contract avoids.
+		 */
+		$data['data-nextsaas-appearance-key'] = implode( '|', array( $raw['background'], $raw['heading'], $raw['text'], $raw['gap'] ) );
+	}
+
+	return array(
+		'class' => $classes,
+		'style' => implode( ';', $declarations ),
+		'data'  => $data,
+	);
+}
+
+/**
  * Wrapper attributes for a section block.
  *
  * Adds the scope class, the section class, the approved design anchor and the
@@ -204,7 +1010,17 @@ function nextsaas_section_attrs( string $slug, array $attributes, array $extra_c
 	 * hero only `error-hero` — and `section` sets padding, so adding it where the
 	 * design does not would double the section's inset.
 	 */
-	$classes = nextsaas_scope_class( 'nextsaas-' . $slug, $extra_classes );
+	/*
+	 * The four appearance attributes are read here rather than by each renderer, so
+	 * every custom block gets the same presence classes, custom properties and
+	 * measured ratios, and one block cannot drift from the rest. The declarations
+	 * are merged with the caller's own `$style` and handed to core once: core
+	 * concatenates its generated support styles (the native Dimensions padding and
+	 * margin) with ours and sanitises the result, so a section carries a single
+	 * style attribute with a single owner per declaration.
+	 */
+	$appearance = nextsaas_section_appearance( $attributes );
+	$classes    = nextsaas_scope_class( 'nextsaas-' . $slug, array_merge( $extra_classes, $appearance['class'] ) );
 
 	$attrs = array(
 		'class'                 => $classes,
@@ -217,8 +1033,19 @@ function nextsaas_section_attrs( string $slug, array $attributes, array $extra_c
 		$attrs['id'] = $section_id;
 	}
 
-	if ( '' !== $style ) {
-		$attrs['style'] = $style;
+	$declarations = trim( $style, "; \t\n\r\0\x0B" );
+	$appearance_style = trim( $appearance['style'], "; \t\n\r\0\x0B" );
+
+	if ( '' !== $appearance_style ) {
+		$declarations = '' === $declarations ? $appearance_style : $declarations . ';' . $appearance_style;
+	}
+
+	if ( '' !== $declarations ) {
+		$attrs['style'] = $declarations;
+	}
+
+	foreach ( $appearance['data'] as $name => $value ) {
+		$attrs[ $name ] = $value;
 	}
 
 	return get_block_wrapper_attributes( $attrs );
@@ -488,6 +1315,23 @@ function nextsaas_media( array $media, string $class_name, string $loading = 'la
 	}
 
 	if ( $media_id > 0 ) {
+		/*
+		 * The file's own ratio, declared on the element.
+		 *
+		 * WordPress marks media-library images with `sizes="auto, …"` after the block has
+		 * rendered, and a browser that implements auto sizes lays such an image out as
+		 * size-contained: it stops using the file's intrinsic ratio, so
+		 * `width: 100%; height: auto` — how every NextSaaS image is sized — produced a
+		 * wildly wrong height (a 1168×584 screenshot rendered 1168×1500, and no author
+		 * rule can override the containment). A declared `aspect-ratio` is not intrinsic
+		 * and therefore always applies, which keeps the pixels at the proportions the
+		 * file really has whatever the browser does with auto sizes.
+		 */
+		$nextsaas_size  = wp_get_attachment_image_src( $media_id, 'full' );
+		$nextsaas_ratio = is_array( $nextsaas_size ) && ! empty( $nextsaas_size[1] ) && ! empty( $nextsaas_size[2] )
+			? ( (int) $nextsaas_size[1] ) . ' / ' . ( (int) $nextsaas_size[2] )
+			: '';
+
 		$image = wp_get_attachment_image(
 			$media_id,
 			'full',
@@ -498,6 +1342,7 @@ function nextsaas_media( array $media, string $class_name, string $loading = 'la
 					'alt'       => $alt,
 					'loading'   => $loading,
 					'decoding'  => 'async',
+					'style'     => '' !== $nextsaas_ratio ? 'aspect-ratio:' . $nextsaas_ratio : '',
 				),
 			),
 		);
@@ -577,24 +1422,34 @@ function nextsaas_media_placeholder( array $media ): string {
  * does for a preview-only control; a non-empty URL renders an `<a>`. Variants map
  * onto the render's own class names so no second button vocabulary appears.
  *
- * @param array<string, mixed> $cta   Row with `label`, `url`, `variant`, `arrow`, `icon`.
+ * @param array<string, mixed> $cta   Row with `label`, `url`, `variant`, `arrow`, `icon` and an optional
+ *                                    `richPath` naming the in-place editing marker the label carries.
  * @param string               $extra Extra classes appended to the button classes.
  *
  * @return string CTA markup, or an empty string when it carries no label.
  */
 function nextsaas_cta( array $cta, string $extra = '' ): string {
-	$label = is_scalar( $cta['label'] ?? '' ) ? trim( (string) $cta['label'] ) : '';
+	$label = trim( nextsaas_attr( $cta, 'label' ) );
 
 	if ( '' === $label ) {
 		return '';
 	}
 
-	$url     = is_scalar( $cta['url'] ?? '' ) ? trim( (string) $cta['url'] ) : '';
-	$variant = is_scalar( $cta['variant'] ?? '' ) ? (string) $cta['variant'] : 'primary';
+	$url     = trim( nextsaas_attr( $cta, 'url' ) );
+	$variant = nextsaas_attr( $cta, 'variant', 'primary' );
 	$arrow   = ! empty( $cta['arrow'] );
 	// The approved render puts an inline arrow-up-right inside a call to action
 	// unless it is a chrome control (the drawer toggle, a dialog dismiss).
 	$icon    = ! array_key_exists( 'icon', $cta ) || ! empty( $cta['icon'] );
+
+	/*
+	 * A caller that renders a per-row call to action — a pricing plan, for example —
+	 * names the marker that row's label is edited through. Without it the marker stays
+	 * the literal `ctaLabel` every other caller already used, so nothing about the
+	 * existing callers changes.
+	 */
+	$rich_path = trim( nextsaas_attr( $cta, 'richPath' ) );
+	$rich      = 'data-nextsaas-rich="' . esc_attr( '' !== $rich_path ? $rich_path : 'ctaLabel' ) . '"';
 
 	$classes = array( 'btn', 'btn-' . sanitize_html_class( $variant ) );
 
@@ -607,13 +1462,13 @@ function nextsaas_cta( array $cta, string $extra = '' ): string {
 	}
 
 	$class_attr = esc_attr( implode( ' ', $classes ) );
-	$rich       = nextsaas_rich( $label ) . ( $icon ? nextsaas_icon( 'arrow-up-right' ) : '' );
+	$inner      = nextsaas_rich( $label ) . ( $icon ? nextsaas_icon( 'arrow-up-right' ) : '' );
 
 	if ( '' === $url ) {
-		return '<button type="button" class="' . $class_attr . '" data-nextsaas-rich="ctaLabel">' . $rich . '</button>';
+		return '<button type="button" class="' . $class_attr . '" ' . $rich . '>' . $inner . '</button>';
 	}
 
-	return '<a class="' . $class_attr . '" href="' . esc_url( nextsaas_resolve_url( $url ) ) . '" data-nextsaas-rich="ctaLabel">' . $rich . '</a>';
+	return '<a class="' . $class_attr . '" href="' . esc_url( nextsaas_resolve_url( $url ) ) . '" ' . $rich . '>' . $inner . '</a>';
 }
 
 /**

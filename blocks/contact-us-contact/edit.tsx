@@ -14,8 +14,17 @@
 
 import { InnerBlocks, InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { Notice, PanelBody, TextControl } from '@wordpress/components';
+import { useCallback, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import type { CSSProperties } from 'react';
 
+import ColourControls, {
+	AppearanceNotice,
+	appearanceKeyOf,
+	SectionAppearancePreview,
+	type SectionAppearanceReading,
+} from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import Repeater, { type RepeaterField } from '../../resources/ts/editor/repeater';
 import RichTextOverlay, {
 	type RichTextTarget,
@@ -65,10 +74,45 @@ export default function Edit({
 	setAttributes,
 	isSelected,
 }: EditorEditProps<ContactUsContactAttributes>): JSX.Element {
-	const blockProps = useBlockProps({
-		className: 'nextsaas-scope nextsaas-contact-us-contact section ruled',
-	});
 	const routes = Array.isArray(attributes.routes) ? attributes.routes : [];
+	const [appearance, setAppearance] =
+		useState<SectionAppearanceReading | null>(null);
+	const appearanceKey = appearanceKeyOf(attributes);
+
+	/*
+	 * This section is edited natively, so it has no server-rendered root to read the
+	 * appearance from. `SectionAppearancePreview` renders the same block in a hidden
+	 * container and reports what the renderer resolved; only the presence classes and
+	 * custom properties are applied here, and a response for attributes the author has
+	 * already changed is discarded rather than applied.
+	 */
+	const onAppearance = useCallback(
+		(reading: SectionAppearanceReading | null) => {
+			setAppearance(reading && reading.key === appearanceKey ? reading : null);
+		},
+		[appearanceKey],
+	);
+
+	const appearanceStyle = useMemo((): CSSProperties | undefined => {
+		if (!appearance) {
+			return undefined;
+		}
+
+		const entries = Object.entries(appearance.properties);
+
+		return entries.length > 0
+			? (Object.fromEntries(entries) as CSSProperties)
+			: undefined;
+	}, [appearance]);
+
+	const blockProps = useBlockProps({
+		className: [
+			'nextsaas-scope nextsaas-contact-us-contact section ruled',
+			...(appearance?.classes ?? []),
+		].join(' '),
+		'data-nextsaas-section': 'contact-us-contact',
+		style: appearanceStyle,
+	});
 
 	return (
 		<>
@@ -107,11 +151,27 @@ export default function Edit({
 						}
 					/>
 				</PanelBody>
+
+				<ColourControls attributes={attributes} setAttributes={setAttributes} />
+				<SpacingControls attributes={attributes} setAttributes={setAttributes} />
 			</InspectorControls>
+
+			<AppearanceNotice
+				attributes={attributes}
+				appearance={appearance}
+				onUseThemeForegrounds={() =>
+					setAttributes({ sectionHeading: '', sectionText: '' })
+				}
+			/>
+			<SectionAppearancePreview
+				block="nextsaas/contact-us-contact"
+				attributes={attributes}
+				onAppearance={onAppearance}
+			/>
 
 			<section {...blockProps}>
 				<div className="container">
-					<div className="contact-layout">
+					<div className="contact-layout" data-nextsaas-gap="grid">
 						<aside className="contact-aside">
 							<p className="eyebrow" data-nextsaas-rich="eyebrow">
 								{attributes.eyebrow ?? ''}

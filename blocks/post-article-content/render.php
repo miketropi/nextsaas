@@ -84,7 +84,7 @@ $nextsaas_show_toc = count( $nextsaas_headings ) > 1;
 	echo nextsaas_section_attrs( 'post-article-content', $attributes, array( 'section', 'ruled' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by core.
 ?>>
 	<div class="container">
-		<div class="article-layout">
+		<div class="article-layout" data-nextsaas-gap="grid">
 			<?php if ( $nextsaas_show_toc ) : ?>
 				<aside class="article-toc" aria-label="<?php echo esc_attr( nextsaas_attr( $attributes, 'tocAriaLabel' ) ); ?>">
 					<p class="meta" data-nextsaas-rich="tocLabel"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'tocLabel' ) ); ?></p>

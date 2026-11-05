@@ -33,7 +33,7 @@ $nextsaas_secondary_url = nextsaas_attr( $attributes, 'secondaryUrl' );
 <section <?php
 	echo nextsaas_section_attrs( 'error-404-not-found', $attributes, array( 'error-hero' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by core.
 ?>>
-	<div class="container">
+	<div class="container" data-nextsaas-gap="flow">
 		<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 		<div class="error-number" data-nextsaas-rich="errorNumber"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'errorNumber' ) ); ?></div>
 		<h1 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h1>

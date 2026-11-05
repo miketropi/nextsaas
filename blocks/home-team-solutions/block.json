@@ -8,6 +8,22 @@
 	"icon": "layout",
 	"textdomain": "nextsaas",
 	"attributes": {
+		"sectionBg": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionHeading": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionText": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionGap": {
+			"type": "string",
+			"default": ""
+		},
 		"sectionId": {
 			"type": "string",
 			"default": "teams"
@@ -104,6 +120,8 @@
 		}
 	},
 	"supports": {
+		"spacing": { "margin": true, "padding": true },
+		"color": { "background": false, "text": false, "link": false },
 		"html": false,
 		"anchor": true
 	},

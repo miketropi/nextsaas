@@ -1,3 +1,5 @@
+import type { SectionAppearanceAttributes } from '../../resources/ts/editor/types';
+
 /**
  * Attributes of `nextsaas/home-impact-features`.
  *
@@ -7,7 +9,7 @@
  * interface no implicit index signature, so a named item interface would need a
  * cast at the call site.
  */
-export interface HomeImpactFeaturesAttributes extends Record<string, unknown> {
+export interface HomeImpactFeaturesAttributes extends Record<string, unknown>, SectionAppearanceAttributes {
 	sectionId: string;
 	eyebrow: string;
 	heading: string;

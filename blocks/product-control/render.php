@@ -6,12 +6,12 @@ $nextsaas_items = nextsaas_items( $attributes, 'items' );
 ?>
 <section <?php echo nextsaas_section_attrs( 'product-control', $attributes, array( 'section' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?> >
 	<div class="container">
-		<div class="grid-1-2">
+		<div class="grid-1-2" data-nextsaas-gap="grid">
 			<div>
 				<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 				<h2 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h2>
 			</div>
-			<div class="grid-2">
+			<div class="grid-2" data-nextsaas-gap="grid">
 				<?php foreach ( $nextsaas_items as $nextsaas_index => $nextsaas_item ) : ?>
 					<article class="value-card">
 						<h3 data-nextsaas-rich="items.<?php echo esc_attr( (string) $nextsaas_index ); ?>.heading"><?php echo nextsaas_rich( (string) ( $nextsaas_item['heading'] ?? '' ) ); ?></h3>

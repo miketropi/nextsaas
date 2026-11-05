@@ -8,10 +8,17 @@
  */
 
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
+import {
+	PanelBody,
+	TextareaControl,
+	TextControl,
+	ToggleControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import Repeater, {
 	type RepeaterField,
 	type RepeaterItem,
@@ -19,6 +26,7 @@ import Repeater, {
 import RichTextOverlay, {
 	type RichTextTarget,
 } from '../../resources/ts/editor/rich-text-overlay';
+import { urlHelpWithStructuralNote } from '../../resources/ts/editor/url-help';
 import type { EditorEditProps } from '../../resources/ts/editor/types';
 import type { HomePricingAttributes } from './types';
 
@@ -40,33 +48,26 @@ const planFields: RepeaterField[] = [
 	{ key: 'unit', label: __('Price unit', 'nextsaas') },
 	{ key: 'note', label: __('Period note', 'nextsaas') },
 	{ key: 'ctaLabel', label: __('Link label', 'nextsaas') },
-	{ key: 'featured', label: __('Featured', 'nextsaas'), control: 'toggle' },
-];
-
-/** Fields of one feature row inside a plan. */
-const featureFields: RepeaterField[] = [
-	{ key: 'feature', label: __('Feature', 'nextsaas') },
+	{ key: 'ctaUrl', label: __('Link URL', 'nextsaas'), help: urlHelpWithStructuralNote },
 ];
 
 /**
- * Feature strings of a plan row.
+ * Feature lines of a plan row.
  *
- * The repeater row is an index-signature record, so the nested list has to be checked
- * before it can be handed to the inner repeater.
+ * The plan row is an index-signature record, so the flat list has to be checked before
+ * it can be handed to the textarea. Blank lines are kept: a line the author is still
+ * typing is their work in progress, and the renderer skips a blank entry rather than
+ * printing an empty list item.
  *
  * @param row Plan row.
- * @return Feature rows.
+ * @return Feature lines.
  */
-function readFeatures(row: RepeaterItem): Array<Record<string, unknown>> {
+function readFeatures(row: RepeaterItem): string[] {
 	const features = row.features;
 
-	if (!Array.isArray(features)) {
-		return [];
-	}
-
-	return features
-		.filter((feature): feature is string => 'string' === typeof feature)
-		.map((feature) => ({ feature }));
+	return Array.isArray(features)
+		? features.filter((feature): feature is string => 'string' === typeof feature)
+		: [];
 }
 
 export default function Edit({
@@ -148,6 +149,7 @@ export default function Edit({
 							unit: '',
 							note: '',
 							ctaLabel: '',
+							ctaUrl: '',
 							features: [],
 							featured: false,
 						})}
@@ -158,24 +160,14 @@ export default function Edit({
 						}
 						renderItemExtras={(draft, update) => (
 							<>
-								<Repeater
+								<TextareaControl
+									__nextHasNoMarginBottom
 									label={__('Features', 'nextsaas')}
-									items={readFeatures(draft)}
-									fields={featureFields}
-									onChange={(rows) =>
-										update({
-											features: rows.map((row) =>
-												'string' === typeof row.feature ? row.feature : ''
-											),
-										})
+									help={__('One feature per line. No item limit.', 'nextsaas')}
+									value={readFeatures(draft).join('\n')}
+									onChange={(text) =>
+										update({ features: text.split(/\r?\n/) })
 									}
-									createItem={() => ({ feature: '' })}
-									getItemLabel={(row, index) =>
-										'string' === typeof row.feature && '' !== row.feature
-											? row.feature
-											: `${__('Feature', 'nextsaas')} ${index + 1}`
-									}
-									minimumItems={0}
 								/>
 								<ToggleControl
 									label={__('Feature this plan', 'nextsaas')}
@@ -190,9 +182,9 @@ export default function Edit({
 						)}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
-			<BlockPreview block="nextsaas/home-pricing" attributes={attributes} />
+			<BlockPreview block="nextsaas/home-pricing" attributes={attributes} setAttributes={setAttributes} />
 
 			<RichTextOverlay
 				targets={[...sectionTargets, ...planTargets]}

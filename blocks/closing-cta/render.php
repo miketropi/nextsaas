@@ -30,7 +30,7 @@ $nextsaas_cta = nextsaas_cta(
 <section <?php
 	echo nextsaas_section_attrs( 'closing-cta', $attributes, array( 'section', 'closing' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by core.
 ?>>
-	<div class="container">
+	<div class="container" data-nextsaas-gap="flow">
 		<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 		<h2 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h2>
 		<p class="lead" data-nextsaas-rich="lead"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'lead' ) ); ?></p>

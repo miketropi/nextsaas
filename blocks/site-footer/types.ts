@@ -1,3 +1,5 @@
+import type { SectionAppearanceAttributes } from '../../resources/ts/editor/types';
+
 export interface FooterLink extends Record<string, unknown> {
 	label: string;
 	url: string;
@@ -20,7 +22,7 @@ export interface BottomItem extends Record<string, unknown> {
 	href: string;
 }
 
-export interface SiteFooterAttributes extends Record<string, unknown> {
+export interface SiteFooterAttributes extends Record<string, unknown>, SectionAppearanceAttributes {
 	sectionId: string;
 	newsletterHeading: string;
 	newsletterLabel: string;

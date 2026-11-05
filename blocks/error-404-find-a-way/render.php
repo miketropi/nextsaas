@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	echo nextsaas_section_attrs( 'error-404-find-a-way', $attributes, array( 'section', 'ruled' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by core.
 ?>>
 	<div class="container">
-		<div class="grid-3">
+		<div class="grid-3" data-nextsaas-gap="grid">
 			<?php foreach ( nextsaas_items( $attributes, 'items' ) as $nextsaas_item ) : ?>
 				<?php
 				$nextsaas_heading = is_scalar( $nextsaas_item['heading'] ?? '' ) ? (string) $nextsaas_item['heading'] : '';

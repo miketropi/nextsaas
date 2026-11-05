@@ -12,6 +12,8 @@ import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import RichTextOverlay, {
 	type RichTextTarget,
 } from '../../resources/ts/editor/rich-text-overlay';
@@ -79,9 +81,9 @@ export default function Edit({
 						onChange={(fallbackLead) => setAttributes({ fallbackLead })}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
-			<BlockPreview block="nextsaas/post-article-hero" attributes={attributes} />
+			<BlockPreview block="nextsaas/post-article-hero" attributes={attributes} setAttributes={setAttributes} />
 
 			<RichTextOverlay
 				targets={targets}

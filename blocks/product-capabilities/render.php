@@ -60,7 +60,7 @@ $nextsaas_group  = 'nextsaas-product-capabilities';
 				tabindex="0"
 				<?php echo 0 === $nextsaas_index ? '' : 'hidden'; ?>
 			>
-				<div class="hero-split">
+				<div class="hero-split" data-nextsaas-gap="grid">
 					<div>
 						<h3 data-nextsaas-rich="panels.<?php echo esc_attr( (string) $nextsaas_index ); ?>.heading"><?php echo nextsaas_rich( is_scalar( $nextsaas_panel['heading'] ?? '' ) ? (string) $nextsaas_panel['heading'] : '' ); ?></h3>
 						<p data-nextsaas-rich="panels.<?php echo esc_attr( (string) $nextsaas_index ); ?>.body"><?php echo nextsaas_rich( is_scalar( $nextsaas_panel['body'] ?? '' ) ? (string) $nextsaas_panel['body'] : '' ); ?></p>

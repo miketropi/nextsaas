@@ -21,6 +21,8 @@ import {
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import MediaControl from '../../resources/ts/editor/media-control';
 import Repeater, { type RepeaterItem } from '../../resources/ts/editor/repeater';
 import { urlHelpWithStructuralNote } from '../../resources/ts/editor/url-help';
@@ -223,10 +225,10 @@ export default function Edit({
 						)}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
 			<div {...blockProps}>
-				<BlockPreview block="nextsaas/site-header" attributes={attributes} />
+				<BlockPreview block="nextsaas/site-header" attributes={attributes} setAttributes={setAttributes} />
 			</div>
 		</>
 	);

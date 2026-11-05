@@ -10,6 +10,22 @@
 	"keywords": [ "closing", "cta", "invitation", "next step" ],
 	"textdomain": "nextsaas",
 	"attributes": {
+		"sectionBg": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionHeading": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionText": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionGap": {
+			"type": "string",
+			"default": ""
+		},
 		"sectionId": { "type": "string", "default": "next-step" },
 		"eyebrow": { "type": "string", "default": "A NEW WAY FORWARD" },
 		"heading": {
@@ -27,6 +43,8 @@
 		"ctaIcon": { "type": "boolean", "default": true }
 	},
 	"supports": {
+		"spacing": { "margin": true, "padding": true },
+		"color": { "background": false, "text": false, "link": false },
 		"html": false,
 		"anchor": true
 	},

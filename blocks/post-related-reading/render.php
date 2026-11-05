@@ -67,7 +67,7 @@ if ( ! $nextsaas_related->have_posts() && array() !== $nextsaas_terms ) {
 	<div class="container">
 		<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 		<h2 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h2>
-		<div class="post-grid">
+		<div class="post-grid" data-nextsaas-gap="grid">
 			<?php
 			while ( $nextsaas_related->have_posts() ) :
 				$nextsaas_related->the_post();

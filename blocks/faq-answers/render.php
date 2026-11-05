@@ -38,7 +38,7 @@ $nextsaas_count_text = sprintf(
 	echo nextsaas_section_attrs( 'faq-answers', $attributes, array( 'section', 'ruled' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by core.
 ?>>
 	<div class="container">
-		<div class="faq-layout" data-nextsaas-faq>
+		<div class="faq-layout" data-nextsaas-gap="grid" data-nextsaas-faq>
 			<aside class="faq-sidebar">
 				<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 				<div class="filter-options" role="group" aria-label="<?php echo esc_attr( nextsaas_attr( $attributes, 'filterLabel' ) ); ?>">
@@ -81,7 +81,7 @@ $nextsaas_count_text = sprintf(
 					data-faq-count-many="<?php echo esc_attr( nextsaas_attr( $attributes, 'countMany' ) ); ?>"
 				><?php echo esc_html( $nextsaas_count_text ); ?></p>
 
-				<div class="faq" data-nextsaas-faq-items>
+				<div class="faq" data-nextsaas-gap="flow" data-nextsaas-faq-items>
 					<?php foreach ( $nextsaas_items as $nextsaas_item ) : ?>
 						<?php
 						$nextsaas_question = is_scalar( $nextsaas_item['question'] ?? '' ) ? (string) $nextsaas_item['question'] : '';

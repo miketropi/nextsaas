@@ -4,6 +4,33 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Every custom block declares the same four optional appearance attributes — `sectionBg`, `sectionHeading`, `sectionText` and `sectionGap` — with a `Colours` panel and a `Spacing` panel, native Dimensions spacing, and core's own colour controls disabled so there is one colour UI rather than two owners.
+- `nextsaas_section_appearance()` turns those attributes into `has-nextsaas-*` presence classes and `--nextsaas-block-*` properties on the block root; `nextsaas_resolve_section_color()` and `nextsaas_resolve_section_gap()` accept only palette references, spacing presets and bounded colour literals, so a hostile stored value emits nothing.
+- `nextsaas_section_foregrounds()` derives a readable heading/content/focus pair when the author changed the background and left a foreground empty, measured with WCAG ratios against the real page canvas; the roles are emitted as `--nextsaas-derived-*` properties and the ratios as data attributes, so the editor notice can never disagree with the page.
+- `resources/ts/editor/spacing-controls.tsx`, plus `AppearanceNotice`, `readSectionAppearance()` and `SectionAppearancePreview` in the shared colour module. The last one gives the natively edited contact section the same appearance values by reading a hidden server render instead of a second derivation algorithm.
+- Replaceable hero decoration: `decorationMediaId`, `decorationMediaUrl`, `decorationMediaAlt` and `decorationRotate`, with a `Hero decoration` panel. The approved star SVG returns when no image is selected, and rotation is a switch.
+- `nextsaas-content-image`, `nextsaas-portrait-image`, `nextsaas-icon-image`, `hero-decoration-image`, `capability-image` and `team-panel-image`: real images keep their intrinsic proportions instead of the reservation box ratios.
+- Independent capability screenshots: two pickers that patch one row of the shared `media` attribute each, merged over the manifest's own default rows so a short saved array still renders both labelled reservations.
+- Per-row images: `Panel image` for every team-solutions panel (falling back to the shared default panel image, then to the placeholder), and `Icon image` for every automation step and impact feature (falling back to the stored icon SVG).
+- Testimonial attribution is editable: the Stories repeater carries the `Customer name, role & company` field that was already stored and rendered.
+- Home pricing: a `Link URL` per plan rendered through `nextsaas_cta()`, and an unrestricted `Features` textarea.
+
+### Changed
+
+- `BlockPreview` splits native spacing between the editor wrapper (margin) and the rendered section (padding), so a section's top spacing applies exactly once in the editor and once on the front end.
+- `nextsaas_media()` declares each attachment image's own aspect ratio. WordPress marks library images with `sizes="auto, …"`, and a browser that implements auto sizes lays such an image out as size-contained — which discarded the ratio behind `height: auto` and rendered a 1168×584 photograph at 1168×1500.
+- `nextsaas_cta()` accepts an optional `richPath` for a per-row call to action, and reads its own row through `nextsaas_attr()`; callers without it still emit the literal `ctaLabel` marker.
+- Home pricing plan rows read every field through `nextsaas_attr()`, so a row saved before a field existed renders without a PHP notice.
+- Home pricing renders an unrestricted feature list, skipping blank lines, and the plan CTA is a real link once a destination is set.
+- The carousel's per-card width formula uses the selected section gap while keeping each breakpoint's column count.
+
+### Fixed
+
+- Duplicate `Section` panel in the Home testimonial editor.
+- Home pricing exposed `Featured` twice; only the item's own `Feature this plan` toggle remains.
+
 ## [1.0.0]
 
 ### Added

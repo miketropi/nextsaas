@@ -50,7 +50,7 @@ $nextsaas_secondary_url = nextsaas_attr( $attributes, 'secondaryUrl' );
 <section <?php
 	echo nextsaas_section_attrs( 'product-workspace-preview', $attributes, array( 'section' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by core.
 ?>>
-	<div class="container">
+	<div class="container" data-nextsaas-gap="flow">
 		<div class="product-showcase">
 			<?php echo $nextsaas_media; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built by nextsaas_media().?>
 		</div>

@@ -4037,3 +4037,127 @@ body {
   max-width: 100%;
   height: auto;
 }
+.nextsaas-scope[data-nextsaas-section].has-nextsaas-background {
+  background-color: var(--nextsaas-block-bg);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-derived-heading) {
+  --nextsaas-heading-role: var(--nextsaas-derived-heading);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-heading) {
+  --nextsaas-heading-role: var(--nextsaas-block-heading);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-heading, .has-nextsaas-derived-heading) :is(h1, h2, h3, h4, h5, h6), .nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-heading, .has-nextsaas-derived-heading) :is(h1, h2, h3, h4, h5, h6) :is(em, strong, b, i, span, a, small, mark, sup, sub, code, u, s) {
+  color: var(--nextsaas-heading-role);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-derived-content) {
+  --nextsaas-content-role: var(--nextsaas-derived-text);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content) {
+  --nextsaas-content-role: var(--nextsaas-block-text);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) {
+  color: var(--nextsaas-content-role);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(p, li, dt, dd, blockquote, figcaption, label, legend, caption, cite, time, address, th, td, summary, strong, em, b, i, small, mark, sup, sub, code, u, s, span, a, button, input, textarea, select):not(:is(h1, h2, h3, h4, h5, h6) *):not(.lucide, .reserve-cross, .round-link, .carousel-btn) {
+  color: var(--nextsaas-content-role);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(.plan, .plan.featured, .featured, .value-card) {
+  background-color: var(--nextsaas-derived-content-surface, transparent);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(.plan.featured, .featured) {
+  background-color: var(--nextsaas-derived-content-surface, var(--nextsaas-fg));
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(.blog-art, .editorial-art) {
+  background-color: var(--nextsaas-derived-content-surface, var(--nextsaas-fg-soft));
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) dialog {
+  background-color: var(--nextsaas-derived-content-surface, var(--nextsaas-bg));
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(.btn) {
+  background-color: var(--nextsaas-derived-content-surface, var(--nextsaas-accent));
+  border-color: var(--nextsaas-content-role);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(.btn-secondary, .btn-ghost) {
+  background-color: var(--nextsaas-derived-content-surface, transparent);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(.btn):is(:hover, :focus-visible, :active) {
+  background-color: var(--nextsaas-derived-content-surface, var(--nextsaas-accent));
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklch, var(--nextsaas-derived-content-surface, var(--nextsaas-accent)) 88%, var(--nextsaas-content-role));
+  }
+  border-color: var(--nextsaas-content-role);
+  color: var(--nextsaas-content-role);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(.blog-art, .editorial-art, .plan, .value-card):is(:hover, :focus-within) {
+  border-color: var(--nextsaas-content-role);
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) :is(.plan, .plan.featured, .featured, .value-card, .blog-art, .editorial-art, dialog) :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--nextsaas-heading-role, var(--nextsaas-content-role));
+}
+.nextsaas-scope[data-nextsaas-section]:is(.has-nextsaas-content, .has-nextsaas-derived-content) .plan li {
+  border-top-color: var(--nextsaas-content-role);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-top-color: color-mix(in oklch, var(--nextsaas-content-role) 25%, transparent);
+  }
+}
+.nextsaas-scope[data-nextsaas-section].has-nextsaas-background :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline-color: var(--nextsaas-derived-focus, var(--nextsaas-accent));
+}
+.nextsaas-scope[data-nextsaas-section].has-nextsaas-gap [data-nextsaas-gap] {
+  gap: var(--nextsaas-block-gap);
+}
+.nextsaas-scope[data-nextsaas-section].has-nextsaas-gap [data-nextsaas-gap='flow'] {
+  display: flex;
+  flex-direction: column;
+}
+.nextsaas-scope[data-nextsaas-section].has-nextsaas-gap [data-nextsaas-gap='flow'] > * {
+  margin-block: 0;
+}
+.nextsaas-scope[data-nextsaas-section].has-nextsaas-gap .blog-track[data-nextsaas-gap] .blog-card {
+  flex: 0 0 calc((100% - 2 * var(--nextsaas-block-gap)) / 3);
+}
+@media (max-width: 920px) {
+  .nextsaas-scope[data-nextsaas-section].has-nextsaas-gap .blog-track[data-nextsaas-gap] .blog-card {
+    flex-basis: calc((100% - var(--nextsaas-block-gap)) / 2);
+  }
+}
+@media (max-width: 680px) {
+  .nextsaas-scope[data-nextsaas-section].has-nextsaas-gap .blog-track[data-nextsaas-gap] .blog-card {
+    flex-basis: 88%;
+  }
+}
+.nextsaas-scope .hero-star {
+  animation: none;
+}
+.nextsaas-scope .hero-star.is-rotating {
+  animation: star-turn 60s linear infinite;
+}
+.nextsaas-scope .hero-star .hero-decoration-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.nextsaas-scope :is(.nextsaas-content-image, .nextsaas-portrait-image) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  min-height: 0;
+  min-width: 0;
+  align-self: start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  object-fit: contain;
+}
+.nextsaas-scope .capability .capability-image {
+  margin-bottom: 32px;
+}
+.nextsaas-scope .nextsaas-icon-image {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}

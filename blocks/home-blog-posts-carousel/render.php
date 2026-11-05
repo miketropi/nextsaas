@@ -54,6 +54,7 @@ $nextsaas_uid   = wp_unique_id( 'nextsaas-journal-' );
 				aria-label="<?php echo esc_attr__( 'Journal posts', 'nextsaas' ); ?>"
 				tabindex="0"
 				data-nextsaas-track
+				data-nextsaas-gap="flex"
 			>
 				<?php
 				while ( $nextsaas_query->have_posts() ) :

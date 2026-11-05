@@ -16,6 +16,22 @@
 	],
 	"textdomain": "nextsaas",
 	"attributes": {
+		"sectionBg": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionHeading": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionText": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionGap": {
+			"type": "string",
+			"default": ""
+		},
 		"sectionId": {
 			"type": "string",
 			"default": "pricing"
@@ -81,6 +97,7 @@
 						"Board & list views"
 					],
 					"ctaLabel": "Explore Personal",
+					"ctaUrl": "",
 					"featured": false
 				},
 				{
@@ -97,6 +114,7 @@
 						"Workflow automation"
 					],
 					"ctaLabel": "Explore Team",
+					"ctaUrl": "",
 					"featured": true
 				},
 				{
@@ -113,12 +131,15 @@
 						"Integration planning"
 					],
 					"ctaLabel": "Explore Business",
+					"ctaUrl": "",
 					"featured": false
 				}
 			]
 		}
 	},
 	"supports": {
+		"spacing": { "margin": true, "padding": true },
+		"color": { "background": false, "text": false, "link": false },
 		"html": false,
 		"anchor": true
 	},

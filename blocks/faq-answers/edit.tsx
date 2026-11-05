@@ -12,6 +12,8 @@ import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import Repeater, { type RepeaterField } from '../../resources/ts/editor/repeater';
 import { urlHelpWithStructuralNote } from '../../resources/ts/editor/url-help';
 import type { EditorEditProps } from '../../resources/ts/editor/types';
@@ -136,9 +138,9 @@ export default function Edit({
 						}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
-			<BlockPreview block="nextsaas/faq-answers" attributes={attributes} />
+			<BlockPreview block="nextsaas/faq-answers" attributes={attributes} setAttributes={setAttributes} />
 		</>
 	);
 }

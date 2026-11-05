@@ -83,7 +83,7 @@ $nextsaas_filters = array(
 		</div>
 
 		<?php if ( '' === $nextsaas_term ) : ?>
-			<div class="search-default">
+			<div class="search-default" data-nextsaas-gap="flow">
 				<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 				<div class="quick-links">
 					<?php foreach ( nextsaas_items( $attributes, 'quickLinks' ) as $nextsaas_link ) : ?>

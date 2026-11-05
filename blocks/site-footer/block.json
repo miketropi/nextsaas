@@ -10,6 +10,22 @@
 	"keywords": [ "footer", "newsletter", "social", "navigation" ],
 	"textdomain": "nextsaas",
 	"attributes": {
+		"sectionBg": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionHeading": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionText": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionGap": {
+			"type": "string",
+			"default": ""
+		},
 		"sectionId": { "type": "string", "default": "" },
 		"newsletterHeading": { "type": "string", "default": "A little perspective.<br>Not another distraction." },
 		"newsletterLabel": { "type": "string", "default": "NEXT NOTES / OCCASIONAL IDEAS FOR BETTER WORK" },
@@ -48,7 +64,11 @@
 		"termsDialogTitle": { "type": "string", "default": "Template terms" },
 		"legalDialogBody": { "type": "string", "default": "This independent template concept has no connected service. Forms validate in your browser and do not send or save personal information. Replace this notice with approved legal content before publishing." }
 	},
-	"supports": { "html": false, "anchor": true },
+	"supports": {
+		"spacing": { "margin": true, "padding": true },
+		"color": { "background": false, "text": false, "link": false },
+		"html": false, "anchor": true
+	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./editor.css",
 	"render": "file:./render.php",

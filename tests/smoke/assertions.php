@@ -45,6 +45,63 @@ function nextsaas_smoke_check( string $label, bool $ok, string $detail = '' ): v
 	echo '  FAIL ' . $label . ( '' !== $detail ? ' — ' . $detail : '' ) . "\n";
 }
 
+/**
+ * Parse rendered markup so the behavioural checks can assert on output, not on source.
+ *
+ * @param string $markup Rendered block markup.
+ *
+ * @return DOMDocument Parsed document.
+ */
+function nextsaas_smoke_dom( string $markup ): DOMDocument {
+	$document = new DOMDocument();
+
+	libxml_use_internal_errors( true );
+	$document->loadHTML( '<?xml encoding="utf-8" ?>' . $markup );
+	libxml_clear_errors();
+
+	return $document;
+}
+
+/**
+ * The first node matching an XPath expression, or null.
+ *
+ * @param DOMDocument $document Parsed markup.
+ * @param string      $xpath    XPath expression.
+ *
+ * @return DOMElement|null Matching element.
+ */
+function nextsaas_smoke_node( DOMDocument $document, string $xpath ): ?DOMElement {
+	$found = ( new DOMXPath( $document ) )->query( $xpath );
+
+	if ( false === $found || 0 === $found->length ) {
+		return null;
+	}
+
+	$node = $found->item( 0 );
+
+	return $node instanceof DOMElement ? $node : null;
+}
+
+/**
+ * Render one nextsaas block from attributes, with no inner blocks.
+ *
+ * @param string               $name  Registered block name.
+ * @param array<string, mixed> $attrs Block attributes.
+ *
+ * @return string Rendered markup.
+ */
+function nextsaas_smoke_render( string $name, array $attrs = array() ): string {
+	return (string) render_block(
+		array(
+			'blockName'    => $name,
+			'attrs'        => $attrs,
+			'innerBlocks'  => array(),
+			'innerHTML'    => '',
+			'innerContent' => array(),
+		),
+	);
+}
+
 echo "NextSaaS smoke\n";
 
 // The child is active and resolves to its parent.
@@ -213,6 +270,277 @@ nextsaas_smoke_check(
 nextsaas_smoke_check(
 	'the primary navigation location is registered',
 	array_key_exists( 'primary', get_registered_nav_menus() ),
+);
+
+// ── Section appearance: blank, preset, hostile and derived values ────────
+$nextsaas_blank_root = nextsaas_smoke_node(
+	nextsaas_smoke_dom( nextsaas_smoke_render( 'nextsaas/home-hero' ) ),
+	'//*[@data-nextsaas-section="home-hero"]',
+);
+
+nextsaas_smoke_check(
+	'blank appearance controls emit no override at all',
+	null !== $nextsaas_blank_root
+		&& ! str_contains( (string) $nextsaas_blank_root->getAttribute( 'style' ), '--nextsaas-' )
+		&& ! str_contains( (string) $nextsaas_blank_root->getAttribute( 'class' ), 'has-nextsaas-' ),
+	null !== $nextsaas_blank_root ? (string) $nextsaas_blank_root->getAttribute( 'style' ) : 'no root',
+);
+
+$nextsaas_preset_root = nextsaas_smoke_node(
+	nextsaas_smoke_dom(
+		nextsaas_smoke_render(
+			'nextsaas/home-hero',
+			array(
+				'sectionBg'  => 'contrast',
+				'sectionGap' => 'var:preset|spacing|nextsaas-lg',
+			),
+		),
+	),
+	'//*[@data-nextsaas-section="home-hero"]',
+);
+$nextsaas_preset_style = null !== $nextsaas_preset_root ? (string) $nextsaas_preset_root->getAttribute( 'style' ) : '';
+$nextsaas_preset_class = null !== $nextsaas_preset_root ? (string) $nextsaas_preset_root->getAttribute( 'class' ) : '';
+
+nextsaas_smoke_check(
+	'a preset background emits the preset variable, not a copied colour',
+	str_contains( $nextsaas_preset_style, '--nextsaas-block-bg:var(--wp--preset--color--contrast)' )
+		&& str_contains( $nextsaas_preset_class, 'has-nextsaas-background' ),
+	$nextsaas_preset_style,
+);
+
+nextsaas_smoke_check(
+	'a spacing preset emits the spacing variable',
+	str_contains( $nextsaas_preset_style, '--nextsaas-block-gap:var(--wp--preset--spacing--nextsaas-lg)' )
+		&& str_contains( $nextsaas_preset_class, 'has-nextsaas-gap' ),
+	$nextsaas_preset_style,
+);
+
+nextsaas_smoke_check(
+	'an empty foreground over a changed background derives a readable pair',
+	str_contains( $nextsaas_preset_class, 'has-nextsaas-derived-heading' )
+		&& str_contains( $nextsaas_preset_class, 'has-nextsaas-derived-content' )
+		&& str_contains( $nextsaas_preset_style, '--nextsaas-derived-text:var(--wp--preset--color--' )
+		&& is_numeric( (string) ( null !== $nextsaas_preset_root ? $nextsaas_preset_root->getAttribute( 'data-nextsaas-content-ratio' ) : '' ) ),
+	$nextsaas_preset_style,
+);
+
+$nextsaas_hostile_root = nextsaas_smoke_node(
+	nextsaas_smoke_dom(
+		nextsaas_smoke_render(
+			'nextsaas/home-hero',
+			array(
+				'sectionBg'      => 'red;background-image:url(javascript:alert(1))',
+				'sectionHeading' => 'var(--evil)',
+				'sectionText'    => 'expression(alert(1))',
+				'sectionGap'     => '12px;position:fixed',
+			),
+		),
+	),
+	'//*[@data-nextsaas-section="home-hero"]',
+);
+$nextsaas_hostile_style = null !== $nextsaas_hostile_root ? (string) $nextsaas_hostile_root->getAttribute( 'style' ) : '';
+$nextsaas_hostile_class = null !== $nextsaas_hostile_root ? (string) $nextsaas_hostile_root->getAttribute( 'class' ) : '';
+
+nextsaas_smoke_check(
+	'hostile colour and gap values inject nothing',
+	! str_contains( $nextsaas_hostile_style, 'url(' )
+		&& ! str_contains( $nextsaas_hostile_style, 'position' )
+		&& ! str_contains( $nextsaas_hostile_style, 'evil' )
+		&& ! str_contains( $nextsaas_hostile_class, 'has-nextsaas-' ),
+	$nextsaas_hostile_style,
+);
+
+$nextsaas_explicit_root = nextsaas_smoke_node(
+	nextsaas_smoke_dom(
+		nextsaas_smoke_render( 'nextsaas/home-hero', array( 'sectionHeading' => '#345678' ) ),
+	),
+	'//*[@data-nextsaas-section="home-hero"]',
+);
+
+nextsaas_smoke_check(
+	'an explicit colour is stored and emitted byte-for-byte',
+	null !== $nextsaas_explicit_root
+		&& str_contains( (string) $nextsaas_explicit_root->getAttribute( 'style' ), '--nextsaas-block-heading:#345678' ),
+	null !== $nextsaas_explicit_root ? (string) $nextsaas_explicit_root->getAttribute( 'style' ) : 'no root',
+);
+
+// ── Per-panel media: own image, shared default, placeholder ─────────────
+$nextsaas_panels = nextsaas_smoke_dom(
+	nextsaas_smoke_render(
+		'nextsaas/home-team-solutions',
+		array(
+			'mediaUrl' => 'https://example.test/default-panel.png',
+			'panels'   => array(
+				array( 'key' => 'one', 'mediaUrl' => 'https://example.test/panel-b.png' ),
+				array( 'key' => 'two', 'mediaUrl' => '' ),
+				array( 'key' => 'three' ),
+			),
+		),
+	),
+);
+$nextsaas_panel_sources = array();
+
+foreach ( ( new DOMXPath( $nextsaas_panels ) )->query( '//*[contains(@class, "team-panel")]//img' ) as $nextsaas_panel_image ) {
+	if ( $nextsaas_panel_image instanceof DOMElement ) {
+		$nextsaas_panel_sources[] = (string) $nextsaas_panel_image->getAttribute( 'src' );
+	}
+}
+
+$nextsaas_panel_placeholders = ( new DOMXPath( $nextsaas_panels ) )->query( '//*[contains(@class, "team-panel")]//*[contains(@class, "image-reserve")]' );
+
+nextsaas_smoke_check(
+	'a panel shows its own image before the shared default',
+	3 === count( $nextsaas_panel_sources )
+		&& str_contains( $nextsaas_panel_sources[0], 'panel-b.png' )
+		&& str_contains( $nextsaas_panel_sources[1], 'default-panel.png' )
+		&& str_contains( $nextsaas_panel_sources[2], 'default-panel.png' )
+		&& 0 === $nextsaas_panel_placeholders->length,
+	implode( ', ', $nextsaas_panel_sources ),
+);
+
+$nextsaas_panel_fallback = nextsaas_smoke_dom(
+	nextsaas_smoke_render(
+		'nextsaas/home-team-solutions',
+		array(
+			'panels' => array(
+				array( 'key' => 'one', 'mediaUrl' => 'https://example.test/panel-b.png' ),
+				array( 'key' => 'two' ),
+			),
+		),
+	),
+);
+
+nextsaas_smoke_check(
+	'a panel with no image at all falls back to the labelled placeholder',
+	1 === ( new DOMXPath( $nextsaas_panel_fallback ) )->query( '//*[contains(@class, "team-panel")]//img' )->length
+		&& 1 === ( new DOMXPath( $nextsaas_panel_fallback ) )->query( '//*[contains(@class, "team-panel")]//*[contains(@class, "image-reserve")]' )->length,
+);
+
+// ── Panel icon images replace the SVG, and fall back to it ─────────────
+$nextsaas_automation = nextsaas_smoke_dom(
+	nextsaas_smoke_render(
+		'nextsaas/home-automation',
+		array(
+			'steps' => array(
+				array( 'heading' => 'One', 'icon' => 'workflow', 'mediaUrl' => 'https://example.test/step-one.png' ),
+				array( 'heading' => 'Two', 'icon' => 'focus' ),
+				array( 'heading' => 'Three' ),
+			),
+		),
+	),
+);
+$nextsaas_icon_images = ( new DOMXPath( $nextsaas_automation ) )->query( '//*[contains(@class, "flow-icon")]/img' );
+$nextsaas_icon_svgs   = ( new DOMXPath( $nextsaas_automation ) )->query( '//*[contains(@class, "flow-icon")]/svg' );
+
+nextsaas_smoke_check(
+	'a step icon image replaces its SVG and a step without one keeps it',
+	1 === $nextsaas_icon_images->length && 1 === $nextsaas_icon_svgs->length,
+	$nextsaas_icon_images->length . ' image(s), ' . $nextsaas_icon_svgs->length . ' svg(s)',
+);
+
+$nextsaas_impact = nextsaas_smoke_dom(
+	nextsaas_smoke_render(
+		'nextsaas/home-impact-features',
+		array(
+			'items' => array(
+				array( 'heading' => 'One', 'icon' => 'asterisk', 'mediaUrl' => 'https://example.test/impact-one.png' ),
+				array( 'heading' => 'Two', 'icon' => 'check' ),
+			),
+		),
+	),
+);
+
+nextsaas_smoke_check(
+	'an impact icon image replaces only the graphic in its index row',
+	1 === ( new DOMXPath( $nextsaas_impact ) )->query( '//*[contains(@class, "impact-index")]/img' )->length
+		&& 1 === ( new DOMXPath( $nextsaas_impact ) )->query( '//*[contains(@class, "impact-index")]/svg' )->length,
+);
+
+// ── Testimonial attribution ────────────────────────────────────────────
+$nextsaas_testimonial = nextsaas_smoke_dom(
+	nextsaas_smoke_render(
+		'nextsaas/home-testimonial',
+		array(
+			'items' => array(
+				array( 'heading' => 'Quote one', 'body' => 'Nguyễn An, CTO — Example Co' ),
+				array( 'heading' => 'Quote two', 'body' => '' ),
+			),
+		),
+	),
+);
+$nextsaas_captions = array();
+
+foreach ( ( new DOMXPath( $nextsaas_testimonial ) )->query( '//figcaption' ) as $nextsaas_caption ) {
+	$nextsaas_captions[] = trim( (string) $nextsaas_caption->textContent );
+}
+
+nextsaas_smoke_check(
+	'each story renders its own attribution and an empty one stays empty',
+	in_array( 'Nguyễn An, CTO — Example Co', $nextsaas_captions, true )
+		&& ! str_contains( strtolower( implode( ' ', $nextsaas_captions ) ), 'awaiting approval' ),
+	implode( ' | ', $nextsaas_captions ),
+);
+
+// ── Pricing: destinations and an unrestricted feature list ─────────────
+$nextsaas_pricing = nextsaas_smoke_dom(
+	nextsaas_smoke_render(
+		'nextsaas/home-pricing',
+		array(
+			'plans' => array(
+				array(
+					'name'     => 'Personal',
+					'ctaLabel' => 'Explore Personal',
+					'ctaUrl'   => '',
+					'features' => array( 'One', '', 'Two' ),
+				),
+				array(
+					'name'     => 'Team',
+					'ctaLabel' => 'Explore Team',
+					'ctaUrl'   => '/contact-us/',
+					'features' => array( 'Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5', 'Feature 6', 'Feature 7', 'Feature 8', 'Feature 9', 'Feature 10', 'Feature 11', 'Feature 12' ),
+				),
+			),
+		),
+	),
+);
+$nextsaas_price_doc = new DOMXPath( $nextsaas_pricing );
+$nextsaas_price_ctas = $nextsaas_price_doc->query( '//*[contains(@class, "plan")]//*[contains(@class, "btn")]' );
+$nextsaas_first_plan  = $nextsaas_price_doc->query( '//*[@data-nextsaas-plan="Personal"]//li' );
+$nextsaas_second_plan = $nextsaas_price_doc->query( '//*[@data-nextsaas-plan="Team"]//li' );
+
+$nextsaas_first_cta  = $nextsaas_price_ctas->item( 0 );
+$nextsaas_second_cta = $nextsaas_price_ctas->item( 1 );
+
+nextsaas_smoke_check(
+	'an empty destination stays a preview button and a filled one becomes a link',
+	$nextsaas_first_cta instanceof DOMElement
+		&& 'button' === strtolower( $nextsaas_first_cta->tagName )
+		&& $nextsaas_first_cta->getAttribute( 'data-nextsaas-rich' ) === 'plans.0.ctaLabel'
+		&& $nextsaas_second_cta instanceof DOMElement
+		&& 'a' === strtolower( $nextsaas_second_cta->tagName )
+		&& str_contains( $nextsaas_second_cta->getAttribute( 'href' ), '/contact-us/' )
+		&& $nextsaas_second_cta->getAttribute( 'data-nextsaas-rich' ) === 'plans.1.ctaLabel',
+	$nextsaas_first_cta instanceof DOMElement ? $nextsaas_first_cta->tagName . ' / ' . ( $nextsaas_second_cta instanceof DOMElement ? $nextsaas_second_cta->tagName : 'missing' ) : 'missing',
+);
+
+nextsaas_smoke_check(
+	'twelve feature lines survive rendering and a blank line renders nothing',
+	12 === $nextsaas_second_plan->length && 2 === $nextsaas_first_plan->length,
+	$nextsaas_second_plan->length . ' / ' . $nextsaas_first_plan->length,
+);
+
+// ── Native contact section keeps its marker and appearance ─────────────
+$nextsaas_contact_root = nextsaas_smoke_node(
+	nextsaas_smoke_dom( nextsaas_smoke_render( 'nextsaas/contact-us-contact', array( 'sectionBg' => 'surface' ) ) ),
+	'//*[@data-nextsaas-section="contact-us-contact"]',
+);
+
+nextsaas_smoke_check(
+	'the contact section renders its own appearance',
+	null !== $nextsaas_contact_root
+		&& str_contains( (string) $nextsaas_contact_root->getAttribute( 'class' ), 'has-nextsaas-background' )
+		&& str_contains( (string) $nextsaas_contact_root->getAttribute( 'class' ), 'has-nextsaas-derived-heading' ),
+	null !== $nextsaas_contact_root ? (string) $nextsaas_contact_root->getAttribute( 'class' ) : 'no root',
 );
 
 // No PHP notices were raised while loading and rendering.

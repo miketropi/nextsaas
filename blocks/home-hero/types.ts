@@ -1,3 +1,5 @@
+import type { SectionAppearanceAttributes } from '../../resources/ts/editor/types';
+
 /**
  * Attributes of `nextsaas/home-hero`.
  *
@@ -7,7 +9,7 @@
  * interface no implicit index signature, so a named item interface would need a
  * cast at the call site.
  */
-export interface HomeHeroAttributes extends Record<string, unknown> {
+export interface HomeHeroAttributes extends Record<string, unknown>, SectionAppearanceAttributes {
 	sectionId: string;
 	kicker: string;
 	kickerSecondary: string;
@@ -21,6 +23,10 @@ export interface HomeHeroAttributes extends Record<string, unknown> {
 	mediaId: number;
 	mediaUrl: string;
 	mediaAlt: string;
+	decorationMediaId: number;
+	decorationMediaUrl: string;
+	decorationMediaAlt: string;
+	decorationRotate: boolean;
 	placeholderLabel: string;
 	placeholderTop: string;
 	placeholderBadge: string;

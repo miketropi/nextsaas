@@ -1,7 +1,7 @@
 /**
  * Shared editor preview for every nextsaas/* block.
  *
- * All twenty-five NextSaaS blocks are dynamic: `block.json` points at a `render.php`
+ * All custom NextSaaS blocks are dynamic: `block.json` points at a `render.php`
  * file and `save()` returns null, so PHP owns the only authoritative copy of the
  * front-end markup. The editor therefore previews that exact markup through
  * `ServerSideRender` instead of duplicating it in JSX — which is also why a
@@ -16,16 +16,36 @@
  * rule in resources/css/editor.css disables pointer events there, and deliberately
  * not on the wrapper, so clicking anywhere in the preview still selects the block.
  *
+ * Native Dimensions spacing is split between the two elements instead of being
+ * applied twice. On the front end a section is one element, so core's padding and
+ * margin land on it together. In the editor the wrapper *and* the server-rendered
+ * section would each carry them, which doubled the padding, so the wrapper keeps the
+ * outer margin only and the rendered section keeps the padding: the same two
+ * declarations, one owner each.
+ *
  * Bundled into each block's editor script by esbuild, so no extra WordPress script
  * handle is needed.
  */
 
 import { useBlockProps } from '@wordpress/block-editor';
-import { useEffect, useRef, useState } from '@wordpress/element';
 import { Placeholder, Spinner } from '@wordpress/components';
+import {
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ServerSideRender from '@wordpress/server-side-render';
+import type { CSSProperties } from 'react';
 
+import {
+	AppearanceNotice,
+	appearanceKeyOf,
+	readSectionAppearance,
+	type SectionAppearanceReading,
+} from './colour-controls';
 
 export interface BlockPreviewProps {
 	/** Registered block name, e.g. `nextsaas/home-about`. */
@@ -34,6 +54,49 @@ export interface BlockPreviewProps {
 	attributes: Record<string, unknown>;
 	/** Optional informational text, already translated by the caller. */
 	notice?: string;
+	/**
+	 * Setter for the block's own attributes, so the appearance notice can clear
+	 * the two foreground attributes on an explicit author action.
+	 */
+	setAttributes?: (attributes: Record<string, unknown>) => void;
+}
+
+/**
+ * The attributes to render, with the editor's own margin removed.
+ *
+ * The wrapper already carries the native outer margin, so leaving it on the
+ * rendered section as well would add it twice. Padding is deliberately kept here:
+ * the wrapper dropped its padding, so the section is the only element that applies
+ * it, exactly as on the front end. Every other style field is passed through
+ * untouched.
+ *
+ * @param attributes Current block attributes.
+ *
+ * @return Attributes for the preview request.
+ */
+function withoutSpacingMargin(
+	attributes: Record<string, unknown>,
+): Record<string, unknown> {
+	const style = attributes.style;
+
+	if (!style || 'object' !== typeof style) {
+		return attributes;
+	}
+
+	const spacing = (style as Record<string, unknown>).spacing;
+
+	if (!spacing || 'object' !== typeof spacing || !('margin' in spacing)) {
+		return attributes;
+	}
+
+	const nextSpacing = { ...(spacing as Record<string, unknown>) };
+
+	delete nextSpacing.margin;
+
+	return {
+		...attributes,
+		style: { ...(style as Record<string, unknown>), spacing: nextSpacing },
+	};
 }
 
 /**
@@ -94,12 +157,89 @@ export function BlockPreview({
 	block,
 	attributes,
 	notice,
+	setAttributes,
 }: BlockPreviewProps): JSX.Element {
 	const blockProps = useBlockProps({ className: 'nextsaas-block-preview' });
+	const { style: supportStyle, ...wrapperProps } = blockProps;
 	const markerRef = useRef< HTMLSpanElement >( null );
+	const surfaceRef = useRef< HTMLDivElement >( null );
 	const [ previewAttributes, setPreviewAttributes ] =
 		useState< Record< string, unknown > >( attributes );
 	const [ refreshTick, setRefreshTick ] = useState( 0 );
+	const [ appearance, setAppearance ] =
+		useState< SectionAppearanceReading | null >( null );
+
+	// The wrapper keeps the block support margin and drops the padding, which the
+	// rendered section applies instead.
+	const wrapperStyle = useMemo( (): CSSProperties | undefined => {
+		if ( ! supportStyle ) {
+			return undefined;
+		}
+
+		const entries = Object.entries( supportStyle ).filter(
+			( [ name ] ) => ! name.startsWith( 'padding' ),
+		);
+
+		return entries.length > 0
+			? ( Object.fromEntries( entries ) as CSSProperties )
+			: undefined;
+	}, [ supportStyle ] );
+
+	const previewKey = appearanceKeyOf( attributes );
+
+	const renderedAttributes = useMemo(
+		() => withoutSpacingMargin( previewAttributes ),
+		[ previewAttributes ],
+	);
+
+	/**
+	 * The appearance facts for the attributes currently in the sidebar.
+	 *
+	 * A response whose key names different attributes is a superseded request and is
+	 * ignored, so the notice never describes a colour the author already changed.
+	 */
+	useEffect( () => {
+		const surface = surfaceRef.current;
+
+		if ( ! surface ) {
+			return;
+		}
+
+		const read = (): void => {
+			const root = surface.querySelector( '[data-nextsaas-section]' );
+			const reading = readSectionAppearance( root );
+			const current = reading && reading.key === previewKey ? reading : null;
+
+			setAppearance( ( previous ) =>
+				JSON.stringify( previous ) === JSON.stringify( current )
+					? previous
+					: current,
+			);
+		};
+
+		read();
+
+		const observer = new MutationObserver( read );
+
+		observer.observe( surface, {
+			childList: true,
+			subtree: true,
+			attributes: true,
+			attributeFilter: [
+				'class',
+				'style',
+				'data-nextsaas-appearance-key',
+				'data-nextsaas-heading-ratio',
+				'data-nextsaas-content-ratio',
+			],
+		} );
+
+		return () => observer.disconnect();
+	}, [ previewKey, block ] );
+
+	const useThemeForegrounds = useCallback( () => {
+		setAttributes?.( { sectionHeading: '', sectionText: '' } );
+	}, [ setAttributes ] );
 
 	/**
 	 * The block wrapper Gutenberg adopted for this preview.
@@ -171,13 +311,18 @@ export function BlockPreview({
 	}, [ block ] );
 
 	return (
-		<div {...blockProps}>
+		<div { ...wrapperProps } style={ wrapperStyle }>
 			<span ref={markerRef} hidden />
 			{notice ? <p className="nextsaas-block-preview__notice">{notice}</p> : null}
-			<div className="nextsaas-block-preview__surface">
+			<AppearanceNotice
+				attributes={attributes}
+				appearance={appearance}
+				onUseThemeForegrounds={useThemeForegrounds}
+			/>
+			<div className="nextsaas-block-preview__surface" ref={surfaceRef}>
 				<ServerSideRender
 					block={block}
-					attributes={previewAttributes}
+					attributes={renderedAttributes}
 					LoadingResponsePlaceholder={LoadingPlaceholder}
 					EmptyResponsePlaceholder={EmptyPlaceholder}
 					ErrorResponsePlaceholder={ErrorPlaceholder}

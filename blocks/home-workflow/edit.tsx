@@ -12,6 +12,8 @@ import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import Repeater, { type RepeaterField } from '../../resources/ts/editor/repeater';
 import RichTextOverlay, {
 	type RichTextTarget,
@@ -127,9 +129,9 @@ export default function Edit({
 						onChangeAlt={(mediaAlt) => patchMedia({ mediaAlt })}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
-			<BlockPreview block="nextsaas/home-workflow" attributes={attributes} />
+			<BlockPreview block="nextsaas/home-workflow" attributes={attributes} setAttributes={setAttributes} />
 
 			<RichTextOverlay
 				targets={[...sectionTargets, ...itemTargets]}

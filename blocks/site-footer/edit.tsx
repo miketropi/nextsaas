@@ -4,6 +4,8 @@ import { PanelBody, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import MediaControl from '../../resources/ts/editor/media-control';
 import Repeater, { type RepeaterItem } from '../../resources/ts/editor/repeater';
 import RichTextOverlay, { type RichTextTarget } from '../../resources/ts/editor/rich-text-overlay';
@@ -63,8 +65,8 @@ export default function Edit({ attributes, setAttributes, isSelected }: EditorEd
 				<TextControl label={__('Terms notice title', 'nextsaas')} value={attributes.termsDialogTitle ?? ''} onChange={(termsDialogTitle) => setAttributes({ termsDialogTitle })} />
 				<TextControl label={__('Legal notice body', 'nextsaas')} value={attributes.legalDialogBody ?? ''} onChange={(legalDialogBody) => setAttributes({ legalDialogBody })} />
 			</PanelBody>
-		</InspectorControls>
-		<BlockPreview block="nextsaas/site-footer" attributes={attributes} />
+		<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
+		<BlockPreview block="nextsaas/site-footer" attributes={attributes} setAttributes={setAttributes} />
 		<RichTextOverlay targets={overlayTargets} attributes={attributes} setAttributes={(next) => setAttributes(next as Partial<SiteFooterAttributes>)} isSelected={isSelected} />
 	</>;
 }

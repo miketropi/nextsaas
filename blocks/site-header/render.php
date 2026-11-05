@@ -99,7 +99,7 @@ $nextsaas_cta = nextsaas_cta(
 		<?php
 	}
 	?>
-	<div class="container topnav-inner">
+	<div class="container topnav-inner" data-nextsaas-gap="flex">
 		<a class="brand" href="<?php echo esc_url( nextsaas_resolve_url( $nextsaas_brand_url ) ); ?>" aria-label="<?php echo esc_attr( nextsaas_attr( $attributes, 'brandAriaLabel' ) ); ?>"<?php echo nextsaas_link_is_current( $nextsaas_brand_url ) ? ' aria-current="page"' : ''; ?>>
 			<?php if ( '' !== $nextsaas_brand_img ) : ?>
 				<?php echo $nextsaas_brand_img; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built by nextsaas_media().?>

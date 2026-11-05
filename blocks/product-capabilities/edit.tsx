@@ -12,6 +12,8 @@ import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import MediaControl from '../../resources/ts/editor/media-control';
 import Repeater, {
 	type RepeaterField,
@@ -185,9 +187,9 @@ export default function Edit({
 						)}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
-			<BlockPreview block="nextsaas/product-capabilities" attributes={attributes} />
+			<BlockPreview block="nextsaas/product-capabilities" attributes={attributes} setAttributes={setAttributes} />
 
 			<RichTextOverlay
 				targets={[...sectionTargets, ...panelTargets]}

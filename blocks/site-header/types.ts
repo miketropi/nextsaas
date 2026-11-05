@@ -1,3 +1,5 @@
+import type { SectionAppearanceAttributes } from '../../resources/ts/editor/types';
+
 /**
  * Navigation rows of the header's fallback menu.
  *
@@ -18,7 +20,7 @@ export interface HeaderNavItem extends Record<string, unknown> {
 	children?: HeaderNavChild[];
 }
 
-export interface SiteHeaderAttributes extends Record<string, unknown> {
+export interface SiteHeaderAttributes extends Record<string, unknown>, SectionAppearanceAttributes {
 	sticky: boolean;
 	skipLinkLabel: string;
 	skipLinkTarget: string;

@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	echo nextsaas_section_attrs( 'contact-us-contact', $attributes, array( 'section', 'ruled' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by core.
 ?>>
 	<div class="container">
-		<div class="contact-layout">
+		<div class="contact-layout" data-nextsaas-gap="grid">
 			<aside class="contact-aside">
 				<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 				<h2 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h2>

@@ -46,14 +46,23 @@ $nextsaas_plans = nextsaas_items( $attributes, 'plans' );
 			<p data-nextsaas-rich="offerNote"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'offerNote' ) ); ?></p>
 		</div>
 
-		<div class="price-grid">
+		<div class="price-grid" data-nextsaas-gap="grid">
 			<?php foreach ( $nextsaas_plans as $nextsaas_index => $nextsaas_plan ) : ?>
 				<?php
-				$nextsaas_name       = is_scalar( $nextsaas_plan['name'] ?? '' ) ? (string) $nextsaas_plan['name'] : '';
+				/*
+				 * Rows are read through `nextsaas_attr()`, which is the theme's single
+				 * "read a scalar attribute" guard: a row saved before a key existed (or a
+				 * hand-edited one) is missing it, and `?? ''` alone would still warn on the
+				 * second, unguarded access.
+				 */
+				$nextsaas_name       = nextsaas_attr( $nextsaas_plan, 'name' );
 				$nextsaas_features   = $nextsaas_plan['features'] ?? array();
-				$nextsaas_monthly    = is_scalar( $nextsaas_plan['monthlyLabel'] ?? '' ) ? (string) $nextsaas_plan['monthlyLabel'] : '';
-				$nextsaas_yearly     = is_scalar( $nextsaas_plan['yearlyLabel'] ?? '' ) ? (string) $nextsaas_plan['yearlyLabel'] : $nextsaas_monthly;
-				$nextsaas_note       = is_scalar( $nextsaas_plan['note'] ?? '' ) ? (string) $nextsaas_plan['note'] : '';
+				$nextsaas_monthly    = nextsaas_attr( $nextsaas_plan, 'monthlyLabel' );
+				$nextsaas_yearly     = nextsaas_attr( $nextsaas_plan, 'yearlyLabel', $nextsaas_monthly );
+				$nextsaas_note       = nextsaas_attr( $nextsaas_plan, 'note' );
+				$nextsaas_meta       = nextsaas_attr( $nextsaas_plan, 'meta' );
+				$nextsaas_text       = nextsaas_attr( $nextsaas_plan, 'description' );
+				$nextsaas_unit       = nextsaas_attr( $nextsaas_plan, 'unit' );
 				$nextsaas_featured   = ! empty( $nextsaas_plan['featured'] );
 
 				if ( '' === $nextsaas_name ) {
@@ -61,9 +70,9 @@ $nextsaas_plans = nextsaas_items( $attributes, 'plans' );
 				}
 				?>
 				<article class="plan<?php echo $nextsaas_featured ? ' featured' : ''; ?>" data-nextsaas-plan="<?php echo esc_attr( $nextsaas_name ); ?>">
-					<span class="meta"><?php echo esc_html( is_scalar( $nextsaas_plan['meta'] ?? '' ) ? (string) $nextsaas_plan['meta'] : '' ); ?></span>
+					<span class="meta"><?php echo esc_html( $nextsaas_meta ); ?></span>
 					<h3><?php echo esc_html( $nextsaas_name ); ?></h3>
-					<p><?php echo esc_html( is_scalar( $nextsaas_plan['description'] ?? '' ) ? (string) $nextsaas_plan['description'] : '' ); ?></p>
+					<p><?php echo esc_html( $nextsaas_text ); ?></p>
 					<div class="price num">
 						<span
 							data-nextsaas-price
@@ -71,7 +80,7 @@ $nextsaas_plans = nextsaas_items( $attributes, 'plans' );
 							data-yearly="<?php echo esc_attr( $nextsaas_yearly ); ?>"
 							data-nextsaas-rich="plans.<?php echo esc_attr( (string) $nextsaas_index ); ?>.monthlyLabel"
 						><?php echo esc_html( $nextsaas_monthly ); ?></span>
-						<small><?php echo esc_html( is_scalar( $nextsaas_plan['unit'] ?? '' ) ? (string) $nextsaas_plan['unit'] : '' ); ?></small>
+						<small><?php echo esc_html( $nextsaas_unit ); ?></small>
 					</div>
 					<div
 						class="price-note"
@@ -82,14 +91,30 @@ $nextsaas_plans = nextsaas_items( $attributes, 'plans' );
 					<ul>
 						<?php if ( is_array( $nextsaas_features ) ) : ?>
 							<?php foreach ( $nextsaas_features as $nextsaas_feature ) : ?>
-								<?php if ( ! is_scalar( $nextsaas_feature ) ) : ?>
-									<?php continue; ?>
-								<?php endif; ?>
-								<li><?php echo nextsaas_icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted theme helper.?><?php echo esc_html( (string) $nextsaas_feature ); ?></li>
+								<?php
+								// A blank line is a line the author is still typing, not a
+								// feature: it stays in the stored list and renders nothing.
+								$nextsaas_feature_text = is_scalar( $nextsaas_feature ) ? trim( (string) $nextsaas_feature ) : '';
+
+								if ( '' === $nextsaas_feature_text ) {
+									continue;
+								}
+								?>
+								<li><?php echo nextsaas_icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted theme helper.?><?php echo esc_html( $nextsaas_feature_text ); ?></li>
 							<?php endforeach; ?>
 						<?php endif; ?>
 					</ul>
-					<button type="button" class="btn btn-secondary btn-arrow" data-nextsaas-rich="plans.<?php echo esc_attr( (string) $nextsaas_index ); ?>.ctaLabel"><?php echo nextsaas_rich( is_scalar( $nextsaas_plan['ctaLabel'] ?? '' ) ? (string) $nextsaas_plan['ctaLabel'] : '' ); ?> <?php echo nextsaas_icon( 'arrow-up-right' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted theme helper.?></button>
+					<?php
+					echo nextsaas_cta(
+						array(
+							'label'    => nextsaas_attr( $nextsaas_plan, 'ctaLabel' ),
+							'url'      => nextsaas_attr( $nextsaas_plan, 'ctaUrl' ),
+							'variant'  => 'secondary',
+							'arrow'    => true,
+							'richPath' => 'plans.' . (string) $nextsaas_index . '.ctaLabel',
+						),
+					); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built by nextsaas_cta().
+					?>
 				</article>
 			<?php endforeach; ?>
 		</div>

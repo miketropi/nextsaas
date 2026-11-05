@@ -8,10 +8,13 @@
  */
 
 import { InspectorControls } from '@wordpress/block-editor';
+import { getBlockType } from '@wordpress/blocks';
 import { PanelBody, TextControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import Repeater, { type RepeaterField } from '../../resources/ts/editor/repeater';
 import RichTextOverlay, {
 	type RichTextTarget,
@@ -62,15 +65,36 @@ export default function Edit({
 	);
 
 	/*
-	 * The reserved screenshot, stored as a one-row list because the same attribute
-	 * carries the labelled-placeholder strings. `render.php` falls back to the
-	 * placeholder whenever no attachment is chosen.
+	 * The two screenshot slots are independent, and they share one attribute. The
+	 * manifest's own default rows supply the labelled reservation copy for a slot the
+	 * saved content does not carry (WordPress replaces an array default wholesale, so a
+	 * one-row save would otherwise lose the second slot's placeholders), and a patch is
+	 * merged into one index only: editing slot 1 can never disturb slot 2's id, URL,
+	 * alt or any key this editor does not know about.
 	 */
-	const media: Record<string, unknown> =
-		(Array.isArray(attributes.media) ? attributes.media[0] : undefined) ?? {};
-	const patchMedia = (patch: Record<string, unknown>): void => {
-		setAttributes({ media: [{ ...media, ...patch }] });
+	const mediaRows = Array.isArray(attributes.media) ? attributes.media : [];
+	const blockType = getBlockType('nextsaas/home-capabilities') as
+		| { attributes?: { media?: { default?: unknown } } }
+		| undefined;
+	const mediaDefaults = (blockType?.attributes?.media?.default ?? []) as Array<
+		Record<string, unknown>
+	>;
+
+	const mediaSlot = (index: number): Record<string, unknown> => ({
+		...(mediaDefaults[index] ?? {}),
+		...(mediaRows[index] ?? {}),
+	});
+
+	const patchMedia = (index: number, patch: Record<string, unknown>): void => {
+		const next: Array<Record<string, unknown>> = [0, 1].map((slot) => ({
+			...mediaSlot(slot),
+		}));
+
+		next[index] = { ...next[index], ...patch };
+
+		setAttributes({ media: next });
 	};
+
 	return (
 		<>
 			<InspectorControls>
@@ -102,33 +126,59 @@ export default function Edit({
 				</PanelBody>
 
 				<PanelBody title={__('Media', 'nextsaas')} initialOpen={false}>
-					<MediaControl
-						value={{
-							id: 'number' === typeof media.mediaId ? media.mediaId : 0,
-							url: 'string' === typeof media.mediaUrl ? media.mediaUrl : '',
-							alt: 'string' === typeof media.mediaAlt ? media.mediaAlt : '',
-						}}
-						labels={{
-							title: __('Screenshot', 'nextsaas'),
-							select: __('Select screenshot', 'nextsaas'),
-							replace: __('Replace screenshot', 'nextsaas'),
-							remove: __('Remove screenshot', 'nextsaas'),
-							alt: __('Alternative text', 'nextsaas'),
-						}}
-						onSelect={(selected) =>
-							patchMedia({
-								mediaId: selected.id,
-								mediaUrl: selected.url,
-								mediaAlt: selected.alt,
-							})
-						}
-						onRemove={() => patchMedia({ mediaId: 0, mediaUrl: '', mediaAlt: '' })}
-						onChangeAlt={(mediaAlt) => patchMedia({ mediaAlt })}
-					/>
+					{[0, 1].map((index) => {
+						const slot = mediaSlot(index);
+						const label = sprintf(
+							/* translators: %d: screenshot slot number. */
+							__('Capability image %d', 'nextsaas'),
+							index + 1,
+						);
+
+						return (
+							<MediaControl
+								key={index}
+								value={{
+									id: 'number' === typeof slot.mediaId ? slot.mediaId : 0,
+									url: 'string' === typeof slot.mediaUrl ? slot.mediaUrl : '',
+									alt: 'string' === typeof slot.mediaAlt ? slot.mediaAlt : '',
+								}}
+								labels={{
+									title: label,
+									select: sprintf(
+										/* translators: %d: screenshot slot number. */
+										__('Select image %d', 'nextsaas'),
+										index + 1,
+									),
+									replace: sprintf(
+										/* translators: %d: screenshot slot number. */
+										__('Replace image %d', 'nextsaas'),
+										index + 1,
+									),
+									remove: sprintf(
+										/* translators: %d: screenshot slot number. */
+										__('Remove image %d', 'nextsaas'),
+										index + 1,
+									),
+									alt: __('Alternative text', 'nextsaas'),
+								}}
+								onSelect={(selected) =>
+									patchMedia(index, {
+										mediaId: selected.id,
+										mediaUrl: selected.url,
+										mediaAlt: selected.alt,
+									})
+								}
+								onRemove={() =>
+									patchMedia(index, { mediaId: 0, mediaUrl: '', mediaAlt: '' })
+								}
+								onChangeAlt={(mediaAlt) => patchMedia(index, { mediaAlt })}
+							/>
+						);
+					})}
 				</PanelBody>
 			</InspectorControls>
 
-			<BlockPreview block="nextsaas/home-capabilities" attributes={attributes} />
+			<BlockPreview block="nextsaas/home-capabilities" attributes={attributes} setAttributes={setAttributes} />
 
 			<RichTextOverlay
 				targets={[...sectionTargets, ...itemTargets]}

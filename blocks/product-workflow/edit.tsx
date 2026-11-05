@@ -3,6 +3,8 @@ import { PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import Repeater from '../../resources/ts/editor/repeater';
 import RichTextOverlay, { type RichTextTarget } from '../../resources/ts/editor/rich-text-overlay';
 import type { EditorEditProps } from '../../resources/ts/editor/types';
@@ -25,8 +27,8 @@ export default function Edit({ attributes, setAttributes, isSelected }: EditorEd
 					{ key: 'body', label: __('Description', 'nextsaas'), control: 'rich', tagName: 'p', multiline: true },
 				]} onChange={(steps) => setAttributes({ steps: steps as WorkflowStep[] })} createItem={() => ({ meta: '', heading: '', body: '' })} getItemLabel={(item, index) => String(item.heading || `${__('Step', 'nextsaas')} ${index + 1}`)} />
 			</PanelBody>
-		</InspectorControls>
-		<BlockPreview block="nextsaas/product-workflow" attributes={attributes} />
+		<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
+		<BlockPreview block="nextsaas/product-workflow" attributes={attributes} setAttributes={setAttributes} />
 		<RichTextOverlay targets={[...overlayTargets, ...(attributes.steps ?? []).flatMap((_, index) => ([
 			{ path: `steps.${index}.heading`, label: __('Step heading', 'nextsaas') },
 			{ path: `steps.${index}.body`, label: __('Step description', 'nextsaas'), multiline: true },

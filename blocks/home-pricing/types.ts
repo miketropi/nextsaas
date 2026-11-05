@@ -1,3 +1,5 @@
+import type { SectionAppearanceAttributes } from '../../resources/ts/editor/types';
+
 /**
  * Attributes of `nextsaas/home-pricing`.
  *
@@ -5,7 +7,7 @@
  * `Repeater` is typed over: TypeScript gives a plain interface no implicit index
  * signature, so a named item interface would need a cast at the call site.
  */
-export interface HomePricingAttributes extends Record<string, unknown> {
+export interface HomePricingAttributes extends Record<string, unknown>, SectionAppearanceAttributes {
 	sectionId: string;
 	eyebrow: string;
 	/** Rich: the approved copy carries a line break and an emphasis. */

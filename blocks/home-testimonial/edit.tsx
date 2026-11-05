@@ -12,6 +12,8 @@ import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import Repeater, { type RepeaterField } from '../../resources/ts/editor/repeater';
 import RichTextOverlay, {
 	type RichTextTarget,
@@ -29,6 +31,7 @@ const sectionTargets: RichTextTarget[] = [
 const itemFields: RepeaterField[] = [
 	{ key: 'meta', label: __('Credit line', 'nextsaas') },
 	{ key: 'heading', label: __('Quote', 'nextsaas'), control: 'textarea' },
+	{ key: 'body', label: __('Customer name, role & company', 'nextsaas') },
 ];
 
 /** Row fields `render.php` marks for in-place editing, as attribute keys. */
@@ -80,17 +83,6 @@ export default function Edit({
 						onChange={(carouselLabel) => setAttributes({ carouselLabel })}
 					/>
 				</PanelBody>
-				<PanelBody title={__('Section', 'nextsaas')} initialOpen>
-					<TextControl
-						label={__('Section anchor', 'nextsaas')}
-						help={__(
-							'Used by in-page links such as the header menu. Leave empty for none.',
-							'nextsaas'
-						)}
-						value={attributes.sectionId ?? ''}
-						onChange={(sectionId) => setAttributes({ sectionId })}
-					/>
-				</PanelBody>
 				<PanelBody title={__('Stories', 'nextsaas')} initialOpen={false}>
 					<Repeater
 						label={__('Stories', 'nextsaas')}
@@ -105,9 +97,9 @@ export default function Edit({
 						}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
-			<BlockPreview block="nextsaas/home-testimonial" attributes={attributes} />
+			<BlockPreview block="nextsaas/home-testimonial" attributes={attributes} setAttributes={setAttributes} />
 
 			<RichTextOverlay
 				targets={[...sectionTargets, ...itemTargets]}

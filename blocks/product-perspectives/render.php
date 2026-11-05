@@ -6,7 +6,7 @@ $nextsaas_perspectives = nextsaas_items( $attributes, 'perspectives' );
 ?>
 <section <?php echo nextsaas_section_attrs( 'product-perspectives', $attributes, array( 'section', 'work-section' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?> >
 	<div class="container">
-		<div class="hero-split">
+		<div class="hero-split" data-nextsaas-gap="grid">
 			<div>
 				<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 				<h2 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h2>

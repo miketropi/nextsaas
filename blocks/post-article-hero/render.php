@@ -67,7 +67,7 @@ $nextsaas_date = null === $nextsaas_post
 			<span><?php echo esc_html( '' !== $nextsaas_primary_term ? $nextsaas_primary_term : __( 'Perspective', 'nextsaas' ) ); ?></span>
 		</div>
 
-		<div class="article-head">
+		<div class="article-head" data-nextsaas-gap="flow">
 			<p class="eyebrow" id="article-category"><?php echo esc_html( $nextsaas_category ); ?></p>
 			<h1 class="inner-title" id="article-title"><?php echo esc_html( $nextsaas_title ); ?></h1>
 			<p class="lead" id="article-desc" style="margin-top:32px;max-width:52ch"><?php echo esc_html( $nextsaas_lead ); ?></p>

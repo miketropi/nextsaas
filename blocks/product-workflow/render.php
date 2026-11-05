@@ -12,14 +12,14 @@ $nextsaas_steps = nextsaas_items( $attributes, 'steps' );
 ?>
 <section <?php echo nextsaas_section_attrs( 'product-workflow', $attributes, array( 'section', 'ruled' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?> >
 	<div class="container">
-		<div class="grid-1-2">
+		<div class="grid-1-2" data-nextsaas-gap="grid">
 			<div>
 				<p class="eyebrow" data-nextsaas-rich="eyebrow"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'eyebrow' ) ); ?></p>
 				<h2 data-nextsaas-rich="heading"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'heading' ) ); ?></h2>
 			</div>
 			<div>
 				<p class="lead" data-nextsaas-rich="lead"><?php echo nextsaas_rich( nextsaas_attr( $attributes, 'lead' ) ); ?></p>
-				<div class="work-steps">
+				<div class="work-steps" data-nextsaas-gap="grid">
 					<?php foreach ( $nextsaas_steps as $nextsaas_index => $nextsaas_step ) : ?>
 						<article class="value-card">
 							<span class="meta"><?php echo esc_html( (string) ( $nextsaas_step['meta'] ?? '' ) ); ?></span>

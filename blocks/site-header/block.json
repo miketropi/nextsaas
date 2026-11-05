@@ -16,6 +16,22 @@
 	],
 	"textdomain": "nextsaas",
 	"attributes": {
+		"sectionBg": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionHeading": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionText": {
+			"type": "string",
+			"default": ""
+		},
+		"sectionGap": {
+			"type": "string",
+			"default": ""
+		},
 		"sticky": {
 			"type": "boolean",
 			"default": true
@@ -191,6 +207,8 @@
 		}
 	},
 	"supports": {
+		"spacing": { "margin": true, "padding": true },
+		"color": { "background": false, "text": false, "link": false },
 		"html": false,
 		"multiple": false,
 		"reusable": false,

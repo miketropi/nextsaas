@@ -1,4 +1,6 @@
-export interface ClosingCtaAttributes extends Record<string, unknown> {
+import type { SectionAppearanceAttributes } from '../../resources/ts/editor/types';
+
+export interface ClosingCtaAttributes extends Record<string, unknown>, SectionAppearanceAttributes {
 	/** Design anchor. The approved render uses `next-step` on three of the four pages. */
 	sectionId: string;
 	eyebrow: string;

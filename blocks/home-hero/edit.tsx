@@ -9,10 +9,12 @@
  */
 
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl } from '@wordpress/components';
+import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import MediaControl from '../../resources/ts/editor/media-control';
 import Repeater, { type RepeaterField } from '../../resources/ts/editor/repeater';
 import RichTextOverlay, {
@@ -104,6 +106,48 @@ export default function Edit({
 					/>
 				</PanelBody>
 
+				<PanelBody title={__('Hero decoration', 'nextsaas')} initialOpen={false}>
+					<MediaControl
+						value={{
+							id: attributes.decorationMediaId ?? 0,
+							url: attributes.decorationMediaUrl ?? '',
+							alt: attributes.decorationMediaAlt ?? '',
+						}}
+						labels={{
+							title: __('Hero decoration', 'nextsaas'),
+							select: __('Select decoration', 'nextsaas'),
+							replace: __('Replace decoration', 'nextsaas'),
+							remove: __('Remove decoration', 'nextsaas'),
+							alt: __('Alternative text', 'nextsaas'),
+						}}
+						onSelect={(selected) =>
+							setAttributes({
+								decorationMediaId: selected.id,
+								decorationMediaUrl: selected.url,
+								decorationMediaAlt: selected.alt,
+							})
+						}
+						onRemove={() =>
+							setAttributes({
+								decorationMediaId: 0,
+								decorationMediaUrl: '',
+								decorationMediaAlt: '',
+							})
+						}
+						onChangeAlt={(decorationMediaAlt) => setAttributes({ decorationMediaAlt })}
+					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={__('Rotate decoration', 'nextsaas')}
+						help={__(
+							'The star artwork turns slowly. Turn rotation off for a decoration that should stay still.',
+							'nextsaas'
+						)}
+						checked={attributes.decorationRotate !== false}
+						onChange={(decorationRotate) => setAttributes({ decorationRotate })}
+					/>
+				</PanelBody>
+
 				<PanelBody title={__('Use cases', 'nextsaas')} initialOpen={false}>
 					<Repeater
 						label={__('Use cases', 'nextsaas')}
@@ -120,9 +164,9 @@ export default function Edit({
 						}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
-			<BlockPreview block="nextsaas/home-hero" attributes={attributes} />
+			<BlockPreview block="nextsaas/home-hero" attributes={attributes} setAttributes={setAttributes} />
 
 			<RichTextOverlay
 				targets={[...sectionTargets, ...useCaseTargets]}

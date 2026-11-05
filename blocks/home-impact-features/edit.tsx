@@ -12,7 +12,10 @@ import { PanelBody, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import BlockPreview from '../../resources/ts/editor/block-preview';
+import ColourControls from '../../resources/ts/editor/colour-controls';
+import SpacingControls from '../../resources/ts/editor/spacing-controls';
 import Repeater, { type RepeaterField } from '../../resources/ts/editor/repeater';
+import MediaControl from '../../resources/ts/editor/media-control';
 import RichTextOverlay, {
 	type RichTextTarget,
 } from '../../resources/ts/editor/rich-text-overlay';
@@ -88,11 +91,36 @@ export default function Edit({
 								? item.heading
 								: `${__('Feature', 'nextsaas')} ${index + 1}`
 						}
+						renderItemExtras={(draft, update) => (
+							<MediaControl
+								value={{
+									id: 'number' === typeof draft.mediaId ? draft.mediaId : 0,
+									url: 'string' === typeof draft.mediaUrl ? draft.mediaUrl : '',
+									alt: 'string' === typeof draft.mediaAlt ? draft.mediaAlt : '',
+								}}
+								labels={{
+									title: __('Icon image', 'nextsaas'),
+									select: __('Select icon image', 'nextsaas'),
+									replace: __('Replace icon image', 'nextsaas'),
+									remove: __('Remove icon image', 'nextsaas'),
+									alt: __('Alternative text', 'nextsaas'),
+								}}
+								onSelect={(selected) =>
+									update({
+										mediaId: selected.id,
+										mediaUrl: selected.url,
+										mediaAlt: selected.alt,
+									})
+								}
+								onRemove={() => update({ mediaId: 0, mediaUrl: '', mediaAlt: '' })}
+								onChangeAlt={(mediaAlt) => update({ mediaAlt })}
+							/>
+						)}
 					/>
 				</PanelBody>
-			</InspectorControls>
+			<ColourControls attributes={attributes} setAttributes={setAttributes} /><SpacingControls attributes={attributes} setAttributes={setAttributes} /></InspectorControls>
 
-			<BlockPreview block="nextsaas/home-impact-features" attributes={attributes} />
+			<BlockPreview block="nextsaas/home-impact-features" attributes={attributes} setAttributes={setAttributes} />
 
 			<RichTextOverlay
 				targets={[...sectionTargets, ...itemTargets]}
