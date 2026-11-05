@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "skills": {
+    "nextora-child-themes": {
+      "source": "miketropi/nextora-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nextora-child-themes/SKILL.md",
+      "computedHash": "65972292b50d502033be40038d0d8d576f907053798ad3fa745fee7259c66097"
+    },
+    "nextora-design-system": {
+      "source": "miketropi/nextora-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nextora-design-system/SKILL.md",
+      "computedHash": "bcba18cfae6d1ead3aa883dd9b64a4fd3ea37527ef9cbadafb1e88b2f3b743fa"
+    },
+    "nextora-ecosystem": {
+      "source": "miketropi/nextora-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nextora-ecosystem/SKILL.md",
+      "computedHash": "8f6fa8ab4f6bf486d0cfba004003cd74e04107d83de3836878f31e0e6f1425dd"
+    },
+    "nextora-gutenberg-blocks": {
+      "source": "miketropi/nextora-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nextora-gutenberg-blocks/SKILL.md",
+      "computedHash": "a9c775972bb67c828e5c9b61166046977dc20b308fb2bc2680f11461b6d7a4f6"
+    },
+    "nextora-site-composition": {
+      "source": "miketropi/nextora-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nextora-site-composition/SKILL.md",
+      "computedHash": "11f64ba17a463eb6df93357c8ec9666c9f752583f08a7cce1cc6f780da7b2984"
+    },
+    "nextora-template-porting": {
+      "source": "miketropi/nextora-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nextora-template-porting/SKILL.md",
+      "computedHash": "e233772f06c7b554dd2c3b296c5c59792b129b4b44bfaacfff4827114059b08b"
+    }
+  }
+}
