@@ -15,8 +15,10 @@
   @supports (color: color-mix(in lab, red, red)) {
     --nextsaas-fg-soft: color-mix(in oklch,var(--nextsaas-fg) 5%,transparent);
   }
-  --nextsaas-font-display: var(--wp--preset--font-family--bodoni-moda,'Bodoni Moda','Didot',Georgia,serif);
-  --nextsaas-font-body: var(--wp--preset--font-family--dm-sans,'DM Sans','Segoe UI',sans-serif);
+  --nextora-font-heading: var(--wp--preset--font-family--bodoni-moda,'Bodoni Moda','Didot',Georgia,serif);
+  --nextsaas-font-display: var(--nextora-font-heading);
+  --nextora-font-body: var(--wp--preset--font-family--dm-sans,'DM Sans','Segoe UI',sans-serif);
+  --nextsaas-font-body: var(--nextora-font-body);
   --nextsaas-font-mono: var(--wp--preset--font-family--ibm-plex-mono,ui-monospace,'IBM Plex Mono','JetBrains Mono',Menlo,monospace);
   --nextsaas-fs-h1: clamp(78px,13vw,188px);
   --nextsaas-fs-h2: clamp(46px,6.2vw,88px);
